@@ -5,11 +5,11 @@
 <section class="content-header">
          
     <section class="content">
-    	<ol class="breadcrumb">
+    	<!-- <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
         <li class="active">List Reservation</li>
         <li class="active">Detail Reservation</li>
-      </ol>
+      </ol> -->
    <p>
        <div class="row">
         <div class="col-xs-12">

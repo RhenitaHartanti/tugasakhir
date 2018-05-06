@@ -1,208 +1,153 @@
 @extends('layouts.layoutadmin')
-
+@section('header')
+@endsection
 @section('content')
 <div class="content-wrapper">
 <section class="content-header">
-         
-    <section class="content">
-    	<ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-        <li class="active">List Reservation</li>
-      </ol>
-   <p>
-       <div class="row">
+<section class="content">
+      <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h4><center>List Reservation</center></h4>
-              <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Data Reservation</button>
+              <center><h3 class="box-title">List Reservation</h3></center>
             </div>
             <!-- /.box-header -->
-            
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
-               
-                <tr>
-                  
-                  <td>Id Reservation</td>
-                  <td>Name</td>
-                  <td>Package</td>
-                  <td>Order Date</td>
-                  <td>Using Date</td>
-                  <td>Using Time</td>
-                  <td>Details Reservation</td>
-                  <td>Payment Status</td>
-                  <td>Action</td>
-                </tr>
-                
+                <thead>
+                  <tr>
+                  <th><center>Id Order</center></th>
+                  <th><center>Id User</center></th>
+                  <th><center>Name Package</center></th>
+                  <!-- <th><center>Date Order</center></th> -->
+                  <th><center>Date Using</center></th>
+                  <th><center>Time Using</center></th>
+                  <th><center>Detail Order</center></th>
+                  <th><center>Payment Status</center></th>
+                  <th><center>Detail Payment</center></th>
+                  </tr>
+                </thead>                
                 <tbody>
-                <tr>
-                                
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td><button class="btn btn-sm btn-default" data-toggle="modal" data-target="#modal-lihat">See Detail</button></td>
-                  <td><button class="btn btn-sm btn-default" data-toggle="modal" data-target="#modal-payment">Detail Payment</button></td>
-                  
-                  <td><button type="button" class="btn btn-sm btn-default"><a href="{{URL('edit_order')}}"><span class="glyphicon glyphicon-pencil"> Edit</button>   <button type="button" class="btn btn-sm btn-danger"><span class="glyphicon glyphicon-trash"> Delete</button></td>
+                    @foreach($orders as $value)
+                <tr>                                
+                  <td><center>{{$value->id}}</center></td>
+                  <td><center>{{$value->id_user}}</center></td>
+                  <td><center>{{$value->package->name_package}}</center></td>
+                  <!-- <td><center>{{$value->date_order}}</center></td> -->
+                  <td><center>{{$value->date_using}}</center></td>
+                  <td><center>{{$value->time_using}}</center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
+                    <td><center>{{$value->payment_status}}</center></td>
+                  <td><center><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-payment">Detail Payment</button></center></td>                
                 </tr>
-                </tfoot>
-              </table>
-            </div>
 
-      <!-- /.row -->
-    </section>
-</div>
- </section>
 
-<div id="modal-lihat" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-             <img src="img/logo12.jpg" alt="">
-            <div class="modal-header">
-             
-              <center><h4 class="modal-title" id="myModalLabel">Detail Reservation</h4></center>
-            </div>
-             <form class="form-horizontal">
-              <div class="box-body">
-                <div class="form-group">
-                  <label for="name" class="col-sm-4 control-label">Nama yang Bersangkutan</label>
-
-                  <div class="col-sm-8">
-                    <input type="name" class="form-control" id="name" name="name">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="theme" class="col-sm-4 control-label">Theme (Custom theme or character)</label>
-
-                  <div class="col-sm-8">
-                    <input type="theme" class="form-control" id="theme" name="theme">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="place" class="col-sm-4 control-label">Place (Sertakan alamatnya)</label>
-
-                  <div class="col-sm-8">
-                    <input type="place" class="form-control" id="place" name="place">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="guest" class="col-sm-4 control-label">Total Guest</label>
-
-                  <div class="col-sm-8">
-                    <input type="guest" class="form-control" id="guest" name="guest">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="greeting" class="col-sm-4 control-label">Greeting</label>
-
-                  <div class="col-sm-8">
-                    <input type="greeting" class="form-control" id="greeting" name="greeting">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="note" class="col-sm-4 control-label">Note</label>
-
-                  <div class="col-sm-8">
-                    <input type="note" class="form-control" id="note" name="note">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="request" class="col-sm-4 control-label">Request</label>
-
-                  <div class="col-sm-8">
-                    <input type="request" class="form-control" id="request" name="request">
-                  </div>
-                </div>
-              </div>
-              <!-- /.box-body -->
+                <div id="modal-payment" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+                  <div class="modal-dialog modal-md">
+                    <div class="modal-content">
+                      <img src="img/logo12.jpg" alt="">
+                        <div class="modal-header">             
+                          <center><h4 class="modal-title" id="myModalLabel">Detail Payment</h4></center>
+                        </div>
+                        <form class="form-horizontal">
+                          <div class="box-body">
+                           <div class="col-md-12">
+                              <input type="hidden" value="-" name="id_payment">           
+                          </div>
+                          <br>
+                          <div class="row">
+                            <div class="form-group">
+                              <label for="booking_code" class="col-sm-4 control-label">Booking Code</label>
+                            <div class="col-sm-8">
+                              <input type="text" class="form-control" id="booking_code" name="booking_code">
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="form-group">
+                            <label for="attach" class="col-sm-4 control-label">Attach</label>
+                            <div class="col-sm-8">
+                              <input type="file" class="form-control" id="attach" name="attach">
+                            </div>
+                          </div>
+                        </div>
+                        <br>
               <div class="box-footer">
                 <center>
                   <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
-              </center>
+               </center>
               </div>
-              <!-- /.box-footer -->
             </form>
-          </div>
+          </div>    
         </div>
-    </div>
+      </div>
+      @endforeach
+    </tbody>
+  </table>
 
-    <div id="modal-payment" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+      <div id="modal-lihat" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
              <img src="img/logo12.jpg" alt="">
-            <div class="modal-header">
-             
-              <center><h4 class="modal-title" id="myModalLabel">Detail Payment</h4></center>
+            <div class="modal-header">                      
+              <center><h4 class="modal-title" id="myModalLabel">Detail Reservation</h4></center>
             </div>
-             <form class="form-horizontal">
-              <div class="box-body">
-                  <div class="row">
-        <div class="col-md-12">
-          <!-- The time line -->
-          <ul class="timeline">
-            <!-- timeline time label -->
-            <li class="time-label">
-                  <span class="bg-red">
-                    Payment 1
-                  </span>
-            </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-envelope bg-blue"></i>
-
-              <div class="timeline-item">
-               
-                <h3 class="timeline-header"><a href="#">Date Payment 1</a></h3>
-                 <div class="timeline-body">
-                  Take me to your leader!
-                  Switzerland is small and neutral!
-                  We are more like Germany, ambitious and misunderstood!
+                        
+             <form class="form-horizontal">               
+               <div class="box-body">              
+                <div class="form-group">
+                  <label for="theme" class="col-sm-5 control-label">Theme (Custom theme or character)</label>
+                  <div class="col-sm-6 detail-theme">
+                  </div>
                 </div>
-                <h3 class="timeline-header no-border"><a href="#">Photo</a></h3>
-                 <img src="http://placehold.it/150x100" alt="..." class="margin">
-              </div>
-            </li>  
-            <li class="time-label">
-                  <span class="bg-red">
-                    Payment 2
-                  </span>
-            </li>
-            <!-- /.timeline-label -->
-            <!-- timeline item -->
-            <li>
-              <i class="fa fa-envelope bg-blue"></i>
-
-              <div class="timeline-item">
-               
-                <h3 class="timeline-header"><a href="#">Date Payment 1</a></h3>
-                 <div class="timeline-body">
-                  Take me to your leader!
-                  Switzerland is small and neutral!
-                  We are more like Germany, ambitious and misunderstood!
+                <div class="form-group">
+                  <label for="place" class="col-sm-5 control-label">Place (include the address)</label>
+                  <div class="col-sm-6 detail-place">
+                  </div>
                 </div>
-                <h3 class="timeline-header no-border"><a href="#">Photo</a></h3>
-                 <img src="http://placehold.it/150x100" alt="..." class="margin">
+                <div class="form-group">
+                  <label for="guest" class="col-sm-5 control-label">Total Guests</label>
+                  <div class="col-sm-6 detail-total">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="greeting" class="col-sm-5 control-label">Greeting</label>
+                  <div class="col-sm-6 detail-greet">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="note" class="col-sm-5 control-label">Note</label>
+                  <div class="col-sm-6 detail-note">
+                  </div>
+                </div>             
               </div>
-            </li>             
-          </ul>
-          <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
-        </div>    
-      </div>
-      </div>
-              <!-- /.box-body -->
-              
+              <div class="box-footer">
+                <center>
+                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">Back</span></button></center>
+              </center>              
+              </div>   
             </form>
-          </div>
+          </div>           
         </div>
-    </div>
-
-    
-    </section>
-  </div>
-    </section>
+      </div>
+</section>
+</div>
+</section>
+@endsection
+@section('js')
+<script type="text/javascript">
+  function detailOrder(dom) {
+    var theme = $(dom).attr('data-theme');
+    var place = $(dom).attr('data-place');
+    var guest = $(dom).attr('data-guest');
+    var greeting = $(dom).attr('data-greeting');
+    var note = $(dom).attr('data-note');
+    $('.detail-theme').html(theme)
+    $('.detail-place').html(place)
+    $('.detail-total').html(guest)
+    $('.detail-greet').html(greeting)
+    $('.detail-note').html(note)
+  }
+</script>
 @endsection

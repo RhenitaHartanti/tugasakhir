@@ -1,16 +1,24 @@
 @extends('layouts.app')
-<!-- <link rel="stylesheet" href="{{('dashboard/bower_components/bootstrap/dist/css/bootstrap.min.css')}}"> -->
 
-  <link rel="stylesheet" href="{{('dashboard/bower_components/font-awesome/css/font-awesome.min.css')}}">
+@section('header')
+  <link rel="stylesheet" href="{{asset('asset/css/ionicons.min.css')}}">  
+  <link rel="stylesheet" href="{{asset('asset/css/AdminLTE.min.css')}}"> 
+  <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
+@endsection
 
-  <link rel="stylesheet" href="{{('dashboard/bower_components/Ionicons/css/ionicons.min.css')}}">
-  
-  <link rel="stylesheet" href="{{('dashboard/dist/css/AdminLTE.min.css')}}"> -->
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{('dashboard/dist/css/skins/_all-skins.min.css')}}">
-    @section('content')
+ @section('content')
     <!-- Header -->
+    <section id="logo">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-12 text-center">       
+            <center><div class="col-md-4">
+             <img src="landingpage/img/g.png">
+            </div></center> 
+          </div>
+        </div>
+        
+        </section>
     <header class="masthead">
       <div class="container">
         <div class="intro-text">
@@ -20,31 +28,28 @@
         </div>
       </div>
     </header> 
-
-    <!-- Services -->
-    <section id="logo">
-      <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">       
-            <center><div class="col-md-4">
-             <img src="landingpage/img/d.png">
-            </div></center> 
-          </div>
-        </div>
-        </section>
-        <section id="services">      
-        <div class="row">
+     <section id="about"> 
+          <div class="row" >
+           <div class="col-lg-12 text-center">
           <center> 
-          Precious Party Planner is a start up which is engaged in providing services. We provide some packages for your special 
-         </center>
-          </div>         
-        </div>
+          Precious Party Planner is a start up which is engaged in providing services. We provide some packages for your special moment
+          </center>
+          </div>
+          </div>
+        </section>
+    <br> 
+    <div class="row">
+          <div class="col-lg-12 text-center">
+            <h2 class="section-heading text-uppercase">Calendar Reservation</h2>
+            <iframe src="https://calendar.google.com/calendar/embed?src=rereradinka%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="1100" height="600" frameborder="0" scrolling="no"></iframe>
+          </div>
+        </div>      
+        <section id="services">    
         <p>
          <div class="row">
           <div class="col-lg-12 text-center">
             <h5>Steps for Order</h5>
           </div>
-
         </div>
         <div class="row text-center">
           <div class="col-md-4">
@@ -70,21 +75,39 @@
           </div>
         </div>
       </div>
+    </section>    
+     <section id="services">    
+        <p>
+         <div class="row">
+          <div class="col-lg-12 text-center">
+            <h5>Terms and Conditions</h5>
+          </div>
+        </div>
+        <div class="row text-center">
+          <div class="col-md-6">           
+            <h6 class="service-heading">You can order</h6><p>
+            <h8 class="service-heading">Reservation Terms</h8><p>
+          </div>
+          <div class="col-md-6">
+            <h6 class="service-heading">Payment Terms</h6><p>
+            <h8 class="service-heading">You can doing payment process in twice (DP and Paid Off)</h8><p>
+            <h8 class="service-heading">You can doing payment process only by transfer</h8><p>
+            <h8 class="service-heading">You can upload </h8><p>             
+          </div>
+        </div>
+      </div>
     </section>
-
-        <!-- Contact -->
+    
     <section id="contact">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h2 class="section-heading text-uppercase">Contact Us</h2>            
+            <h2 class="section-heading text-uppercase">Contact Us</h2> <p>                        
           </div>
           <p>
           <div class="col-md-6">
-            <div class="box">
-            <!-- /.box-header -->
-            <!-- form start -->
-            <form role="form">
+            <form class="form-horizontal" action="{{url('/landingpage_beranda')}}" method="post">
+              {{csrf_field()}}
               <div class="box-body">
                 <div class="form-group">
                   <label for="exampleInputEmail1">Name</label>
@@ -94,66 +117,40 @@
                   <label for="exampleInputPassword1">Email</label>
                   <input type="email" class="form-control" id="email" name="email">
                 </div>
+                 <div class="form-group">
+                  <label for="exampleInputPassword1">No Hp</label>
+                  <input type="nohp" class="form-control" id="nohp" name="nohp">
+                </div>
                 <div class="form-group">
                   <label for="exampleInputPassword1">Message</label>
-                  <input type="password" class="form-control" id="password" name="password">
-                </div>
-                              
+                  <textarea class="form-control" id="password" name="password"></textarea>
+                </div>                              
               </div>
-              <!-- /.box-body -->
-
               <div class="box-footer">
-                <button type="submit" class="btn btn-primary">Send</button>
+                <center><button type="submit" class="btn btn-primary">Send</button></center>
               </div>
-            </form>
-          </div>
+            </form>  
         </div>
-        <!-- menambahkan googl maps -->
+                <!-- menambahkan googl maps -->
         <div class="col-md-6">
-        <center><h6>Maps</h6></center>
-    <div id="map"></div>
-    <script>
-      function initMap() {
-        var uluru = {lat: -25.363, lng: 131.044};
-        var map = new google.maps.Map(document.getElementById('map'), {
-          zoom: 4,
-          center: uluru
-        });
-        var marker = new google.maps.Marker({
-          position: uluru,
-          map: map
-        });
-      }
-    </script>
-    <script async defer
-    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB520Hc03J-TdFR0sFHXYSByLLAMQerNo0&callback=initMap">
-    </script>
-       </div>
+       
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3955.4598809275953!2d110.19219281450171!3d-7.5247129945728!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e7a8efa2c540f3b%3A0x1b00c6767784339b!2sPerumahan+Bagongan+Asri!5e0!3m2!1sid!2sid!4v1524232016733" width="550" height="400" frameborder="0" style="border:0" allowfullscreen></iframe>
+    
+      </div>
       </div>
     </div>
-  </section>
-  <footer>
-      <div class="container">
-        <div class="row">
-          <div class="col-md-12 text-center">
-            <span class="copyright">Copyright &copy; Precious Party Planner 2018</span>
-          </div>          
-       </div>
-     </div>
-  </footer>
-
-
-   
+  </section>   
     <!-- Portfolio Modals -->
 
 @endsection
-<!-- <script src="{{('dashboard/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{('dashboard/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
-<script src="{{('dashboard/bower_components/fastclick/lib/fastclick.js')}}"></script>
+@section('js')
+<script src="{{asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
 
-<script src="{{('dashboard/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
 
-<script src="{{('dashboard/dist/js/demo.js')}}"></script> -->
-  </body>
-</html>
+<script src="{{asset('asset/dist/js/adminlte.min.js')}}"></script>
+
+<script src="{{asset('asset/dist/js/demo.js')}}"></script>
+@endsection

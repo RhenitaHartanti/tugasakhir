@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Post;
+use App\Package;
+
 
 class HomeController extends Controller
 {
@@ -41,22 +44,62 @@ class HomeController extends Controller
     {
         return view('landingpage_login');
     }
-    public function setting()
+    public function landingpage_setting()
     {
-        return view('setting');
+        return view('landingpage_setting');
     }
-     public function landingpage_formpackage()
+     public function landingpage_formpackage($id)
+    { 
+        $package = Package::find($id);
+        // if !auth::check
+        return view('landingpage_formpackage',compact('package','id'));
+    }
+     public function landingpage_profil()
     {
-        return view('landingpage_formpackage');
+        return view('landingpage_profil');
     }
-     public function landingpage_formpackage2()
-    {
-        return view('landingpage_formpackage2');
-    }
+    // public function getContact(){
+    //     return view('');
+    // }
+    // public function postContact(){
+    //     $this->validate($request,
+    //         [
+    //             'email' => 'required|email' ,
+    //             'subject' => 'min:3',
+    //             'message' => 'min:10']);
 
+    //     $data = array(
+    //         'email' => $request->email,
+    //         'subject' => $request->subject,
+    //         'message' => $request->message
+    //     );
+    //     Mail::send('emails.contact', $data, function($message) use ($data){
+    //         $message->from($data['email']);
+    //         $message->to(hello@);
+    //         $message->subject($data['subject']);
+    //     });
+    // }
+    // public function kirimpesan(Request $request)
+    // {
+    //     $this->validate($request, [
+    //         'name' => 'required',
+    //         'email' => 'required',
+    //         'message' => 'required',
+    //     ]);
+    
 
+    //         $name = $request['name'];
+    //         $email = $request['email'];
+    //         $message = $request['message'];
+            
 
+    //         Mail::send('auth.emails.messages',[ 'name' =>$name, 'email'=>$email, 'message' => $message], function ($m){
+    //             $m->to('rereradinka@gmail.com' , 'user') ->subject('Pesan');
+    //         });
 
+    //         $user = User::all();
+    //         return view('landingpage_beranda', ['users' => $user]);
+    // }
 
 //ADMIN
      public function admin_dashboard()
@@ -75,9 +118,12 @@ class HomeController extends Controller
     {
         return view('admin_setting');
     }
-    public function admin_listcustomer()
+    public function admin_profil()
     {
-        return view('admin_listcustomer');
+        return view('admin_profil');
     }
-
+    public function admin_history()
+    {
+        return view('admin_history');
+    }
 }

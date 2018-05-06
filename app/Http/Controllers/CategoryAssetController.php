@@ -1,25 +1,21 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
+use App\CategoryAsset;
 use Illuminate\Support\Facades\DB;
-use App\User;
+use Illuminate\Http\Request;
 
-
-class CustomerController extends Controller
+class CategoryAssetController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    // {{Auth::users()->name}}
     public function index()
     {
-        $customer=User::where('level','!=' , 'admin')->get();
-        return view('admin_listcustomer',compact('customer'));
+        $categoryAsset=CategoryAsset::all();
+        return view('admin_categoryasset',compact('categoryAsset'));
     }
 
     /**
@@ -29,7 +25,8 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        
+        CategoryAsset::create($request->except(['_token']));
+             return redirect('admin_categoryasset');   
     }
 
     /**
@@ -38,9 +35,10 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        // $value = $request->session()->get('key');
+        CategoryAsset::create($request->except(['_token']));
+             return redirect('admin_categoryasset');    
     }
 
     /**
@@ -74,16 +72,11 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $landingpage_profil = User ::find($id);
-        $landingpage_profil->name = $request->name;
-        $landingpage_profil->username = $request->username;
-        $landingpage_profil->email = $request->email;
-        $landingpage_profil->password = $request->password;
-        $landingpage_profil->nohp = $request->nohp;
-        $landingpage_profil->created_at = $request->created_at;
-        $landingpage_profil->updated_at = $request->updated_at;
-        $landingpage_profil->save();
-        return redirect('landingpage_profil');
+        $admin_categoryasset=CategoryAsset::find($id);
+        $admin_categoryasset->name_category = $request->name_category;
+        $admin_categoryasset->details = $request->details;
+        $admin_categoryasset->save();
+        return redirect('admin_categoryasset');
     }
 
     /**
@@ -94,8 +87,8 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        // $customer =Customer::find($id);
-        // $customer->delete();
-        // return redirect('setting')->with('success','Procuct has ben delete');
+       $categoryAsset =CategoryAsset::find($id);
+        $categoryAsset->delete();
+        return redirect('admin_categoryasset')->with('success','Procuct has ben delete');
     }
 }

@@ -47,6 +47,9 @@
               <a class="nav-link js-scroll-trigger" href="{{url('/landingpage_galeri')}}">Gallery</a>
             </li>
             <li class="nav-item">
+              <a class="nav-link js-scroll-trigger" href="{{url('/setting')}}">Setting</a>
+            </li>
+            <li class="nav-item">
               @if(!\Auth::check())
               <a class="nav-link js-scroll-trigger" href="{{ route('login') }}">{{ __('Login') }}</a>
               @else

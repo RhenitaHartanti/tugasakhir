@@ -1,26 +1,48 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Order;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
-use App\User;
+use Auth;
 
-
-class CustomerController extends Controller
+class OrderCustomerController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-
-    // {{Auth::users()->name}}
     public function index()
     {
-        $customer=User::where('level','!=' , 'admin')->get();
-        return view('admin_listcustomer',compact('customer'));
+        $order=Order::where('id_user',Auth::user()->id)->get();
+        return view('landingpage_setting',compact('order'));
     }
+    public function showUploadFile(Request $request){
+      $file = $request->file('image');
+   
+      //Display File Name
+      echo 'File Name: '.$file->getClientOriginalName();
+      echo '<br>';
+   
+      //Display File Extension
+      echo 'File Extension: '.$file->getClientOriginalExtension();
+      echo '<br>';
+   
+      //Display File Real Path
+      echo 'File Real Path: '.$file->getRealPath();
+      echo '<br>';
+   
+      //Display File Size
+      echo 'File Size: '.$file->getSize();
+      echo '<br>';
+   
+      //Display File Mime Type
+      echo 'File Mime Type: '.$file->getMimeType();
+   
+      //Move Uploaded File
+      $destinationPath = 'uploads';
+      $file->move($destinationPath,$file->getClientOriginalName());
+   }
 
     /**
      * Show the form for creating a new resource.
@@ -29,7 +51,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        
+        //
     }
 
     /**
@@ -38,9 +60,9 @@ class CustomerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, $id)
+    public function store(Request $request)
     {
-        // $value = $request->session()->get('key');
+      
     }
 
     /**
@@ -74,16 +96,7 @@ class CustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $landingpage_profil = User ::find($id);
-        $landingpage_profil->name = $request->name;
-        $landingpage_profil->username = $request->username;
-        $landingpage_profil->email = $request->email;
-        $landingpage_profil->password = $request->password;
-        $landingpage_profil->nohp = $request->nohp;
-        $landingpage_profil->created_at = $request->created_at;
-        $landingpage_profil->updated_at = $request->updated_at;
-        $landingpage_profil->save();
-        return redirect('landingpage_profil');
+        //
     }
 
     /**
@@ -94,8 +107,6 @@ class CustomerController extends Controller
      */
     public function destroy($id)
     {
-        // $customer =Customer::find($id);
-        // $customer->delete();
-        // return redirect('setting')->with('success','Procuct has ben delete');
+        //
     }
 }

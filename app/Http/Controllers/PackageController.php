@@ -1,9 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Package;
 use Illuminate\Http\Request;
-use App\Model\Package;
 use Illuminate\Support\Facades\DB;
 
 class PackageController extends Controller
@@ -37,8 +36,18 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
+        // $package = $this->validate(request(), [
+        //     'name_package' => 'required|max:50',
+        //     'quota' => 'required|numeric|max:5',
+        //     'details' => 'required|max:50',
+        //     'price' => 'required|numeric|max:5',
+        // ]);
+
         Package::create($request->except(['_token']));
              return redirect('admin_listpackage');    
+
+        // Package::create($package);
+        // return back()->with('success', 'Data paket berhasil didimpan');
     }
 
     /**
@@ -70,12 +79,13 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id_package)
+    public function update(Request $request, $id)
     {
-        $admin_listpackage = Package ::find($id_package);
-        $admin_listpackage->package_name = $request->package_name;
+        $admin_listpackage = Package ::find($id);
+        $admin_listpackage->name_package = $request->name_package;
         $admin_listpackage->details = $request->details;
         $admin_listpackage->price = $request->price;
+        $admin_listpackage->kuota = $request->kuota;
         $admin_listpackage->save();
         return redirect('admin_listpackage');
     }
@@ -86,9 +96,9 @@ class PackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id_package)
+    public function destroy($id)
     {
-        $package =Package::find($id_package);
+        $package =Package::find($id);
         $package->delete();
         return redirect('admin_listpackage')->with('success','Procuct has ben delete');
     }

@@ -1,22 +1,12 @@
 @extends('layouts.layoutadmin')
- <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  <!-- Bootstrap 3.3.7 -->
-  <link rel="stylesheet" href="{{('asset/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="{{('asset/bower_components/font-awesome/css/font-awesome.min.css')}}">
-  <!-- Ionicons -->
-  <link rel="stylesheet" href="{{('asset/bower_components/Ionicons/css/ionicons.min.css')}}">
-  <!-- Theme style -->
-  <link rel="stylesheet" href="{{('asset/dist/css/AdminLTE.min.css')}}">
-  <!-- AdminLTE Skins. Choose a skin from the css/skins
-       folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="{{('asset/dist/css/skins/_all-skins.min.css')}}">
+@section('header')
+@endsection
 @section('content')
 <div class="content-wrapper">
 <section class="content-header">
       <ol class="breadcrumb">
-        <li><a href="#"><i class="fa fa-dashboard"></i>Dashboard</a></li>
-        <li class="active">Reservation Order</li>
+       <!--  <li><a href={{url('/admin_dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
+        <li class="active">Dashboard</li>
       </ol>
    <p>
      <div class="row">
@@ -26,7 +16,7 @@
             <div class="inner">
               <h3>150</h3>
 
-              <p>Reservation Orders</p>
+              <p>Request Order</p>
             </div>
             <div class="icon">
               <i class="fa fa-shopping-cart"></i>
@@ -86,149 +76,133 @@
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
-        </div>
-    <section class="content">
+        </div>  
+
+                   
+   <section class="content">
       <div class="row">
-        <div class="col-md-12">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h4 class="box-title">Calender Events</h4>
-            </div>
-            <div class="box-body">
-              <div class="box-body no-padding">
-              <!-- THE CALENDAR -->
-              <div id="calendar"></div>
-            </div>
-              
-            </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /. box -->
-          
-        </div>
-         
-    <section class="content">
-    	<div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h4><center>List Reservation</center></h4>
-                         <!-- /.box-header -->
-            
+             <center><h3 class="box-title">List Orders</h3></center>
+            </div>
+            <br>
             <div class="box-body">
-              <table id="datatable" class="table table-striped table-bordered" width="100%" cellspacing="0">
+              <table id="example2" class="table table-bordered table-hover">
                 <thead>
-                <tr>
-                  
-                  <td>Id Reservation</td>
-                  <td>Username</th>
-                  <td>Package</td>
-                  <td>Order Date</td>
-                  <td>Using Date</td>
-                  <td>Using Time</td>
-                  <td>Detail Order</td>
-                  <td><center>Action</center></td>
-                </tr>
+                  <tr>                  
+                  <th><center>Id Order</center></th>
+                  <th><center>Username</center></th>
+                  <th><center>Name Package</center></th>
+                  <!-- <th><center>Date Order</center></th> -->
+                  <th><center>Using Date</center></th>
+                  <th><center>Using Time</center></th>
+                  <th><center>Detail Order</center></th>
+                  <th><center>Action</center></th>
+                  </tr>
                 </thead>
                 <tbody>
-               
-                <tr>
-                  
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td> <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#modal-lihat">See Detail</button></td>
-                  <td><center><button type="button" class="btn btn-sm btn-success" ><!-- <a href="<?php echo e(URL('edit_package')); ?>"> -->Accept<!-- </a> --></button> <button type="button" class="btn btn-sm btn-danger"><!-- <a href="<?php echo e(URL('list_package')); ?>"> -->Reject</a></button></center></td>
+                  @foreach($orders as $key=>$data)
+                <tr>                   
+                  <td><center>{{$data->id}}</center></td>
+                  <td><center>{{$data->user->username}}</center></td>
+                  <td><center>{{$data->package->name_package}}</center></td>
+                  <!-- <td><center>{{$data->date_order}}</center></td> -->
+                  <td><center>{{$data->date_using}}</center></td>
+                  <td><center>{{$data->time_using}}</center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
+                  <td>
+                  <form method="POST" action="admin_dashboard/{{$data->id}}">
+                    {{csrf_field()}}
+                      <input type="hidden" name="order_status" value="accept">
+                      <center><button type="submit" class="btn btn-sm btn-success">Accept Order</button></center>
+                      <input type="hidden" name="_method" value="PUT">
+                    </form><p>                    
+                 </td>                  
                 </tr>
-             
-                </tfoot>
+                @endforeach
+                </tbody>
               </table>
             </div>
-
-      <!-- /.row -->
+          </div>
+        </div>
+      </div>
     </section>
-</div>
- </section>
+    <section class="content">
+      <div class="row">
+        <div class="col-md-12"><br>
+          <div class="box box-solid"><br>
+             <h4 class="box-title"><br><center>Calender Events</center></h4>
+              <div class="box-body"> <center>
+               <iframe src="https://calendar.google.com/calendar/embed?src=rereradinka%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="1050" height="600" frameborder="0" scrolling="no"></iframe> </center>        
+           </div> 
+            <div class="box-header with-border">        
+           </div>
+         </div>
+       </div>
+     </div>
+   </section>     
  <div id="modal-lihat" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
              <img src="img/logo12.jpg" alt="">
-            <div class="modal-header">
-             
+            <div class="modal-header">                      
               <center><h4 class="modal-title" id="myModalLabel">Detail Reservation</h4></center>
-            </div>
-             <form class="form-horizontal">
-              <div class="box-body">
+            </div>                        
+             <form class="form-horizontal">               
+               <div class="box-body">              
                 <div class="form-group">
-                  <label for="name" class="col-sm-4 control-label">Nama yang Bersangkutan</label>
-
-                  <div class="col-sm-8">
-                    <input type="name" class="form-control" id="name" name="name">
+                  <label for="theme" class="col-sm-5 control-label">Theme (Custom theme or character)</label>
+                  <div class="col-sm-6 detail-theme">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="theme" class="col-sm-4 control-label">Theme (Custom theme or character)</label>
-
-                  <div class="col-sm-8">
-                    <input type="theme" class="form-control" id="theme" name="theme">
+                  <label for="place" class="col-sm-5 control-label">Place (include the address)</label>
+                  <div class="col-sm-6 detail-place">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="place" class="col-sm-4 control-label">Place (Sertakan alamatnya)</label>
-
-                  <div class="col-sm-8">
-                    <input type="place" class="form-control" id="place" name="place">
+                  <label for="guest" class="col-sm-5 control-label">Total Guests</label>
+                  <div class="col-sm-6 detail-total">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="guest" class="col-sm-4 control-label">Total Guest</label>
-
-                  <div class="col-sm-8">
-                    <input type="guest" class="form-control" id="guest" name="guest">
+                  <label for="greeting" class="col-sm-5 control-label">Greeting</label>
+                  <div class="col-sm-6 detail-greet">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="greeting" class="col-sm-4 control-label">Greeting</label>
-
-                  <div class="col-sm-8">
-                    <input type="greeting" class="form-control" id="greeting" name="greeting">
+                  <label for="note" class="col-sm-5 control-label">Note</label>
+                  <div class="col-sm-6 detail-note">
                   </div>
-                </div>
-                <div class="form-group">
-                  <label for="note" class="col-sm-4 control-label">Note</label>
-
-                  <div class="col-sm-8">
-                    <input type="note" class="form-control" id="note" name="note">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="request" class="col-sm-4 control-label">Request</label>
-
-                  <div class="col-sm-8">
-                    <input type="request" class="form-control" id="request" name="request">
-                  </div>
-                </div>
+                </div>             
               </div>
-              <!-- /.box-body -->
               <div class="box-footer">
                 <center>
-                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
-              </center>
-              </div>
-              <!-- /.box-footer -->
+                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">Back</span></button></center>
+              </center>              
+              </div>   
             </form>
-  </div>
-    </section>
-<script src="{{('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- FastClick -->
-<script src="{{('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{('asset/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{('asset/dist/js/demo.js')}}"></script>
+          </div>           
+        </div>
+      </div>
+</section>
+</div>
+</section>
+@endsection
+@section('js')
+<script type="text/javascript">
+  function detailOrder(dom) {
+    var theme = $(dom).attr('data-theme');
+    var place = $(dom).attr('data-place');
+    var guest = $(dom).attr('data-guest');
+    var greeting = $(dom).attr('data-greeting');
+    var note = $(dom).attr('data-note');
+    $('.detail-theme').html(theme)
+    $('.detail-place').html(place)
+    $('.detail-total').html(guest)
+    $('.detail-greet').html(greeting)
+    $('.detail-note').html(note)
+  }
+</script>
 @endsection

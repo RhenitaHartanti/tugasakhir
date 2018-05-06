@@ -16,37 +16,51 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-
+//LANDINGPAGE
 Route::get('/home', 'HomeController@index')->name('home');
-
-Route::get('/landingpage_package', 'HomeController@landingpage_package');
-Route::get('/landingpage_formpackage', 'HomeController@landingpage_formpackage');
-Route::get('/landingpage_formpackage2', 'HomeController@landingpage_formpackage2');
+Route::resource('/landingpage_package', 'LandingPackageController');
+Route::get('/landingpage_formpackage/{id}', 'HomeController@landingpage_formpackage');
 Route::get('/landingpage_daftar', 'HomeController@landingpage_daftar');
 Route::get('/landingpage_beranda', 'HomeController@landingpage_beranda');
 Route::get('/landingpage_galeri', 'HomeController@landingpage_galeri');
 Route::get('/landingpage_login', 'HomeController@landingpage_login');
-Route::resource('/setting', 'CustomerController');
+Route::resource('/landingpage_setting', 'OrderCustomerController');
+Route::resource('/landingpage_profil', 'ProfilUserController');
+Route::put('/landingpage_profil/{id}','CustomerController@update')->name('customer.update');
 
-Route::resource('admin_listpackage','PackageController');
-Route::resource('admin_listcustomer','HomeController@admin_listcustomer');
+
+//ADMID
+Route::middleware('auth')->group(function(){
+Route::resource('admin_listcustomer','CustomerController');
 Route::get('/admin_detailpayment','HomeController@admin_detailpayment');
 Route::get('/admin_detailreservation','HomeController@admin_detailreservation');
-// Route::get('/admin_listpackage','HomeController@admin_listpackage');
-Route::get('/admin_listreservation','HomeController@admin_listreservation');
-Route::resource('/admin_setting','AdminController');
+Route::resource('/admin_profil','AdminController')->except(['update']);
+Route::resource('/admin_listreservation','ListReservationController');
 Route::put('/admin_setting/{id}','AdminController@update')->name('admin.update');
-Route::get('/admin_dashboard','HomeController@admin_dashboard');
+Route::get('/admin_dashboard','OrdersController@index');
+Route::resource('admin_listpackage','PackageController');
+Route::get('admin_history','HomeController@admin_history');
 Route::get('/admin_listpackage/delete/{id_package}','PackageController@destroy')->name('package.delete');
 Route::put('/admin_listpackage/{id_package}','PackageController@update')->name('package.update');
-
-Route::get('landingpage_package',function(){
-	$package = DB::table('packages')->get();
-	return view('landingpage_package', ['package' => $package]);
+Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changePassword');
+// Route::get('landingpage_package',function(){$package = DB::table('packages')->get();
+// 	return view('landingpage_package', ['package' => $package]);
+// });
+// Route::get('landingpage_setting',function(){
+// 	$order = DB::table('orders')->get();
+// 	return view('landingpage_setting', ['order' => $order]);
+// });
+Route::resource('admin_categoryasset','CategoryAssetController');
+// Route::get('admin_categoryasset/delete/{id}','CategoryAssetController@destroy')->name('categoryAsset.delete');
+Route::resource('admin_asset','AssetController');
+Route::resource('orders','OrdersController');
+Route::put('/admin_dashboard/{id}','AdminController@status');
 });
-Route::get('admin_listcustomer',function(){
-	$customer = DB::table('users')->get();
-	return view('admin_listcustomer', ['customer' => $customer]);
-});
-
-
+// Route::resource('admin_listcustomer',function(){
+// 	$customer = DB::table('users')->get();
+// 	return view('admin_listcustomer', ['customer' => $customer]);
+// });
+// Route::get('landingpage_beranda',function(){
+// 	$messages = DB::table('messages')->get();
+// 	return view('landingpage_beranda', ['messages' => $messages]);
+// }); 

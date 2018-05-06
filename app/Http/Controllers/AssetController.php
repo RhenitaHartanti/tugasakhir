@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Asset;
+use App\CategoryAsset;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
-use App\LandingPackage;
 
-class LandingPackageController extends Controller
+class AssetController extends Controller
 {
-
-    // if !auth::check(){
-        
-    // }
     /**
      * Display a listing of the resource.
      *
@@ -18,8 +15,12 @@ class LandingPackageController extends Controller
      */
     public function index()
     {
-        $listpackage=LandingPackage::all();
-        return view('landingpage_package',compact('listpackage'));
+        $categoryAsset=CategoryAsset::all();
+        $asset=Asset::join('category_assets','category_assets.id','=','assets.id_category_asset')
+        ->where('status','1')->get();
+        return view('admin_asset')
+        ->with('assets',$asset)
+        ->with('category_assets',$categoryAsset);
     }
 
     /**
@@ -29,7 +30,8 @@ class LandingPackageController extends Controller
      */
     public function create()
     {
-        //
+         Asset::create($request->except(['_token']));
+             return redirect('admin_asset');   
     }
 
     /**
@@ -40,7 +42,8 @@ class LandingPackageController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         Asset::create($request->except(['_token']));
+             return redirect('admin_asset');   
     }
 
     /**
@@ -72,9 +75,15 @@ class LandingPackageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,$id)
     {
-        //
+        $admin_asset=Asset::find($id);
+        $admin_asset->id_category_asset = $request->get('id_category_asset');
+        $admin_asset->name_asset = $request->get('name_asset');
+        $admin_asset->price = $request->get('price');
+        $admin_asset->details = $request->get('details');
+        $admin_asset->save();
+        return redirect('admin_asset');
     }
 
     /**
@@ -85,11 +94,13 @@ class LandingPackageController extends Controller
      */
     public function destroy($id)
     {
-        //
+        // $asset =Asset::find($id);
+        // $asset->delete();
+        // return redirect('admin_asset')->with('success','Procuct has ben delete');
+        $asset =DB::table('assets')
+        ->where('id',$id)
+        ->update(['status'=>'0']);
+    
+        return back();
     }
-    // public function show($slug)
-    // {
-    //   $test = Test::whereSlug($slug)->firstOrFail();
-    //   return view('tests.show', compact('test'));
-    // }
 }

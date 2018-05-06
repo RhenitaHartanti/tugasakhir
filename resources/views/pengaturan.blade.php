@@ -186,5 +186,3 @@
 <script src="{{('asset/dist/js/adminlte.min.js')}}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{('asset/dist/js/demo.js')}}"></script>
-</body>
-</html>

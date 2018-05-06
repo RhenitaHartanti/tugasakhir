@@ -1,24 +1,21 @@
 @extends('layouts.app')
+@section('header')
+  <link rel="stylesheet" href="{{asset('asset/css/ionicons.min.css')}}">  
+  <link rel="stylesheet" href="{{asset('asset/css/AdminLTE.min.css')}}"> 
+  <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
+@endsection
     @section('content')
 
-     <section id="about">
+     <section id="service">
       <div class="container">
-        <div class="row">
-          <div class="col-lg-12 text-center">
-            <h2 class="section-heading text-uppercase">Calendar Reservation</h2>
-          </div>
-        </div>
+        <!-- //calender -->
         <p>
         <div class="row">          
-          <div class="col-md-4 col-sm-6 portfolio-item">
-                     
+          <div class="col-md-4 col-sm-6 portfolio-item">                     
           </div>
-        </div>
-          
-            
-    </section>
-
-    <section id="about">
+        </div>      
+      </section>
+    <section id="service">
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
@@ -28,32 +25,30 @@
         </div>
         <p>
           <div class="row">
-          <div class="col-md-4 col-md-4 col-md-4">
-          @foreach($package as $key=>$data)
+          @foreach($listpackage as $data)
+          <div class="col-md-4">          
            <div class="box">
             <div class="box-body no-padding">
               <table class="table table-striped text-center">
                 <tr><img class="img-fluid" src="img/logo8.jpg" alt=""></tr>                
-                <tr><td>{{$data->package_name}}</td></tr>
-                <tr><td>{{$data->price}}</td></tr>               
-                <tr><td><label data-toggle="modal" data-target="#modal-tambah">See Details</label></td></tr>
-                <tr><td><a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/landingpage_formpackage')}}">Order Package</a></td></tr>
-
-              @if(!\Auth::check())
-              <a href="{{url('/landingpage_formpackage')}}"></a>
-              @else
-              <a href="{{url('/login')}}"></a>      
-              @endif
+                <tr><td><h6>{{$data->name_package}}</h6></td></tr>
+                <tr><td>{{$data->price}}</td></tr>           
+                <tr><td>Details Package : <p>{{$data->details}}</td></tr>
+                <tr><td>Kuota Package : <p>{{$data->kuota}}</td></tr>                  
+                <tr><td>
+                  @if(!\Auth::check())
+                       <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/login')}}">Order Package</a>
+                  @else
+                     <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/landingpage_formpackage',$data->id)}}">Order Package</a>
+                @endif
+                </td></tr>
           </table>
             </div>
+          </div>           
           </div>
-           @endforeach
-          </div>
-        </div>               
+          @endforeach
+        </div>   
      </section>
-
 @endsection
-    <!-- Bootstrap core JavaScript -->
-    </body>
-
+     </body>
 </html>

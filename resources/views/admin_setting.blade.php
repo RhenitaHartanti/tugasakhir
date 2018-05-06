@@ -44,34 +44,20 @@
             
             <div class="box-body">
               <table id="datatables" class="table table-bordered table-hover">
-                <tr>
-                  
-                  <td>Id Admin</td>
+                <tr>                  
+                  <td>Id Message</td>
                   <td>Name</td>
-                  <td>Username</td>
-                  <td>Email</td>
-                  <td>Password</td>
-                  <td>Created At</t>
-                  <td>Updated At</t>
-                  <td>Action</t>
+                  <td>Email or No.HP</td>
+                  <td>Message</td>
                 </tr>
-              <tbody>                  
+               @foreach($messages as $key=>$data)                
                 <tr>                                  
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-
-                  <td>
-                  <button class="btn btn-sm btn-default" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"> <span class="glyphicon glyphicon-pencil"></span> </i>Edit</button>
-                  <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus"> <span class="glyphicon glyphicon-trash"></span> </i>Delete</button>
-                                  
-                  </td>
-                </tr>
-                </tfoot>
+                  <td>{{$data->id_message}}</td>
+                  <td>{{$data->name}}</td>
+                  <td>{{$data->email}}</td>
+                  <td>{{$data->message}}</td>
+               </tr>
+               @endforeach
               </table>
             </div>
       <!-- /.row -->
