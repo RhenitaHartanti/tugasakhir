@@ -131,10 +131,8 @@
       accessToken:  '.1677ed0.380bf8516c2449d7936da6d64ed09ae7',
       count:100,
       show: 'recent'
-      });
-  
+      });  
     });
   </script>
   </body>
-
 </html>

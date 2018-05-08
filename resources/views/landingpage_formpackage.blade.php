@@ -1,68 +1,58 @@
 @extends('layouts.app')
- @section('header')
-  <link rel="stylesheet" href="{{asset('asset/css/ionicons.min.css')}}">  
-  <link rel="stylesheet" href="{{asset('asset/css/AdminLTE.min.css')}}"> 
-  <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
+@section('header')
 @endsection
 @section('content')
  <div class="container">
     <div class="col-lg-12"> 
       <div class="row">        
-      <div class="formorder">    
+        <div class="formorder">    
          <label><h6><b>You Order : </label>  {{$package->name_package}}</b></h6><p>
-         <form action="{{route('orders.store')}}" method="post">     
-          @csrf
-          <input type="hidden" value="{{$id}}" name="id_package">
-            <label>Using Date</label>
+          <form action="{{route('orders.store')}}" method="post">     
+            @csrf
+              <input type="hidden" value="{{$id}}" name="id_package">
+              <label>Using Date</label>
             <div class="form-group has-feedback">
                <input type="date" class="form-control" name="date_using" required="">
             </div>
-            <label>Using Time</label>
+              <label>Using Time</label>
             <div class="form-group has-feedback">
               <input type="time" class="form-control" name="time_using" required="">
             </div>
-            <label>Theme (Color and Custom Caracter)</label>
+              <label>Theme (Color and Custom Caracter)</label>
             <div class="form-group has-feedback">
              <input type="text" class="form-control" name="theme" required="">
-           </div>
+            </div>
            <label>Total Guests</label>
           <div class="form-group has-feedback">
-          <input type="text" class="form-control" name="total_guests" required=""><br>
-          * Kuota for this package is <b>{{$package->kuota}} people </b>. If you want to add the guest, you have to add Rp 100.000/person         
+            <input type="text" class="form-control" name="total_guests" required=""><br>
+              * Kuota for this package is <b>{{$package->kuota}} people </b>. If you want to add the guest, you have to add Rp 100.000/person         
+          </div>
       </div>
-  </div>
-  <div class="col-lg-6"> 
-   <div class="formorder">      
-          <label>Place</label>
+      <div class="col-lg-6"> 
+       <div class="formorder">      
+            <label>Place</label>
           <div class="form-group">
             <textarea class="form-control" rows="3" name="place" required=""></textarea>
            </div>
-          <label>Greeting</label>
+            <label>Greeting</label>
           <div class="form-group">
             <textarea class="form-control" rows="3" name="greeting" required=""></textarea>
           </div>
-          <label>Note (You can input your request)</label>
+           <label>Note (You can input your request)</label>
           <div class="form-group">
             <textarea class="form-control" rows="4" name="note" required=""></textarea>
           </div>
-           <input type="hidden" value="-" name="booking_code">           
-           <input type="hidden" value="waiting" name="order_status">
-           <input type="hidden" value="none" name="payment_status">
+             <input type="hidden" value="-" name="booking_code">           
+             <input type="hidden" value="waiting" name="order_status">
+             <input type="hidden" value="none" name="payment_status">
          <div class="row">
-          <center>
-              <button type="submit" style="background:#CCB20A" >Send Order</button>
-        </center>
-      </div>   
-    </form>
-</div>
-</div>
+          <center><button type="submit" style="background:#CCB20A" >Send Order</button></center>
+          </div>   
+      </form>
+    </div>
+  </div>
 </div>
 @endsection 
-    <!-- Bootstrap core JavaScript -->
-    <script src="{{asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
-    <script src="{{asset('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('asset/plugins/iCheck/icheck.min.js')}}"></script>
-</body>
-</html>
-
+@section('js')
+@endsection
     

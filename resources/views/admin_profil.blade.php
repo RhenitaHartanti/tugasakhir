@@ -3,10 +3,9 @@
 @endsection
 @section('content')
 <div class="content-wrapper">
-<section class="content-header">
-  <p>      
-    <section class="content">
-    	<div class="row">
+  <section class="content-header">
+    <section class="content">    
+      <div class="row">
         @foreach($admin as $key=>$data)  
         <div class="col-xs-7">
           <div class="box">
@@ -68,8 +67,6 @@
           @endforeach
       <!-- /.row -->
     </section>
-</div>
- </section>
 
  <div id="modal-ubah{{$data->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-md">
@@ -176,17 +173,11 @@
                     </div>
                   </div>
                 </div>
- 
- 
     </section>
-<script src="{{('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<!-- Bootstrap 3.3.7 -->
-<script src="{{('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<!-- FastClick -->
-<script src="{{('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{('asset/dist/js/adminlte.min.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{('asset/dist/js/demo.js')}}"></script>
+      </div>
+    </section>
+  </section>
+</div>
+@endsection
 @section('js')
 @endsection

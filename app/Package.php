@@ -10,7 +10,8 @@ class Package extends Model
     protected $fillable=[
     		'name_package',
     		'details',
-    		'price'
+    		'price',
+        'kuota'
     ];
   //mendeklarasikan primary key, bahwa id_package dimiliki oleh tabel order
   public function orders(){

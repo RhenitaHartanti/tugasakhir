@@ -8,10 +8,11 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
-            <div class="box-header">
-              <center><h3 class="box-title">List Reservation</h3></center>
+            <div class="box-header"> 
+              <center>
+                <h3 class="box-title">List Reservation</h3>
+              </center>
             </div>
-            <!-- /.box-header -->
             <div class="box-body">
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
@@ -28,61 +29,26 @@
                   </tr>
                 </thead>                
                 <tbody>
-                    @foreach($orders as $value)
+              @foreach($orders as $value)
                 <tr>                                
                   <td><center>{{$value->id}}</center></td>
-                  <td><center>{{$value->id_user}}</center></td>
+                  <td><center>{{$value->user->username}}</center></td>
                   <td><center>{{$value->package->name_package}}</center></td>
                   <!-- <td><center>{{$value->date_order}}</center></td> -->
                   <td><center>{{$value->date_using}}</center></td>
                   <td><center>{{$value->time_using}}</center></td>
                   <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
-                    <td><center>{{$value->payment_status}}</center></td>
-                  <td><center><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-payment">Detail Payment</button></center></td>                
-                </tr>
-
-
-                <div id="modal-payment" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                      <img src="img/logo12.jpg" alt="">
-                        <div class="modal-header">             
-                          <center><h4 class="modal-title" id="myModalLabel">Detail Payment</h4></center>
-                        </div>
-                        <form class="form-horizontal">
-                          <div class="box-body">
-                           <div class="col-md-12">
-                              <input type="hidden" value="-" name="id_payment">           
-                          </div>
-                          <br>
-                          <div class="row">
-                            <div class="form-group">
-                              <label for="booking_code" class="col-sm-4 control-label">Booking Code</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="booking_code" name="booking_code">
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                          <div class="form-group">
-                            <label for="attach" class="col-sm-4 control-label">Attach</label>
-                            <div class="col-sm-8">
-                              <input type="file" class="form-control" id="attach" name="attach">
-                            </div>
-                          </div>
-                        </div>
-                        <br>
-              <div class="box-footer">
-                <center>
-                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
-               </center>
-              </div>
-            </form>
-          </div>    
-        </div>
-      </div>
-      @endforeach
+                  <td>
+                    <center><a href="{{URL::to('admin_konfirmasipembayaran/'.$value->id)}}">
+                      @if($value->payment == null)
+                      <button disabled="disabled">Detail Payment</button>
+                      @else
+                      <button>Detail Payment</button>
+                      @endif
+                    </a></center></td>
+                  <td><center>{{$value->payment_status}}</center></td>
+                </tr>                 
+              @endforeach
     </tbody>
   </table>
 

@@ -24,7 +24,6 @@
     <table class="table table-striped text-center"> 
         <tr>
           <th>ID Order</th>
-          <th>Date Order</th>
           <th>Date Using</th>
           <th>Time Using</th>
           <th>Detail Order</th>
@@ -35,7 +34,6 @@
          @foreach($order as $value)     
         <tr>
           <td>{{$value->id}}</td>
-          <td>{{$value->date_order}}</td>
           <td>{{$value->date_using}}</td>
           <td>{{$value->time_using}}</td>
           <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">detail order</button></td>
@@ -44,7 +42,7 @@
             @if($value->order_status!='accept')
             <button class="btn btn-sm btn-primary">payment proces</button>
             @else
-            <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-payment">payment proces</button></td>
+            <button class="btn btn-sm btn-primary"><a href="{{URL::to('landingpage_formbayar/'.$value->id)}}">payment proces</a></button></td>
             @endif
           <td>{{$value->payment_status}}</td> 
 
@@ -111,25 +109,25 @@
           <div class="modal-content">
              <img src="img/logo12.jpg" alt="">          
              <br>             
-              <form class="form-horizontal">
+              <form enctype="multipart/form-data" method="POST" action="/uploadBukti" role="form">
+                {{ csrf_field() }}
               <div class="box-body">
                 <div class="form-group">
                   <label for="id_order" class="col-sm-12 control-label">Booking Code</label>
                   <div class="col-sm-12">
-                    <input type="id_order" class="form-control" id="id_order" name="id_order">
+                    <input type="id_order" class="form-control" id="booking_code" name="booking_code">
                   </div>
                 </div>
                 <div class="form-group">
                   <label for="attach" class="col-sm-12 control-label">Attach File</label>
                   <div class="col-sm-12">
-                    <input type="file" class="form-control" id="attach" name="attach">
+                    <input type="file" class="form-control" id="gambar" name="gambar">
                   </div>
                 </div>             
               </div>
-              <!-- /.box-body -->
               <div class="box-footer">
                 <center>
-                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
+                  <center><button class="btn btn-sm btn-success" type="submit" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
               </center>
               </div>
               <!-- /.box-footer -->

@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $table='orders';
     protected $fillable=[
-    	'id','id_user','id_package','date_order','date_using','time_using','name_target','theme','place','total_guests','greeting','note','order_status','booking_code','payment_status',
+    	'id','id_user','id_package','date_using','time_using','name_target','theme','place','total_guests','greeting','note','order_status','booking_code','payment_status',
     ];
     protected $guarded=[];
     // public $timestamps=false;
@@ -19,7 +19,12 @@ class Order extends Model
 	}
 
 	public function package()
+    {
+        return $this->belongsTo('App\Package','id_package','id');
+    }
+
+    public function payment()
 	{
-	  	return $this->belongsTo('App\Package','id_package','id');
+	  	return $this->hasOne('App\Payment','id_order','id');
 	}
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use Illuminate\Http\Request;
 use Auth;
+use App\Payment;
 
 class OrderCustomerController extends Controller
 {
@@ -17,32 +18,26 @@ class OrderCustomerController extends Controller
         $order=Order::where('id_user',Auth::user()->id)->get();
         return view('landingpage_setting',compact('order'));
     }
-    public function showUploadFile(Request $request){
-      $file = $request->file('image');
-   
-      //Display File Name
-      echo 'File Name: '.$file->getClientOriginalName();
-      echo '<br>';
-   
-      //Display File Extension
-      echo 'File Extension: '.$file->getClientOriginalExtension();
-      echo '<br>';
-   
-      //Display File Real Path
-      echo 'File Real Path: '.$file->getRealPath();
-      echo '<br>';
-   
-      //Display File Size
-      echo 'File Size: '.$file->getSize();
-      echo '<br>';
-   
-      //Display File Mime Type
-      echo 'File Mime Type: '.$file->getMimeType();
-   
-      //Move Uploaded File
-      $destinationPath = 'uploads';
-      $file->move($destinationPath,$file->getClientOriginalName());
+    public function upload(Request $request){
+        $this->validate($request, ['gambar' => 'required|image']);
+        $gambar = $request->file('gambar');
+        $namaFile = $gambar->getClientOriginalName();
+        $request->file('gambar')->move('img/buktitransfer', $namaFile);  
+        
+      $simpan= new Payment ($request->all());
+        $simpan->booking_code = $request->booking_code;
+        $simpan->attachment = $namaFile;
+        $simpan->id_order = $request->id_order;
+
+      $simpan->save();
+      return redirect ('landingpage_setting');
    }
+   public function loadFormBayar($id)
+   {
+    return view ('landingpage_formbayar')
+    ->with('id',$id);
+   }
+
 
     /**
      * Show the form for creating a new resource.

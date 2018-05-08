@@ -26,6 +26,8 @@ Route::get('/landingpage_galeri', 'HomeController@landingpage_galeri');
 Route::get('/landingpage_login', 'HomeController@landingpage_login');
 Route::resource('/landingpage_setting', 'OrderCustomerController');
 Route::resource('/landingpage_profil', 'ProfilUserController');
+Route::get('/landingpage_formbayar/{id}', 'OrderCustomerController@loadFormBayar');
+Route::post('/uploadBukti', 'OrderCustomerController@upload');
 Route::put('/landingpage_profil/{id}','CustomerController@update')->name('customer.update');
 
 
@@ -56,6 +58,10 @@ Route::resource('admin_asset','AssetController');
 Route::resource('orders','OrdersController');
 Route::put('/admin_dashboard/{id}','AdminController@status');
 });
+Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');
+
+Route::post('/updateStatusPayment/{id}','AdminController@updateStatusPayment');
+
 // Route::resource('admin_listcustomer',function(){
 // 	$customer = DB::table('users')->get();
 // 	return view('admin_listcustomer', ['customer' => $customer]);

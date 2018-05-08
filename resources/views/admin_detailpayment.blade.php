@@ -15,14 +15,10 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h4><center>Detail Pembayaran</center></h4>
-              
-            </div>
-            <!-- /.box-header -->
-            
+              <h4><center>Detail Pembayaran</center></h4>              
+            </div>                     
             <div class="box-body">
               <section class="content">
-
       <!-- row -->
       <div class="row">
         <div class="col-md-12">

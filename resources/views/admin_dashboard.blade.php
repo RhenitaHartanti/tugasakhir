@@ -5,13 +5,11 @@
 <div class="content-wrapper">
 <section class="content-header">
       <ol class="breadcrumb">
-       <!--  <li><a href={{url('/admin_dashboard')}}"><i class="fa fa-dashboard"></i>Dashboard</a></li> -->
         <li class="active">Dashboard</li>
       </ol>
    <p>
      <div class="row">
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
               <h3>150</h3>

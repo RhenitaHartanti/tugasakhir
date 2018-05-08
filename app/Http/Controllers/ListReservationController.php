@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
-use App\Package;
 
 class ListReservationController extends Controller
 {
@@ -13,13 +12,14 @@ class ListReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        $package=Package::all();
-        $orders=Order::join('packages','packages.id','=','orders.id_package')
-        ->where('order_status', 'accept')->get();
+    {        
+        // $orders=Order::join('packages','packages.id','=','orders.id_package')
+        // ->where('order_status', 'accept')->get();
+        $orders=Order::with('package','user','payment')->where('order_status', 'accept')->get();
+        // dd($orders[2]->payment);
         return view('admin_listreservation')
-        ->with('orders',$orders)
-        ->with('packages',$package);       
+        ->with('orders',$orders);       
+
     }
 
     /**

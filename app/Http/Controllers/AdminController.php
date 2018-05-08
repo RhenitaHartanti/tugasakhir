@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Order;
+use App\Payment;
 use Illuminate\Support\Facades\DB;
 use Hash;
 use Mail;
@@ -178,4 +179,23 @@ class AdminController extends Controller
 
   //   return redirect()->route('password.change');
   // }
+
+    public function updateStatusPayment(Request $request,$id)
+    {
+        $statusPayment = Order::find($id);
+        $statusPayment->payment_status = $request->payment_status;
+        $statusPayment->save();
+
+        return redirect('admin_listreservation');
+    }
+    public function loadFormBayar($id)
+   {
+        
+        $payments=Payment::where('id_order','=',$id)->first();        
+        
+        return view('admin_konfirmasipembayaran')
+        ->with('payments',$payments)
+        ->with('id',$id);  
+   }
+
 }
