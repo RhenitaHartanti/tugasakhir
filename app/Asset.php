@@ -12,6 +12,7 @@ class Asset extends Model
     	    'name_category',
     		'name_asset',
     		'price', 
+            'total',
     		'details',
     ];
     public function category_asset(){

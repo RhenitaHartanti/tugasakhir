@@ -16,10 +16,8 @@ class OrdersController extends Controller
     public function index()
     {
         $orders=Order::with('package','user')->where('order_status', 'waiting')->get();
-        // dd($orders->package->id);
         return view('admin_dashboard')
         ->with('orders',$orders);
-        // ->with('packages',$package);
     }
     /**
      * Show the form for creating a new resource.

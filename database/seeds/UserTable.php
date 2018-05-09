@@ -17,7 +17,7 @@ class UserTable extends Seeder
         	'username' =>'admin',
         	'email' => 'admin@gmail.com',
         	'password' => bcrypt('admin123'),
-        	'nohp' =>9,
+        	'nohp' =>'081387884900',
         ]);
     }
 }

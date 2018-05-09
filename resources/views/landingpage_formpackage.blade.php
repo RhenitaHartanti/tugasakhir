@@ -22,7 +22,7 @@
             <div class="form-group has-feedback">
              <input type="text" class="form-control" name="theme" required="">
             </div>
-           <label>Total Guests</label>
+           <label>Additional Guests</label>
           <div class="form-group has-feedback">
             <input type="text" class="form-control" name="total_guests" required=""><br>
               * Kuota for this package is <b>{{$package->kuota}} people </b>. If you want to add the guest, you have to add Rp 100.000/person         

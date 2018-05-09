@@ -108,7 +108,7 @@
                   <!-- <td><center>{{$data->date_order}}</center></td> -->
                   <td><center>{{$data->date_using}}</center></td>
                   <td><center>{{$data->time_using}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
                   <td>
                   <form method="POST" action="admin_dashboard/{{$data->id}}">
                     {{csrf_field()}}
@@ -160,7 +160,7 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="guest" class="col-sm-5 control-label">Total Guests</label>
+                  <label for="guest" class="col-sm-5 control-label">Additional Guests</label>
                   <div class="col-sm-6 detail-total">
                   </div>
                 </div>

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePackagesTable extends Migration
+class CreateAssetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,14 @@ class CreatePackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('packages', function (Blueprint $table) {
+        Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name_package');
+            $table->integer('id_category_asset')->unsigned();
+            $table->foreign('id_category_asset')->references('id')->on('category_assets')->onDelete('cascade');       
+            $table->string('name_asset');
+            $table->bigInteger('price');
+            $table->integer('total');            
             $table->string('details');
-            $table->integer('price');
-            $table->integer('kuota');
             $table->timestamps();
         });
     }
@@ -30,6 +32,6 @@ class CreatePackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('packages');
+        Schema::dropIfExists('assets');
     }
 }

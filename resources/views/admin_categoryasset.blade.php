@@ -3,6 +3,19 @@
 @endsection
 @section('content')
 <div class="content-wrapper">
+  @if(session()->has('update'))
+  <script>
+    $().ready(function(e){
+      swal({
+        title:"Success",
+        text:"Category Asset Success to Add",
+        icon:"success",
+        button:false,
+        timer:2000
+      });
+    });
+  @endif
+  </script>
 <section class="content-header">
 <section class="content">
       <div class="row">
@@ -75,7 +88,8 @@
 
                 <div id="modal-hapus{{$value->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
-                   <form>
+                   <form method="POST" action="{{$value->id}}/delCategoryAsset">
+                     {{csrf_field()}}
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>

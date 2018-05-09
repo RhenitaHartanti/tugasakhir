@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Package;
+use App\Asset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,8 +15,11 @@ class PackageController extends Controller
      */
     public function index()
     {
-        $package=Package::all();
-        return view('admin_listpackage',compact('package'));
+        $asset=Asset::all();
+        $package=Package::join('assets','packages.id_asset','=','assets.id')->get();
+        return view('admin_listpackage')
+        ->with('packages',$package)
+        ->with('assets',$asset);
     }
 
     /**

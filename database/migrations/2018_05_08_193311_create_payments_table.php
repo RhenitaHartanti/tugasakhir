@@ -17,6 +17,7 @@ class CreatePaymentsTable extends Migration
             $table->increments('id');
             $table->integer('id_order')->unsigned();
             $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade');
+            $table->char('booking_code');
             $table->text('attachment');
             $table->enum('payment_status',['none','paid off']);
             $table->timestamps();

@@ -16,8 +16,7 @@ class AssetController extends Controller
     public function index()
     {
         $categoryAsset=CategoryAsset::all();
-        $asset=Asset::join('category_assets','category_assets.id','=','assets.id_category_asset')
-        ->where('status','1')->get();
+        $asset=Asset::select(['assets.*','category_assets.name_category'])->join('category_assets','category_assets.id','=','assets.id_category_asset')->get();
         return view('admin_asset')
         ->with('assets',$asset)
         ->with('category_assets',$categoryAsset);
@@ -78,10 +77,10 @@ class AssetController extends Controller
     public function update(Request $request,$id)
     {
         $admin_asset=Asset::find($id);
-        $admin_asset->id_category_asset = $request->get('id_category_asset');
-        $admin_asset->name_asset = $request->get('name_asset');
-        $admin_asset->price = $request->get('price');
-        $admin_asset->details = $request->get('details');
+        $admin_asset->id_category_asset = $request->id_category_asset;
+        $admin_asset->name_asset = $request->name_asset;
+        $admin_asset->price = $request->price;
+        $admin_asset->details = $request->details;
         $admin_asset->save();
         return redirect('admin_asset');
     }
@@ -97,10 +96,10 @@ class AssetController extends Controller
         // $asset =Asset::find($id);
         // $asset->delete();
         // return redirect('admin_asset')->with('success','Procuct has ben delete');
-        $asset =DB::table('assets')
-        ->where('id',$id)
-        ->update(['status'=>'0']);
+        // $asset =DB::table('assets')
+        // ->where('id',$id)
+        // ->update(['status'=>'0']);
     
-        return back();
+        // return back();
     }
 }

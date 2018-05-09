@@ -14,10 +14,6 @@
       <div class="col-lg-4">
       <table class="table table-striped"> 
          @foreach($customer as $value)
-        <!-- <tr>          
-          <td>ID Admin</td>
-          <td>{{$value->id}}</td>
-        </tr> -->
         <tr>
           <td>Name</td>
           <td>{{$value->name}}</td>

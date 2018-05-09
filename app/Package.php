@@ -8,13 +8,17 @@ class Package extends Model
 {
     protected $table='packages';
     protected $fillable=[
+        'id_asset',
     		'name_package',
     		'details',
     		'price',
-        'kuota'
+        'kuota',        
     ];
   //mendeklarasikan primary key, bahwa id_package dimiliki oleh tabel order
   public function orders(){
   	return $this->hasMany('App\Order');
+  }
+  public function assets(){
+    return $this->hasMany('App\Asset');
   }
 }

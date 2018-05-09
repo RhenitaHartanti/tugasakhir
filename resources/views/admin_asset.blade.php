@@ -20,7 +20,8 @@
                   <th><center>Id Asset</center></th>
                   <th><center>Name Category</center></th>                  
                   <th><center>Name Asset</center></th>
-                  <th><center>Price</center></th>                  
+                  <th><center>Price</center></th> 
+                  <th><center>Total</center></th>                 
                   <th><center>Details</center></th>
                   <th><center>Settings</center></th>
                  </tr>
@@ -32,6 +33,7 @@
                   <td><center>{{$value->name_category}}</center></td>                  
                   <td><center>{{$value->name_asset}}</center></td>
                   <td><center>{{$value->price}}</center></td>
+                  <td><center>{{$value->total}}</center></td>                  
                   <td><center>{{$value->details}}</center></td>                  
                   <td><center>
                       <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"> <span class="glyphicon glyphicon-pencil"></span> </i>Edit</button>
@@ -69,7 +71,16 @@
                             </div>
                         </div>
                         </div>
-                        <br>                        
+                        <br>  
+                        <div class="row">
+                        <div class="form-group">
+                            <label for="total" class="col-sm-4 control-label">Total</label>
+                            <div class="col-sm-7">
+                              <input type="text" class="form-control" id="total" name="total" value="{{$value->total}}">
+                            </div>
+                        </div>
+                        </div>
+                        <br>                      
                         <div class="row">
                         <div class="form-group">
                             <label for="details" class="col-sm-4 control-label">Details</label>
@@ -155,6 +166,14 @@
                             </div>
                         </div>
                         </div>
+                         <div class="row">
+                        <div class="form-group">
+                            <label for="total" class="col-sm-4 control-label">Total</label>
+                            <div class="col-sm-7">
+                              <input type="text" class="form-control" id="total" name="total">
+                            </div>
+                        </div>
+                        </div>
                         <div class="row">
                         <div class="form-group">
                             <label for="details" class="col-sm-4 control-label">Details</label>
@@ -178,7 +197,7 @@
                         </div>
                        </div>
           <div class="modal-footer">
-            <center><button type="submit" class="btn btn-success"> Add</button></center>
+            <center><button type="submit" class="btn btn-success"> Add Asset</button></center>
           </div>
               <!-- /.box-footer -->
             </form>

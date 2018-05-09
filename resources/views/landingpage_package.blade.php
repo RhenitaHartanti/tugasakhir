@@ -5,10 +5,8 @@
   <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
 @endsection
     @section('content')
-
      <section id="service">
       <div class="container">
-        <!-- //calender -->
         <p>
         <div class="row">          
           <div class="col-md-4 col-sm-6 portfolio-item">                     
@@ -20,17 +18,17 @@
         <div class="row">
           <div class="col-md-12 text-center">
             <h2 class="section-heading text-uppercase">Package</h2>
-            <h3 class="section-subheading text-muted">We provide several package</h3>
+            <h3 class="section-subheading text-muted">This Package Include the Documentation (Photo and Video) </h3>
           </div>
         </div>
         <p>
-          <div class="row">
+        <div class="row">
           @foreach($listpackage as $data)
           <div class="col-md-4">          
            <div class="box">
             <div class="box-body no-padding">
               <table class="table table-striped text-center">
-                <tr><img class="img-fluid" src="img/logo8.jpg" alt=""></tr>                
+                <tr><img class="img-fluid" src="img/logo8.jpg" alt=""></tr>              
                 <tr><td><h6>{{$data->name_package}}</h6></td></tr>
                 <tr><td>{{$data->price}}</td></tr>           
                 <tr><td>Details Package : <p>{{$data->details}}</td></tr>
@@ -42,13 +40,13 @@
                      <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/landingpage_formpackage',$data->id)}}">Order Package</a>
                 @endif
                 </td></tr>
-          </table>
+              </table>
             </div>
           </div>           
-          </div>
-          @endforeach
-        </div>   
-     </section>
+        </div>
+        @endforeach
+      </div>   
+    </section>
 @endsection
-     </body>
+  </body>
 </html>

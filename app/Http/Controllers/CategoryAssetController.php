@@ -38,7 +38,7 @@ class CategoryAssetController extends Controller
     public function store(Request $request)
     {
         CategoryAsset::create($request->except(['_token']));
-             return redirect('admin_categoryasset');    
+        return redirect('admin_categoryasset');    
     }
 
     /**
@@ -76,7 +76,7 @@ class CategoryAssetController extends Controller
         $admin_categoryasset->name_category = $request->name_category;
         $admin_categoryasset->details = $request->details;
         $admin_categoryasset->save();
-        return redirect('admin_categoryasset');
+        return redirect('admin_categoryasset')->with(session()->flash('update'));
     }
 
     /**
@@ -88,7 +88,7 @@ class CategoryAssetController extends Controller
     public function destroy($id)
     {
        $categoryAsset =CategoryAsset::find($id);
-        $categoryAsset->delete();
-        return redirect('admin_categoryasset')->with('success','Procuct has ben delete');
+       $categoryAsset->delete();
+       return view('admin_categoryasset')->with('success','Procuct has ben delete');
     }
 }

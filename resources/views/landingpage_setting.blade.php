@@ -36,7 +36,7 @@
           <td>{{$value->id}}</td>
           <td>{{$value->date_using}}</td>
           <td>{{$value->time_using}}</td>
-          <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">detail order</button></td>
+          <td><button onclick="detailOrder(this)" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></td>
           <td>{{$value->order_status}}</td>
           <td>
             @if($value->order_status!='accept')
@@ -54,38 +54,41 @@
               <div class="box-body">
                 <div class="form-group">
                   <label for="theme" class="col-md-12 control-label">Theme (Custom theme or character) : </label>
-                  <div class="col-md-12">
-                  <input type="text" readonly class="form-control" id="theme" name="theme" value="{{$value->theme}}">
+                  <div class="col-sm-12 detail-theme">            
+                    <input type="text" readonly class="form-control" id="theme" name="theme" value="{{$value->theme}}">                  
                   </div>
-                </div>
+                  <br>
                 <div class="form-group">
                   <label for="place" class="col-md-12 control-label">Place (include the complete address) : </label>
-                   <div class="col-md-12">
+                  <div class="col-sm-12 detail-place">                  
                   <input type="text" readonly class="form-control" id="place" name="place" value="{{$value->place}}">
                   </div>
                 </div>
+                <br>
                 <div class="form-group">
                   <label for="guest" class="col-md-12 control-label">Total Guests : </label>
-                   <div class="col-md-12">
+                  <div class="col-sm-12 detail-total">                  
                   <input type="text" readonly class="form-control" id="total_guests" name="total_guests" value="{{$value->total_guests}}">
                   </div>
                 </div>
+                <br>
                 <div class="form-group">
                   <label for="greeting" class="col-md-12 control-label">Greeting : </label>
-                   <div class="col-md-12">
+                  <div class="col-sm-12 detail-greet">                  
                   <input type="text" readonly class="form-control" id="greeting" name="greeting" value="{{$value->greeting}}">
                   </div>
                 </div>
+                <br>
                 <div class="form-group">
                   <label for="note" class="col-md-12 control-label">Note : </label>
-                   <div class="col-md-12">
+                  <div class="col-sm-12 detail-note">                  
                   <input type="text" readonly class="form-control" id="note" name="note" value="{{$value->note}}">
                   </div>
                 </div>
               <!-- /.box-body -->
               <div class="box-footer">
                 <center>
-                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
+                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">Back</span></button></center>
               </center>
               <br>
               </div>
@@ -180,6 +183,20 @@
     evt.currentTarget.className += " active";
 }
   </script>
+  <script type="text/javascript">
+  function detailOrder(dom) {
+    var theme = $(dom).attr('data-theme');
+    var place = $(dom).attr('data-place');
+    var guest = $(dom).attr('data-guest');
+    var greeting = $(dom).attr('data-greeting');
+    var note = $(dom).attr('data-note');
+    $('.detail-theme').html(theme)
+    $('.detail-place').html(place)
+    $('.detail-total').html(guest)
+    $('.detail-greet').html(greeting)
+    $('.detail-note').html(note)
+  }
+</script>
   </body>
 
 </html>

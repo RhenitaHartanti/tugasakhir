@@ -91,7 +91,13 @@ class OrderCustomerController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $landingpage_setting = User::find($id);
+        $landingpage_setting->name = $request->name;
+        $landingpage_setting->username = $request->username;
+        $landingpage_setting->email = $request->email;
+        $landingpage_setting->nohp = $request->nohp;
+        $landingpage_setting->save();
+        return redirect('landingpage_setting');
     }
 
     /**

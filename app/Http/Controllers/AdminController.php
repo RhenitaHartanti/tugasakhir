@@ -197,5 +197,16 @@ class AdminController extends Controller
         ->with('payments',$payments)
         ->with('id',$id);  
    }
+   public function accBookingCode(Request $request,$id)
+    {
+        $payment=Payment::find($id);
+        if($payment->booking_code!=$request->booking_code)
+            {
+                return redirect('admin_listreservation')->withErrors(['Booking code tidak cocok']);
+            }
+        $payment->update(['payment_status'=>'paid off']);
+        Order::find($payment->id_order)->update(['payment_status'=>'paid off']);
+        return redirect('admin_listreservation')->with('Booking Code cocok');
+    }
 
 }

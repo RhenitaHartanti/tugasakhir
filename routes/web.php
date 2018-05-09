@@ -45,6 +45,15 @@ Route::get('admin_history','HomeController@admin_history');
 Route::get('/admin_listpackage/delete/{id_package}','PackageController@destroy')->name('package.delete');
 Route::put('/admin_listpackage/{id_package}','PackageController@update')->name('package.update');
 Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changePassword');
+Route::resource('/admin_categoryasset','CategoryAssetController');
+Route::delete('/{id}/delCategoryAsset','CategoryAssetController@destroy');
+Route::resource('/admin_asset','AssetController');
+Route::resource('orders','OrdersController');
+Route::put('/admin_dashboard/{id}','AdminController@status');
+});
+Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');
+
+Route::post('/accBookingCode/{id}','AdminController@accBookingCode');
 // Route::get('landingpage_package',function(){$package = DB::table('packages')->get();
 // 	return view('landingpage_package', ['package' => $package]);
 // });
@@ -52,15 +61,9 @@ Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changeP
 // 	$order = DB::table('orders')->get();
 // 	return view('landingpage_setting', ['order' => $order]);
 // });
-Route::resource('admin_categoryasset','CategoryAssetController');
-// Route::get('admin_categoryasset/delete/{id}','CategoryAssetController@destroy')->name('categoryAsset.delete');
-Route::resource('admin_asset','AssetController');
-Route::resource('orders','OrdersController');
-Route::put('/admin_dashboard/{id}','AdminController@status');
-});
-Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');
 
-Route::post('/updateStatusPayment/{id}','AdminController@updateStatusPayment');
+// Route::get('admin_categoryasset/delete/{id}','CategoryAssetController@destroy')->name('categoryAsset.delete');
+
 
 // Route::resource('admin_listcustomer',function(){
 // 	$customer = DB::table('users')->get();
