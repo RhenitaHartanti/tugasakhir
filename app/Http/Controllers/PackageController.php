@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Package;
 use App\Asset;
+use App\AssetPackage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class PackageController extends Controller
     public function index()
     {
         $asset=Asset::all();
-        $package=Package::join('assets','packages.id_asset','=','assets.id')->get();
+        $package=Package::with('assets')->get();
         return view('admin_listpackage')
         ->with('packages',$package)
         ->with('assets',$asset);
@@ -47,7 +48,11 @@ class PackageController extends Controller
         //     'price' => 'required|numeric|max:5',
         // ]);
 
-        Package::create($request->except(['_token']));
+        $assets = $request->input('id_asset');
+        // dd($assets);
+        $package = Package::create($request->except(['_token','id_asset']));
+        $package->assets()->attach($assets);
+
              return redirect('admin_listpackage');    
 
         // Package::create($package);

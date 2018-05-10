@@ -80,6 +80,7 @@ class AssetController extends Controller
         $admin_asset->id_category_asset = $request->id_category_asset;
         $admin_asset->name_asset = $request->name_asset;
         $admin_asset->price = $request->price;
+        $admin_asset->total = $request->total;        
         $admin_asset->details = $request->details;
         $admin_asset->save();
         return redirect('admin_asset');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LandingPackage;
+use App\Package;
 
 class LandingPackageController extends Controller
 {
@@ -18,7 +19,7 @@ class LandingPackageController extends Controller
      */
     public function index()
     {
-        $listpackage=LandingPackage::all();
+        $listpackage=Package::with('assets')->get();
         return view('landingpage_package',compact('listpackage'));
     }
 

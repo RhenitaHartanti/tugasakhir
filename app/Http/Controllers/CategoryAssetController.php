@@ -15,7 +15,7 @@ class CategoryAssetController extends Controller
     public function index()
     {
         $categoryAsset=CategoryAsset::all();
-        return view('admin_categoryasset',compact('categoryAsset'));
+        return view('admin_categoryasset',compact('categoryAsset'))->with('success','Category Asset success to adding');
     }
 
     /**
@@ -38,7 +38,7 @@ class CategoryAssetController extends Controller
     public function store(Request $request)
     {
         CategoryAsset::create($request->except(['_token']));
-        return redirect('admin_categoryasset');    
+        return redirect('admin_categoryasset')->with(session()->flash('lele',''));;    
     }
 
     /**
@@ -76,7 +76,7 @@ class CategoryAssetController extends Controller
         $admin_categoryasset->name_category = $request->name_category;
         $admin_categoryasset->details = $request->details;
         $admin_categoryasset->save();
-        return redirect('admin_categoryasset')->with(session()->flash('update'));
+        return redirect('admin_categoryasset')->with(session()->flash('gogo',''));
     }
 
     /**

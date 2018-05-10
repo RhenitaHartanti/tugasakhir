@@ -2,9 +2,8 @@
 @section('header')
 @endsection
 @section('content')
-<div class="content-wrapper">
-  @if(session()->has('update'))
-  <script>
+@if(session()->has('lele'))
+  <<!-- script>
     $().ready(function(e){
       swal({
         title:"Success",
@@ -15,7 +14,8 @@
       });
     });
   @endif
-  </script>
+  </script> -->
+  <div class="content-wrapper">  
 <section class="content-header">
 <section class="content">
       <div class="row">
@@ -143,7 +143,7 @@
                         <br>  
             </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success"> Save</button>
+            <button type="submit" class="btn btn-success">Add Category</button>
           </div>
               <!-- /.box-footer -->
             </form>

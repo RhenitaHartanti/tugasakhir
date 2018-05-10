@@ -8,10 +8,12 @@
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <link rel="stylesheet" href="{{('asset/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" href="{{('asset/bower_components/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/Ionicons/css/ionicons.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">  
   <link rel="stylesheet" href="{{('asset/dist/css/AdminLTE.min.css')}}">
   <link rel="stylesheet" href="{{('asset/dist/css/skins/_all-skins.min.css')}}">
+
   <link rel="stylesheet"
         href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
   
@@ -122,7 +124,8 @@
     </section>
   </aside>
 <body>
-    <div id="app">      
+    <div id="app">   
+    @include('Flash.flash-message')   
         <main class="py-4">
             <?php echo $__env->yieldContent('content'); ?>
         </main>
@@ -133,15 +136,22 @@
     reserved.</center>
     <div class="control-sidebar-bg"></div>
     </footer>
-@yield('js')
 <script src="{{('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
 <script src="{{('asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{('asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
 <script src="{{('asset/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <script src="{{('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{('asset/dist/js/adminlte.min.js')}}"></script>
 <script src="{{('asset/dist/js/demo.js')}}"></script>
+<script src="{{('asset/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{('asset/sweetalert/moment.min.js')}}"></script>
+<script src="{{('asset/sweetalert/promise.min.js')}}"></script>
+@yield('js')
+<script type="text/javascript">
+    $('.js-aset').select2();
+</script>
 <script type="text/javascript">
   $(function () {
     $('#example2').DataTable({

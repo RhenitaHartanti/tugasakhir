@@ -13,12 +13,12 @@ class CreateDetailAssetPackagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('detail_asset_packages', function (Blueprint $table) {
+        Schema::create('asset_package', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('id_asset')->unsigned();
-            $table->foreign('id_asset')->references('id')->on('assets')->onDelete('cascade');
-            $table->integer('id_package')->unsigned();
-            $table->foreign('id_package')->references('id')->on('packages')->onDelete('cascade');             
+            $table->integer('package_id')->unsigned();
+            $table->foreign('package_id')->references('id')->on('packages')->onDelete('cascade');             
+            $table->integer('asset_id')->unsigned();
+            $table->foreign('asset_id')->references('id')->on('assets')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateDetailAssetPackagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('detail_asset_packages');
+        Schema::dropIfExists('asset_package');
     }
 }

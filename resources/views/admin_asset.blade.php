@@ -18,7 +18,7 @@
                 <thead>              
                  <tr>                  
                   <th><center>Id Asset</center></th>
-                  <th><center>Name Category</center></th>                  
+                  <th><center>Category</center></th>                  
                   <th><center>Name Asset</center></th>
                   <th><center>Price</center></th> 
                   <th><center>Total</center></th>                 

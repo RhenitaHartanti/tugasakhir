@@ -16,23 +16,27 @@
               <table id="example2" class="table table-bordered table-hover">
                 <thead>
                   <tr>
-                  <th>Id Package</th>
-                  <th>Name Package</th>
-                  <th>Details</th>
-                  <th>Price</th>
-                  <th>Quota (people)</th>
-                  <th>Asset</th>
-                  <th>Settings</th>
+                  <th><center>Id Package</center></th>
+                  <th><center>Name Package</center></th>
+                  <th><center>Details</center></th>
+                  <th><center>Price</center></th>
+                  <th><center>Quota (people)</center></th>
+                  <th><center>List Asset</center></th>
+                  <th><center>Settings</center></th>
                   </tr>
                 </thead>                           
                 	@foreach($packages as $value)
                 <tr>                                  
                   <td><center>{{$value->id}}</center></td>
-                  <td>{{$value->name_package}}</td>
-                  <td>{{$value->details}}</td>            
-                  <td>{{$value->price}}</td>
-                  <td>{{$value->kuota}}</td>
-                  <td><center>{{$value->name_asset}}</center></td>
+                  <td><center>{{$value->name_package}}</center></td>
+                  <td><center>{{$value->details}}</center></td>            
+                  <td><center>{{$value->price}}</center></td>
+                  <td><center>{{$value->kuota}}</center></td>
+                  <td><center>
+                    @foreach($value->assets as $val)
+                    <label>{{$val->name_asset}}</label><br>
+                    @endforeach
+                  </center></td>
                   <td><center>
                   <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"> <span class="glyphicon glyphicon-pencil"></span> </i>Edit</button>
                   <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus{{$value->id}}"> <span class="glyphicon glyphicon-trash"></span> </i>Delete</button></center>            
@@ -85,6 +89,19 @@
                             <label for="kuota" class="col-sm-3 control-label">Kuota</label>
                             <div class="col-sm-8">
                               <input type="text" class="form-control" id="kuota" name="kuota" value="{{$value->kuota}}">
+                            </div>
+                          </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                          <div class="form-group">
+                            <label for="id_asset" class="col-sm-3 control-label">Asset</label>
+                            <div class="col-sm-8">
+                              <select class="form-control js-aset" name="id_asset[]" multiple="multiple">
+                                  @foreach($assets as $value)
+                                <option value="{{$value->id}}">{{$value->name_asset}}</option>
+                                  @endforeach
+                              </select>
                             </div>
                           </div>
                         </div>
@@ -173,9 +190,8 @@
                         <div class="row">
                           <div class="form-group">
                             <label for="id_asset" class="col-sm-3 control-label">Asset</label>
-                            <div class="col-sm-8">
-                              <select class="form-control" name="id_asset">
-                                <option value="" disabled selected>Select Category Asset</option>
+                            <div class="col-sm-9">
+                              <select class="form-control js-aset" name="id_asset[]" multiple="multiple">
                                   @foreach($assets as $value)
                                 <option value="{{$value->id}}">{{$value->name_asset}}</option>
                                   @endforeach
@@ -183,6 +199,7 @@
                             </div>
                           </div>
                         </div>
+                        <br>
                 </div>
                 <div class="modal-footer">
                   <button type="submit" class="btn btn-success"> Save</button>
@@ -193,4 +210,7 @@
       </div> 
 @endsection
 @section('js')
+<script type="text/javascript">
+    $('.js-aset').select2();
+</script>
 @endsection

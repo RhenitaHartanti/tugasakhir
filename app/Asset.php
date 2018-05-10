@@ -15,7 +15,10 @@ class Asset extends Model
             'total',
     		'details',
     ];
+    
     public function category_asset(){
-  	$this->hasMany('Asset');
-  }
+      	$this->hasMany('Asset');
+      }
+
+
 }

@@ -29,10 +29,14 @@
             <div class="box-body no-padding">
               <table class="table table-striped text-center">
                 <tr><img class="img-fluid" src="img/logo8.jpg" alt=""></tr>              
-                <tr><td><h6>{{$data->name_package}}</h6></td></tr>
+                <tr><td><h5>{{$data->name_package}}</h5></td></tr>
                 <tr><td>{{$data->price}}</td></tr>           
-                <tr><td>Details Package : <p>{{$data->details}}</td></tr>
-                <tr><td>Kuota Package : <p>{{$data->kuota}}</td></tr>                  
+                <tr><td>{{$data->kuota}} orang</td></tr> 
+                <tr><td><b>Details Items : </b></td></tr>
+                <center>                
+                  @foreach($data->assets as $val)
+                  <tr><td>{{$val->name_asset}}</td></tr>
+                  @endforeach                                           
                 <tr><td>
                   @if(!\Auth::check())
                        <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/login')}}">Order Package</a>

@@ -87,5 +87,9 @@ class ListReservationController extends Controller
     {
         //
     }
+    public function history()
+    {        
+        
+    }
     
 }

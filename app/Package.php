@@ -19,6 +19,6 @@ class Package extends Model
   	return $this->hasMany('App\Order');
   }
   public function assets(){
-    return $this->hasMany('App\Asset');
+    return $this->belongsToMany('App\Asset')->withTimestamps();
   }
 }

@@ -19,8 +19,6 @@ class CreatePackagesTable extends Migration
             $table->string('details');
             $table->bigInteger('price');
             $table->integer('kuota');
-            $table->integer('id_asset')->unsigned();
-            $table->foreign('id_asset')->references('id')->on('assets')->onDelete('cascade');
             $table->timestamps();
         });
     }
