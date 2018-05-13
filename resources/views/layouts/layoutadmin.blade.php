@@ -9,6 +9,8 @@
   <link rel="stylesheet" href="{{('asset/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/select2/dist/css/select2.min.css')}}">
+<script src="../../bower_components/Chart.js/Chart.js"></script>
+
   <link rel="stylesheet" href="{{('asset/bower_components/Ionicons/css/ionicons.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">  
   <link rel="stylesheet" href="{{('asset/dist/css/AdminLTE.min.css')}}">
@@ -148,6 +150,7 @@
 <script src="{{('asset/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{('asset/sweetalert/moment.min.js')}}"></script>
 <script src="{{('asset/sweetalert/promise.min.js')}}"></script>
+<script src="{{('asset/bower_components/Chart.js/Chart.js')}}"></script>
 @yield('js')
 <script type="text/javascript">
     $('.js-aset').select2();

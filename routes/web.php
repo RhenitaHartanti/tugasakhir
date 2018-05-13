@@ -53,6 +53,7 @@ Route::put('/admin_dashboard/{id}','AdminController@status');
 });
 Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');
 Route::post('/accBookingCode/{id}','AdminController@accBookingCode');
+Route::get('oauth','oauthController@oauth')->name('oauthCallBack');
 // Route::get('landingpage_package',function(){$package = DB::table('packages')->get();
 // 	return view('landingpage_package', ['package' => $package]);
 // });

@@ -20,5 +20,8 @@ class Asset extends Model
       	$this->hasMany('Asset');
       }
 
+    public function package(){
+        return $this->belongsToMany('App\Package','asset_package','asset_id','package_id')->withTimestamps();
+    }
 
 }

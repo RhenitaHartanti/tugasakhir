@@ -13,7 +13,7 @@ class CategoryAssetTable extends Seeder
     {
         DB::table('category_assets')->insert([
         	'name_category' =>'Backdrop',
-        	'details' => 'Backdrop Baru',
-        ]);
+        	'details' => 'Backdrop Kanvas',
+        	]);
     }
 }

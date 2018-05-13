@@ -31,7 +31,7 @@ class LoginController extends Controller
      protected function authenticated(Request $request, $user)
     {
         if($user->level=='admin'){
-            return redirect('admin_dashboard');
+            return redirect('oauth');
         }
         return redirect('/landingpage_beranda');
     }

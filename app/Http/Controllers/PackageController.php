@@ -90,12 +90,15 @@ class PackageController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin_listpackage = Package ::find($id);
-        $admin_listpackage->name_package = $request->name_package;
-        $admin_listpackage->details = $request->details;
-        $admin_listpackage->price = $request->price;
-        $admin_listpackage->kuota = $request->kuota;
-        $admin_listpackage->save();
+        // return $request->all();
+        $admin_listpackage = Package::find($id);
+        // $admin_listpackage->name_package = $request->name_package;
+        // $admin_listpackage->details = $request->details;
+        // $admin_listpackage->price = $request->price;
+        // $admin_listpackage->kuota = $request->kuota;       
+        // $admin_listpackage->save();
+        $admin_listpackage->update($request->except(['_token','_method','id','id_asset']));
+        $admin_listpackage->assets()->sync($request->id_asset);
         return redirect('admin_listpackage');
     }
 

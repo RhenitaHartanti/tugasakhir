@@ -12,6 +12,10 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([UserTable::class]);
+        $this->call([PackageTable::class]);
         $this->call([CategoryAssetTable::class]);
+        $this->call([AssetTable::class]);
+
+
     }
 }

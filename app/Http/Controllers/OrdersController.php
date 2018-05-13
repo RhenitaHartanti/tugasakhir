@@ -38,9 +38,19 @@ class OrdersController extends Controller
     public function store(Request $request)
     {
         $request['id_user']=auth()->user()->id;
+        
+        $package=Package::find($request->id_package);
+            if($request->total_guests>0)
+            {
+                $request['total_payment']=$package->price + ($request->total_guests*100000);
+            }
+            else{
+                $request['total_payment']=$package->price;
+            }
+            //return $request->all();
          Order::create($request->except(['_token']));
              return redirect('landingpage_setting');    
-    }
+            }
     /**
      * Display the specified resource.
      *

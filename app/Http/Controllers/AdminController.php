@@ -9,7 +9,11 @@ use App\Payment;
 use Illuminate\Support\Facades\DB;
 use Hash;
 use Mail;
-use App\User;
+use App\User; 
+// use Carbon\Carbon; 
+// use Google_Client;
+// use Google_Service_Calendar;
+// use Google_Service_Calendar_Event;
 
 class AdminController extends Controller
 {
@@ -19,7 +23,18 @@ class AdminController extends Controller
      * @return \Illuminate\Http\Response
      */
 
+// protected $client;
 
+//     public function __construct()
+//     {
+//         $client = new Google_Client();
+//         $client->setAuthConfig('client_secret.json');
+//         $client->addScope(Google_Service_Calendar::CALENDAR);
+
+//         $guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
+//         $client->setHttpClient($guzzleClient);
+//         $this->client = $client;
+//     }
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
@@ -129,7 +144,7 @@ class AdminController extends Controller
         $statusbayar->payment_status = $request->payment_status;
         /*dd($status);*/
         if($request->payment_status=='paid off'){
-        $status->save();
+        $statusbayar->save();
     }
         return redirect('admin_listreservation');
     }
@@ -179,15 +194,6 @@ class AdminController extends Controller
 
   //   return redirect()->route('password.change');
   // }
-
-    public function updateStatusPayment(Request $request,$id)
-    {
-        $statusPayment = Order::find($id);
-        $statusPayment->payment_status = $request->payment_status;
-        $statusPayment->save();
-
-        return redirect('admin_listreservation');
-    }
     public function loadFormBayar($id)
    {
         
@@ -206,7 +212,52 @@ class AdminController extends Controller
             }
         $payment->update(['payment_status'=>'paid off']);
         Order::find($payment->id_order)->update(['payment_status'=>'paid off']);
+        $statusPayment = Order::query()->find($id);
+          // session_start();
+          //   if (isset($_SESSION['access_token']) && $_SESSION['access_token'] && $_SESSION['access_token']['created'] + $_SESSION['access_token']['expires_in'] > Carbon::now()->timestamp) {
+          //       $this->client->setAccessToken($_SESSION['access_token']);
+          //       $service = new Google_Service_Calendar($this->client);
+          //       $calendarId = 'primary';
+          //       $event = new Google_Service_Calendar_Event([
+          //           'summary' => $statusPayment->id_package,
+          //           'location' => $statusPayment->place,
+          //           /*'start' => ['dateTime' => Carbon::parse(($request->start_date), 'Asia/Jakarta')->toRfc3339String()],
+          //           'end' => ['dateTime' => Carbon::parse(($request->end_date), 'Asia/Jakarta')->toRfc3339String()],*/
+          //           'start' => array(
+          //               'date' => $statusPayment->date_using,
+          //               'dateTime' => Carbon::parse($statusPayment->time_using)->toRfc3339String(),
+          //               'timeZone' => 'Asia/Jakarta',
+          //           ),
+          //           'reminders' => array(
+          //               'useDefault' => FALSE,
+          //               'overrides' => array(
+          //                   array('method' => 'email', 'minutes' => 60),
+          //                   array('method' => 'popup', 'minutes' => 60),
+          //                   array('method' => 'email', 'minutes' => 24 * 60),
+          //                   array('method' => 'popup', 'minutes' => 24 * 60),
+          //               ),
+          //           ),
+          //       ]);
+
+          //       $optParams = Array(
+          //           'sendNotifications' => true,
+          //       );
+
+          //       $results = $service->events->insert($calendarId, $event, $optParams);
+          //   } else {
+          //       return redirect()->route('oauthCallback');
+          //   }
         return redirect('admin_listreservation')->with('Booking Code cocok');
     }
 
+    public function updateStatusPayment(Request $request,$id)
+    {
+        $statusPayment = Order::query()->find($id);
+        $statusPayment->payment_status = $request->payment_status;
+        $statusPayment->save();
+        if ($statusPayment->payment_status == 'paid off'){
+                  }
+
+        return redirect('admin_listreservation');
+    }
 }

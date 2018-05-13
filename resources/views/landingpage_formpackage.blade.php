@@ -22,10 +22,11 @@
             <div class="form-group has-feedback">
              <input type="text" class="form-control" name="theme" required="">
             </div>
+              * Kuota for this package is <b>{{$package->kuota}} people </b>. If you want to add the guest, you have to add Rp 100.000/person 
+            <br>
            <label>Additional Guests</label>
           <div class="form-group has-feedback">
-            <input type="text" class="form-control" name="total_guests" required=""><br>
-              * Kuota for this package is <b>{{$package->kuota}} people </b>. If you want to add the guest, you have to add Rp 100.000/person         
+            <input type="number" class="form-control" name="total_guests" value="0" min="0" required="">        
           </div>
       </div>
       <div class="col-lg-6"> 

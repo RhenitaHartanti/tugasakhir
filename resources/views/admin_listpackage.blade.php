@@ -19,7 +19,7 @@
                   <th><center>Id Package</center></th>
                   <th><center>Name Package</center></th>
                   <th><center>Details</center></th>
-                  <th><center>Price</center></th>
+                  <th><center>Price (Default)</center></th>
                   <th><center>Quota (people)</center></th>
                   <th><center>List Asset</center></th>
                   <th><center>Settings</center></th>
@@ -34,7 +34,7 @@
                   <td><center>{{$value->kuota}}</center></td>
                   <td><center>
                     @foreach($value->assets as $val)
-                    <label>{{$val->name_asset}}</label><br>
+                    {{$val->name_asset}}<br>
                     @endforeach
                   </center></td>
                   <td><center>
@@ -97,10 +97,14 @@
                           <div class="form-group">
                             <label for="id_asset" class="col-sm-3 control-label">Asset</label>
                             <div class="col-sm-8">
-                              <select class="form-control js-aset" name="id_asset[]" multiple="multiple">
-                                  @foreach($assets as $value)
-                                <option value="{{$value->id}}">{{$value->name_asset}}</option>
-                                  @endforeach
+                              <select class="form-control js-aset" name="id_asset[]" multiple="multiple" style="width:100%">
+                                @foreach($assets as $aset)
+                                @php($selected='')
+                                 @foreach($value->assets as $val)
+                                 @php($selected = ($val->id==$aset->id)?'selected':'')
+                                 @endforeach
+                                  <option value="{{$aset->id}}" {{$selected}}>{{$aset->name_asset}}</option>
+                                @endforeach
                               </select>
                             </div>
                           </div>
@@ -191,7 +195,7 @@
                           <div class="form-group">
                             <label for="id_asset" class="col-sm-3 control-label">Asset</label>
                             <div class="col-sm-9">
-                              <select class="form-control js-aset" name="id_asset[]" multiple="multiple">
+                              <select class="form-control js-aset" name="id_asset[]" multiple="multiple" style="width:88%">
                                   @foreach($assets as $value)
                                 <option value="{{$value->id}}">{{$value->name_asset}}</option>
                                   @endforeach

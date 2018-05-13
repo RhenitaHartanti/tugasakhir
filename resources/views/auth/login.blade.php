@@ -54,7 +54,7 @@
                                     {{ __('Login') }}
                                 </button>
                                 <p>
-                        Dont have account ? <a href="{{url('/register')}}"><u>Register</u></a>
+                        Don't have account ? <a href="{{url('/register')}}"><u>Register</u></a>
 
                                 <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
