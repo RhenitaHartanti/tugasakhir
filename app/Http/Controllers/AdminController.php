@@ -213,6 +213,10 @@ class AdminController extends Controller
         $payment->update(['payment_status'=>'paid off']);
         Order::find($payment->id_order)->update(['payment_status'=>'paid off']);
         $statusPayment = Order::query()->find($id);
+        $package = \App\Package::find($statusPayment->id_package);
+        if($package->assets->count()>0){
+             $statusPayment->assets()->sync($package->assets);
+         }
           // session_start();
           //   if (isset($_SESSION['access_token']) && $_SESSION['access_token'] && $_SESSION['access_token']['created'] + $_SESSION['access_token']['expires_in'] > Carbon::now()->timestamp) {
           //       $this->client->setAccessToken($_SESSION['access_token']);

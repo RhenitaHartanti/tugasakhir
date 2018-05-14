@@ -21,6 +21,7 @@ class CreateAssetsTable extends Migration
             $table->bigInteger('price');
             $table->integer('total');            
             $table->string('details');
+            $table->enum('status',[1,0])->default(1);            
             $table->timestamps();
         });
     }

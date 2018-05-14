@@ -16,8 +16,10 @@ class AssetController extends Controller
     public function index()
     {
         $categoryAsset=CategoryAsset::all();
-        $asset=Asset::select(['assets.*','category_assets.name_category'])->join('category_assets','category_assets.id','=','assets.id_category_asset')->get();
-        return view('admin_asset')
+        //$asset=Asset::select(['assets.*','category_assets.name_category'])->join('category_assets','category_assets.id','=','assets.id_category_asset')->get()->where('status',1);
+        $asset = Asset::where('status',1)->get();
+        // dd($asset->asset_order);
+        return view('admin_asset')        
         ->with('assets',$asset)
         ->with('category_assets',$categoryAsset);
     }
@@ -97,10 +99,8 @@ class AssetController extends Controller
         // $asset =Asset::find($id);
         // $asset->delete();
         // return redirect('admin_asset')->with('success','Procuct has ben delete');
-        // $asset =DB::table('assets')
-        // ->where('id',$id)
-        // ->update(['status'=>'0']);
-    
-        // return back();
+        $asset=DB::table('assets')->where('id',$id)
+        ->update(['status'=>'0']);
+         return back();
     }
 }

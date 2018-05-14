@@ -30,12 +30,7 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <h2 class="section-heading text-uppercase">List Booking</h2>
-          <!-- <iframe src="https://calendar.google.com/calendar/embed?src=rereradinka%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="1100" height="600" frameborder="0" scrolling="no"></iframe> -->
-          <table>
-            <th><td>Date Booking</td></th>
-            <tr><td>{{$value->date_using}}</td></tr>
-
-          </table>
+          <iframe src="https://calendar.google.com/calendar/embed?src=rereradinka%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="1100" height="600" frameborder="0" scrolling="no"></iframe>
       </div>
     </div>      
   <section id="services">    

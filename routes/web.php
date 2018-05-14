@@ -28,7 +28,7 @@ Route::resource('/landingpage_setting', 'OrderCustomerController');
 Route::resource('/landingpage_profil', 'ProfilUserController');
 Route::get('/landingpage_formbayar/{id}', 'OrderCustomerController@loadFormBayar');
 Route::post('/uploadBukti', 'OrderCustomerController@upload');
-Route::put('/landingpage_profil/{id}','CustomerController@update')->name('customer.update');
+// Route::put('/landingpage_profil2/{id}','Controller@update')->name('customer.update');
 
 
 //ADMID
@@ -46,7 +46,6 @@ Route::get('/admin_listpackage/delete/{id_package}','PackageController@destroy')
 Route::put('/admin_listpackage/{id_package}','PackageController@update')->name('package.update');
 Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changePassword');
 Route::resource('/admin_categoryasset','CategoryAssetController');
-Route::delete('/{id}/delCategoryAsset','CategoryAssetController@destroy');
 Route::resource('/admin_asset','AssetController');
 Route::resource('orders','OrdersController');
 Route::put('/admin_dashboard/{id}','AdminController@status');
@@ -61,8 +60,6 @@ Route::get('oauth','oauthController@oauth')->name('oauthCallBack');
 // 	$order = DB::table('orders')->get();
 // 	return view('landingpage_setting', ['order' => $order]);
 // });
-
-// Route::get('admin_categoryasset/delete/{id}','CategoryAssetController@destroy')->name('categoryAsset.delete');
 
 
 // Route::resource('admin_listcustomer',function(){

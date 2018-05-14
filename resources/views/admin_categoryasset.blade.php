@@ -88,8 +88,9 @@
 
                 <div id="modal-hapus{{$value->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
-                   <form method="POST" action="{{$value->id}}/delCategoryAsset">
+                   <form class="form-horizontal" action="{{action('CategoryAssetController@destroy',$value->id)}}" method="POST">
                      {{csrf_field()}}
+                     <input type="hidden" name="_method" value="DELETE">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
@@ -100,7 +101,7 @@
                           <p>Are you sure to delete this data <span class="del-name" style="font-weight: bold;"></span> ?</p>                            
                         </div>
                         <div class="modal-footer">
-                          <button class="btn btn-md btn-primary">Yes</button><br>
+                          <button class="btn btn-md btn-success">Yes</button>
                           <button data-dismiss="modal" class="btn btn-danger">No</button>
                         </div>
                     </div>

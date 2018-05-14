@@ -17,9 +17,7 @@ class ListReservationController extends Controller
         // ->where('order_status', 'accept')->get();
         $orders=Order::with('package','user','payment')->where('order_status', 'accept')->get();
         // dd($orders[2]->payment);
-        return view('admin_listreservation')
-        ->with('orders',$orders);       
-
+        return view('admin_listreservation',compact('orders'));
     }
 
     /**

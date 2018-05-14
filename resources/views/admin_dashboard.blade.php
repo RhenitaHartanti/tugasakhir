@@ -4,16 +4,11 @@
 @section('content')
 <div class="content-wrapper">
 <section class="content-header">
-      <ol class="breadcrumb">
-        <li class="active">Dashboard</li>
-      </ol>
-   <p>
      <div class="row">
         <div class="col-lg-3 col-xs-6">
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>150</h3>
-
+              <h3>{{count($orders)}}</h3>
               <p>Request Order</p>
             </div>
             <div class="icon">
@@ -24,14 +19,11 @@
             </a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-              <p>Sales Service</p>
+              <h3>{{$total_asset}}<sup style="font-size: 20px"></sup></h3>
+              <p>Total Asset</p>
             </div>
             <div class="icon">
               <i class="ion ion-stats-bars"></i>
@@ -41,13 +33,10 @@
             </a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>44</h3>
-
+              <h3>{{$total_user}}</h3>
               <p>Total User</p>
             </div>
             <div class="icon">
@@ -58,27 +47,22 @@
             </a>
           </div>
         </div>
-        <!-- ./col -->
         <div class="col-lg-3 col-xs-6">
-          <!-- small box -->
           <div class="small-box bg-yellow">
             <div class="inner">
-              <h3>65</h3>
-
-              <p>Total Visitors</p>
+              <h3>{{$total_package}}</h3>
+              <p>Total Package</p>
             </div>
             <div class="icon">
-              <i class="ion ion-pie-graph"></i>
+              <i class="glyphicon glyphicon-gift "></i>
             </div>
             <a href="#" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>
             </a>
           </div>
         </div>  
-
-                   
-   <section class="content">
-      <div class="row">
+  <section class="content">              
+       <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
@@ -92,7 +76,6 @@
                   <th><center>Id Order</center></th>
                   <th><center>Username</center></th>
                   <th><center>Name Package</center></th>
-                  <!-- <th><center>Date Order</center></th> -->
                   <th><center>Using Date</center></th>
                   <th><center>Using Time</center></th>
                   <th><center>Detail Order</center></th>
@@ -105,7 +88,6 @@
                   <td><center>{{$data->id}}</center></td>
                   <td><center>{{$data->user->username}}</center></td>
                   <td><center>{{$data->package->name_package}}</center></td>
-                  <!-- <td><center>{{$data->date_order}}</center></td> -->
                   <td><center>{{$data->date_using}}</center></td>
                   <td><center>{{$data->time_using}}</center></td>
                   <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>

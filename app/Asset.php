@@ -17,11 +17,14 @@ class Asset extends Model
     ];
     
     public function category_asset(){
-      	$this->hasMany('Asset');
+      	return $this->belongsTo('App\CategoryAsset','id_category_asset');
       }
 
     public function package(){
         return $this->belongsToMany('App\Package','asset_package','asset_id','package_id')->withTimestamps();
     }
+    public function asset_order(){
+        return $this->hasMany('App\AssetOrder','id_asset');
+      }
 
 }

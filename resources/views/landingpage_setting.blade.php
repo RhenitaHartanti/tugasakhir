@@ -26,6 +26,7 @@
           <th>ID Order</th>
           <th>Date Using</th>
           <th>Time Using</th>
+          <th>Time Finish</th>          
           <th>Detail Order</th>
           <th>Order Status</th>   
           <th>Total Payment</th>    
@@ -37,7 +38,8 @@
           <td>{{$value->id}}</td>
           <td>{{$value->date_using}}</td>
           <td>{{$value->time_using}}</td>
-          <td><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary">See Detail Order</button></td>
+          <td>{{$value->time_finish}}</td>          
+          <td><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-time_finish="{{$value->time_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary">See Detail Order</button></td>
           <td>{{$value->order_status}}</td>
           <td>{{$value->total_payment}}</td>
           <td>
@@ -70,6 +72,12 @@
                   <label for="time_using" class="col-md-12 control-label">Time Using : </label>
                   <div class="col-sm-12 detail-theme">            
                     <input type="text" readonly class="form-control" id="time_using" name="time_using" value="{{$value->time_using}}">                  
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="time_fiish" class="col-md-12 control-label">Time Finish : </label>
+                  <div class="col-sm-12 detail-theme">            
+                    <input type="text" readonly class="form-control" id="time_finish" name="time_finish" value="{{$value->time_finish}}">                  
                   </div>
                 </div>
                 <div class="form-group">
@@ -138,14 +146,16 @@
   <script type="text/javascript">
   function detailOrder(dom) {
     var date_using = $(dom).data('date_using');
-    var time_using = $(dom).data('time_using');    
+    var time_using = $(dom).data('time_using'); 
+    var time_finish = $(dom).data('time_finish');  
     var theme = $(dom).data('theme');
     var place = $(dom).data('place');
     var guest = $(dom).data('guest');
     var greeting = $(dom).data('greeting');
     var note = $(dom).data('note');
     $('#date_using').val(date_using)
-    $('#time_using').val(time_using)    
+    $('#time_using').val(time_using) 
+    $('#time_finish').val(time_finish)
     $('#theme').val(theme)
     $('#place').val(place)
     $('#guest').val(guest)

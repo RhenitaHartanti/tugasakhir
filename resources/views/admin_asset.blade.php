@@ -23,6 +23,7 @@
                   <th><center>Price</center></th> 
                   <th><center>Total</center></th>                 
                   <th><center>Details</center></th>
+                  <th><center>jml pakai</center></th>
                   <th><center>Settings</center></th>
                  </tr>
                 </thead>                
@@ -30,11 +31,12 @@
                 @foreach($assets as $value)
                 <tr>                                
                   <td><center>{{$value->id}}</center></td>
-                  <td><center>{{$value->name_category}}</center></td>                  
+                  <td><center>{{$value->category_asset->name_category}}</center></td>                  
                   <td><center>{{$value->name_asset}}</center></td>
                   <td><center>{{$value->price}}</center></td>
                   <td><center>{{$value->total}}</center></td>                  
                   <td><center>{{$value->details}}</center></td>                  
+                  <td><center>{{$value->asset_order->count()}}</center></td>                  
                   <td><center>
                       <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"> <span class="glyphicon glyphicon-pencil"></span> </i>Edit</button>
                       <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus{{$value->id}}"> <span class="glyphicon glyphicon-trash"></span> </i>Delete</button> 
@@ -97,7 +99,7 @@
                               <select class="form-control" name="id_category_asset">
                                 <option value="" disabled selected>Select Category Asset</option>
                                   @foreach($category_assets as $value1)
-                                <option <?php if($value1->name_category==$value->name_category){echo "selected='true'";}?> value="{{$value1->id}}">{{$value1->name_category}}</option>
+                                <option <?php if($value1->name_category==$value->category_asset->name_category){echo "selected='true'";}?> value="{{$value1->id}}">{{$value1->name_category}}</option>
                                   @endforeach
                               </select>
                             </div>
@@ -115,25 +117,27 @@
 
                 <div id="modal-hapus{{$value->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
+                   <form class="form-horizontal" action="{{action('AssetController@destroy',$value->id)}}" method="POST">
+                     {{csrf_field()}}
+                     <input type="hidden" name="_method" value="DELETE">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                         </button>
                         <h4 class="modal-title" id="myModalLabel">Delete data package</h4>
                       </div>
-                       <form action="{{url('admin_asset')}}"  method="post" class="form-horizontal">
-                       {{csrf_field()}}
-                         <div class="modal-body">
+                        <div class="modal-body">
                           <p>Are you sure to delete this data <span class="del-name" style="font-weight: bold;"></span> ?</p>                            
                         </div>
                         <div class="modal-footer">
-                            <button class="btn btn-md btn-success"></i> Yes</button>
-                            <button data-dismiss="modal" class="btn btn-danger">No</button>
+                          <button class="btn btn-md btn-success">Yes</button>
+                          <button data-dismiss="modal" class="btn btn-danger">No</button>
                         </div>
-                      </form>
                     </div>
-                  </div>
-                </div>                    
+                  </form>
+                </div>
+              </div>
+              
                @endforeach
                </tbody>               
              </table>

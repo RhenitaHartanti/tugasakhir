@@ -18,6 +18,10 @@
             <div class="form-group has-feedback">
               <input type="time" class="form-control" name="time_using" required="">
             </div>
+             <label>Finish Time</label>
+            <div class="form-group has-feedback">
+              <input type="time" class="form-control" name="time_finish" required="">
+            </div>
               <label>Theme (Color and Custom Caracter)</label>
             <div class="form-group has-feedback">
              <input type="text" class="form-control" name="theme" required="">
@@ -47,7 +51,7 @@
              <input type="hidden" value="waiting" name="order_status">
              <input type="hidden" value="none" name="payment_status">
          <div class="row">
-          <center><button type="submit" style="background:#CCB20A" >Send Order</button></center>
+          <center><button type="submit" style="background:#CCB20A">Send Order</button></center>
           </div>   
       </form>
     </div>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Order;
 use App\Package;
+use App\Asset;
 // use App\User;
 use Illuminate\Http\Request;
 
@@ -16,8 +17,11 @@ class OrdersController extends Controller
     public function index()
     {
         $orders=Order::with('package','user')->where('order_status', 'waiting')->get();
-        return view('admin_dashboard')
-        ->with('orders',$orders);
+        $total_user = \App\User::count();
+        $total_asset = \App\Asset::count();
+        $total_package =\App\Package::count();
+
+        return view('admin_dashboard',compact('orders','total_user','total_asset','total_package'));
     }
     /**
      * Show the form for creating a new resource.
@@ -49,8 +53,10 @@ class OrdersController extends Controller
             }
             //return $request->all();
          Order::create($request->except(['_token']));
+         
              return redirect('landingpage_setting');    
             }
+            //sync: menghubungkan many to many
     /**
      * Display the specified resource.
      *

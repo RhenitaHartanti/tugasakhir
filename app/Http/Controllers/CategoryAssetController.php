@@ -14,8 +14,8 @@ class CategoryAssetController extends Controller
      */
     public function index()
     {
-        $categoryAsset=CategoryAsset::all();
-        return view('admin_categoryasset',compact('categoryAsset'))->with('success','Category Asset success to adding');
+        $categoryAsset=CategoryAsset::all()->where('status',1);
+        return view('admin_categoryasset',compact('categoryAsset'));
     }
 
     /**
@@ -87,8 +87,11 @@ class CategoryAssetController extends Controller
      */
     public function destroy($id)
     {
-       $categoryAsset =CategoryAsset::find($id);
-       $categoryAsset->delete();
-       return view('admin_categoryasset')->with('success','Procuct has ben delete');
+       // $categoryAsset =CategoryAsset::find($id);
+       // $categoryAsset->delete();
+       // return view('admin_categoryasset')->with('success','Procuct has ben delete');
+        $categoryAsset=DB::table('category_assets')->where('id',$id)
+        ->update(['status'=>'0']);
+         return back();
     }
 }

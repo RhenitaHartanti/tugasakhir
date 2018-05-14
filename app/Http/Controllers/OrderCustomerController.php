@@ -13,6 +13,11 @@ class OrderCustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function tampil()
+    {
+       $customer=User::all()->where('id',Auth::user()->id)->where('level','customer');
+        return view('landingpage_profil',compact('customer'));
+    }
     public function index()
     {
         $order=Order::where('id_user',Auth::user()->id)->get();
@@ -89,6 +94,7 @@ class OrderCustomerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function update(Request $request, $id)
     {
         $landingpage_setting = User::find($id);

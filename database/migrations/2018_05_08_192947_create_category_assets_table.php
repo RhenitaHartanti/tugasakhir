@@ -17,6 +17,7 @@ class CreateCategoryAssetsTable extends Migration
             $table->increments('id');
             $table->string('name_category');
             $table->string('details');
+            $table->enum('status',[1,0])->default(1);
             $table->timestamps();
         });
     }
