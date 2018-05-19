@@ -2,6 +2,7 @@
 @section('header')
 @endsection
 @section('content')
+<!-- @include('Flash.flash-message') -->
 <div class="content-wrapper">
 <section class="content-header">         
     <section class="content">
@@ -23,7 +24,7 @@
                   <th><center>Price</center></th> 
                   <th><center>Total</center></th>                 
                   <th><center>Details</center></th>
-                  <th><center>jml pakai</center></th>
+                  <th><center>Frequency</center></th>
                   <th><center>Settings</center></th>
                  </tr>
                 </thead>                
@@ -31,7 +32,7 @@
                 @foreach($assets as $value)
                 <tr>                                
                   <td><center>{{$value->id}}</center></td>
-                  <td><center>{{$value->category_asset->name_category}}</center></td>                  
+                  <td><center>{{$value->category_asset->name_category}}</center></td>          
                   <td><center>{{$value->name_asset}}</center></td>
                   <td><center>{{$value->price}}</center></td>
                   <td><center>{{$value->total}}</center></td>                  
@@ -108,7 +109,7 @@
                         <br>
                         <br>
                     <div class="modal-footer">
-                      <center><button type="submit" class="btn btn-success">Save</button></center>
+                      <center><button type="submit" class="btn btn-success update">Save</button></center>
                     </div>
                     </form>
                     </div>
@@ -201,7 +202,7 @@
                         </div>
                        </div>
           <div class="modal-footer">
-            <center><button type="submit" class="btn btn-success"> Add Asset</button></center>
+            <center><button type="submit" class="btn btn-success add"> Add Asset</button></center>
           </div>
               <!-- /.box-footer -->
             </form>
@@ -214,4 +215,33 @@
 </section>
 @endsection
 @section('js')
+<script type="text/javascript">
+  $('.delete').on("click",function(destroy){
+    swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons:false,
+  dangerMode: true,
+})
+  });
+  $('.add').on("click",function(store){
+  swal({
+  title: "Success",
+  text: "You Add the Data Asset",
+  icon: "success",
+  buttons:false,
+  dangerMode: true,
+})
+  });
+$('.update').on("click",function(update){
+  swal({
+  title: "Success",
+  text: "You Update the Data Asset",
+  icon: "success",
+  buttons:false,
+  dangerMode: true,
+})
+  });
+</script>
 @endsection

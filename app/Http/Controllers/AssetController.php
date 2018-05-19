@@ -44,7 +44,7 @@ class AssetController extends Controller
     public function store(Request $request)
     {
          Asset::create($request->except(['_token']));
-             return redirect('admin_asset');   
+             return redirect('admin_asset');  
     }
 
     /**

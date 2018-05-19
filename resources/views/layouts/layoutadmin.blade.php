@@ -9,9 +9,9 @@
   <link rel="stylesheet" href="{{('asset/bower_components/bootstrap/dist/css/bootstrap.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/select2/dist/css/select2.min.css')}}">
-
   <link rel="stylesheet" href="{{('asset/bower_components/Ionicons/css/ionicons.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">  
+  
   <link rel="stylesheet" href="{{('asset/dist/css/AdminLTE.min.css')}}">
   <link rel="stylesheet" href="{{('asset/dist/css/skins/_all-skins.min.css')}}">
 
@@ -23,12 +23,15 @@
 <div class="wrapper">
   <header class="main-header">
     <!-- Logo -->
-    <a href="index2.html" class="logo" style="background:#2e343a">
+    <a href="index2.html" class="logo" style="background:#CC9900">
       ADMIN PRECIOUS
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" style="background:#2e343a ">
+    <nav class="navbar navbar-static-top" style="background:#CC9900">
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
       <!-- Sidebar toggle button-->
       <!-- Navbar Right Menu -->
       <div class="navbar-custom-menu">
@@ -40,31 +43,73 @@
                         </div>
                     @endif
         </li>
-         <li>
-            <a class="dropdown-item" href="{{ route('logout') }}"
+            <!-- <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
                                           {{ __('Logout ') }}<i class="fa fa-arrow-right"></i>
                                     </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+ -->
+                                    <!-- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
-                                    </form>
-                                    </li>
-          
+                                    </form> -->
+          <li class="dropdown user user-menu">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <span class="hidden-xs"><i class="fa fa-user"></i>  Hai , Administrator</span>
+            </a>
+            <ul class="dropdown-menu">
+              <!-- User image -->
+              <li class="user-header">
+                <!-- <img src="dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+ -->
+                <!-- <p>
+                  Alexander Pierce - Web Developer
+                  <small>Member since Nov. 2012</small>
+                </p> -->
+              </li>
+              <!-- Menu Body -->
+              <!-- <li class="user-body">
+                <div class="row">
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Followers</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Sales</a>
+                  </div>
+                  <div class="col-xs-4 text-center">
+                    <a href="#">Friends</a>
+                  </div>
+                </div>
+              </li> -->
+              <!-- Menu Footer-->
+              <li class="user-footer">
+                <div class="pull-left">
+                   <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Profile</a>
+                </div>
+                <div class="pull-right">
+                  <a href="{{ route('logout') }}"
+                                       onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Log out</a>
+                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+        @csrf
+        </form>
+                </div>
+              </li>
+            </ul>
+          </li>          
         </ul>
       </div>
-
     </nav>
   </header>
   <!-- Left side column. contains the logo and sidebar -->
-  <aside class="main-sidebar">
+  <aside class="main-sidebar" style="background:#333300">
     <!-- sidebar: style can be found in sidebar.less -->
     <section class="sidebar">
       <!-- Sidebar user panel -->
       <div class="user-panel">
         <div class="pull-left image">
-          <img src="asset/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">         
+          <!-- <img src="asset/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">          -->
             <!-- <button class="btn btn-md btn-warning" data-toggle="modal" data-target="#modal-ubah">Setting</button> -->
         </div><p>
         <div class="pull-left info">
@@ -146,9 +191,7 @@
 <script src="{{('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{('asset/dist/js/adminlte.min.js')}}"></script>
 <script src="{{('asset/dist/js/demo.js')}}"></script>
-<script src="{{('asset/sweetalert/sweetalert.min.js')}}"></script>
-<script src="{{('asset/sweetalert/moment.min.js')}}"></script>
-<script src="{{('asset/sweetalert/promise.min.js')}}"></script>
+<script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script>
 @yield('js')
 <script type="text/javascript">
     $('.js-aset').select2();
@@ -157,11 +200,11 @@
   $(function () {
     $('#example2').DataTable({
       'paging'      : true,
-      'lengthChange': true,
+      'lengthChange': false,
       'searching'   : true,
       'ordering'    : true,
       'info'        : true,
-      'autoWidth'   : false
+      'autoWidth'   : true  
     })
   })
 </script>
@@ -174,5 +217,19 @@
     $(this).find('.ubah-password').val($(e.relatedTarget).data('password'));
   });
 </script>
+<script type="text/javascript">
+
+  var url = window.location;
+
+    // for sidebar menu entirely but not cover treeview
+    $('ul.sidebar-menu a').filter(function() {
+     return this.href == url;
+   }).parent().addClass('active');
+
+    // for treeview
+    $('ul.treeview-menu a').filter(function() {
+     return this.href == url;
+   }).parentsUntil(".sidebar-menu > .treeview-menu").addClass('active');
+ </script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <section class="content-header">
      <div class="row">
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-yellow">
+          <div class="small-box" style="background:#CC9900">
             <div class="inner">
               <h3>{{count($orders)}}</h3>
               <p>Request Order</p>
@@ -20,7 +20,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-yellow">
+          <div class="small-box" style="background:#CC9900">
             <div class="inner">
               <h3>{{$total_asset}}<sup style="font-size: 20px"></sup></h3>
               <p>Total Asset</p>
@@ -34,7 +34,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-yellow">
+          <div class="small-box" style="background:#CC9900">
             <div class="inner">
               <h3>{{$total_user}}</h3>
               <p>Total User</p>
@@ -48,7 +48,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box bg-yellow">
+          <div class="small-box" style="background:#CC9900">
             <div class="inner">
               <h3>{{$total_package}}</h3>
               <p>Total Package</p>
@@ -90,12 +90,12 @@
                   <td><center>{{$data->package->name_package}}</center></td>
                   <td><center>{{$data->date_using}}</center></td>
                   <td><center>{{$data->time_using}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$data->date_using}}" data-time_using="{{$data->time_using}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
                   <td>
                   <form method="POST" action="admin_dashboard/{{$data->id}}">
                     {{csrf_field()}}
                       <input type="hidden" name="order_status" value="accept">
-                      <center><button type="submit" class="btn btn-sm btn-success">Accept Order</button></center>
+                      <center><button type="submit" class="btn btn-sm btn-success confirm">Accept Order</button></center>
                       <input type="hidden" name="_method" value="PUT">
                     </form><p>                    
                  </td>                  
@@ -130,10 +130,15 @@
               <center><h4 class="modal-title" id="myModalLabel">Detail Reservation</h4></center>
             </div>                        
              <form class="form-horizontal">               
-               <div class="box-body">              
+               <div class="box-body">      
+               <div class="form-group">
+                  <label for="date_using" class="col-sm-5 control-label">Date Using</label>
+                  <div class="col-sm-6 detail-date_using">
+                  </div>
+                </div>        
                 <div class="form-group">
-                  <label for="theme" class="col-sm-5 control-label">Theme (Custom theme or character)</label>
-                  <div class="col-sm-6 detail-theme">
+                  <label for="time_using" class="col-sm-5 control-label">Time Using</label>
+                  <div class="col-sm-6 detail-time_using">
                   </div>
                 </div>
                 <div class="form-group">
@@ -173,16 +178,21 @@
 @section('js')
 <script type="text/javascript">
   function detailOrder(dom) {
+    var date_using = $(dom).attr('data-date_using');
+    var time_using = $(dom).attr('data-time_using');
     var theme = $(dom).attr('data-theme');
     var place = $(dom).attr('data-place');
     var guest = $(dom).attr('data-guest');
     var greeting = $(dom).attr('data-greeting');
     var note = $(dom).attr('data-note');
+    $('.detail-date_using').html(date_using)
+    $('.detail-time_using').html(time_using)
     $('.detail-theme').html(theme)
     $('.detail-place').html(place)
     $('.detail-total').html(guest)
     $('.detail-greet').html(greeting)
     $('.detail-note').html(note)
   }
+
 </script>
 @endsection

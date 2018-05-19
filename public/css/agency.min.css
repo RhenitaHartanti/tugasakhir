@@ -868,7 +868,7 @@ ul.social-buttons li a:hover {
     margin-bottom: 20px;
     margin-top: 70px;
     width: 700px;
-    height:350px;
+    height:430px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     padding:0px;
 }
@@ -961,7 +961,16 @@ section#about {
     color:#DAA520;
     width: 50%;
     margin-top:0px;
-    padding:30px;
+    padding:10px;
+}
+.syarat2 {
+    background-color: #ffffff;
+    background-repeat: no-repeat;
+    background-position: center;
+    color:#DAA520;
+    width: 40%;
+    margin-top:0px;
+    padding:10px;
 }
 .notif{
     background-color:#FBD43A;

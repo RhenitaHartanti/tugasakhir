@@ -35,7 +35,7 @@
                   <td><center>{{$value->package->name_package}}</center></td>
                   <td><center>{{$value->date_using}}</center></td>
                   <td><center>{{$value->time_using}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
                   <td>
                     <center><a href="{{URL::to('admin_konfirmasipembayaran/'.$value->id)}}">
                       @if($value->payment == null)
@@ -58,7 +58,17 @@
               <center><h4 class="modal-title" id="myModalLabel">Detail Reservation</h4></center>
             </div>                        
              <form class="form-horizontal">               
-               <div class="box-body">              
+               <div class="box-body">     
+               <div class="form-group">
+                  <label for="date_using" class="col-sm-5 control-label">Date Using</label>
+                  <div class="col-sm-6 detail-date_using">
+                  </div>
+                </div>        
+                <div class="form-group">
+                  <label for="time_using" class="col-sm-5 control-label">Time Using</label>
+                  <div class="col-sm-6 detail-time_using">
+                  </div>
+                </div>         
                 <div class="form-group">
                   <label for="theme" class="col-sm-5 control-label">Theme (Custom theme or character)</label>
                   <div class="col-sm-6 detail-theme">
@@ -95,17 +105,21 @@
         </div>
       </div>
 </section>
-</div>
 </section>
+</div>
 @endsection
 @section('js')
 <script type="text/javascript">
   function detailOrder(dom) {
+    var date_using = $(dom).attr('data-date_using');
+    var time_using = $(dom).attr('data-time_using');
     var theme = $(dom).attr('data-theme');
     var place = $(dom).attr('data-place');
     var guest = $(dom).attr('data-guest');
     var greeting = $(dom).attr('data-greeting');
     var note = $(dom).attr('data-note');
+    $('.detail-date_using').html(date_using)
+    $('.detail-time_using').html(time_using)
     $('.detail-theme').html(theme)
     $('.detail-place').html(place)
     $('.detail-total').html(guest)

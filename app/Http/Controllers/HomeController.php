@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Post;
 use App\Package;
+use App\Order;
 
 
 class HomeController extends Controller
@@ -30,7 +31,9 @@ class HomeController extends Controller
     }
     public function landingpage_beranda()
     {
-        return view('landingpage_beranda');
+        $orders=Order::with('package','user','payment')->where('order_status', 'accept')->get();
+        // dd($orders[2]->payment);
+        return view('landingpage_beranda',compact('orders'));
     }
      public function landingpage_package()
     {

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Order;
 use App\Package;
 use App\Asset;
+// use App\Admin;
 // use App\User;
 use Illuminate\Http\Request;
 
@@ -16,11 +17,12 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        // $admin=Admin::where('level','!=' , 'customer')->get();
         $orders=Order::with('package','user')->where('order_status', 'waiting')->get();
+        $orders=Order::with('package','user')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
         $total_user = \App\User::count();
         $total_asset = \App\Asset::count();
         $total_package =\App\Package::count();
-
         return view('admin_dashboard',compact('orders','total_user','total_asset','total_package'));
     }
     /**

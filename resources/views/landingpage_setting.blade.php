@@ -11,14 +11,14 @@
             <h3 class="section-subheading text-muted"><!-- You can  see our documentation event and package in this gallery --></h3>
         </div>
 <!-- Tab content -->  
-  <!-- <p>
+<!--   <p>
     @foreach($order as $data)
-      @if($data->order_status=='accept'&& $data->date_using>=\Carbon\Carbon::now()->format('Y-m-d'))
+      @if($data->order_status=='reject'&& $data->date_using>=\Carbon\Carbon::now()->format('Y-m-d'))
       <div class="notif"> 
         Your order with <b>Id Order {{$data->id}}</b> is <b>{{$data->order_status}}</b>
-      </br>
-         Your Kode Booking is :<b> {{$data->booking_code}}</b><p>   
-      </div>
+      </br> -->
+         <!-- Your Kode Booking is :<b> {{$data->booking_code}}</b><p>    -->
+     <!--  </div>
       @endif
     @endforeach    --> 
     <table class="table table-striped text-center"> 

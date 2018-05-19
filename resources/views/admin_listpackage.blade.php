@@ -18,7 +18,7 @@
                   <tr>
                   <th><center>Id Package</center></th>
                   <th><center>Name Package</center></th>
-                  <th><center>Details</center></th>
+                 <!--  <th><center>Details</center></th> -->
                   <th><center>Price (Default)</center></th>
                   <th><center>Quota (people)</center></th>
                   <th><center>List Asset</center></th>
@@ -29,7 +29,7 @@
                 <tr>                                  
                   <td><center>{{$value->id}}</center></td>
                   <td><center>{{$value->name_package}}</center></td>
-                  <td><center>{{$value->details}}</center></td>            
+                  <!-- <td><center>{{$value->details}}</center></td>  -->           
                   <td><center>{{$value->price}}</center></td>
                   <td><center>{{$value->kuota}}</center></td>
                   <td><center>
@@ -66,7 +66,7 @@
                               </div>
                             </div>
                           <br>
-                        <div class="row">
+                       <!--  <div class="row">
                           <div class="form-group">
                             <label for="details" class="col-sm-3 control-label">Details</label>
                             <div class="col-sm-8">
@@ -74,7 +74,7 @@
                             </div>
                           </div>
                         </div>
-                        <br>
+                        <br> -->
                         <div class="row">
                           <div class="form-group">
                             <label for="price" class="col-sm-3 control-label">Price</label>
@@ -112,7 +112,7 @@
                         <br>
                       </div>
                       <div class="modal-footer">
-                       <button type="submit" class="btn btn-success"> Save</button>
+                       <center><button type="submit" class="btn btn-success update"> Save</button></center>
                       </div>
                     </form>
                     </div>
@@ -132,7 +132,7 @@
                           <p>Are you sure to delete this data <span class="del-name" style="font-weight: bold;"></span> ?</p>                            
                         </div>
                         <div class="modal-footer">
-                            <a class="btn btn-success" href="{{route('package.delete',[$value->id])}}">Yes</a>
+                            <a class="btn btn-success delete" href="{{route('package.delete',[$value->id])}}">Yes</a>
                             <button data-dismiss="modal" class="btn btn-danger">No</button>
                         </div>
                     </div>
@@ -163,7 +163,7 @@
                             </div>
                            </div>
                         <br>
-                        <div class="row">
+                        <!-- <div class="row">
                           <div class="form-group">
                             <label for="details" class="col-sm-3 control-label">Details</label>
                             <div class="col-sm-8">
@@ -171,7 +171,7 @@
                             </div>
                          </div>
                         </div>
-                        <br>
+                        <br> -->
                         <div class="row">
                           <div class="form-group">
                             <label for="price" class="col-sm-3 control-label">Price</label>
@@ -205,7 +205,7 @@
                         <br>
                 </div>
                 <div class="modal-footer">
-                  <button type="submit" class="btn btn-success"> Save</button>
+                  <center><button type="submit" class="btn btn-success add"> Add Package</button></center>
                 </div>
             </form>
           </div>
@@ -213,7 +213,36 @@
       </div> 
 @endsection
 @section('js')
+<!-- <script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script> -->
 <script type="text/javascript">
     $('.js-aset').select2();
+
+  $('.delete').on("click",function(destroy){
+    swal({
+  title: "Are you sure?",
+  text: "Once deleted, you will not be able to recover this imaginary file!",
+  icon: "warning",
+  buttons: false,
+  dangerMode: false,
+})
+  });
+$('.add').on("click",function(store){
+  swal({
+  title: "Success",
+  text: "You Add the Package",
+  icon: "success",
+  buttons: false,
+  dangerMode: false,
+})
+  });
+$('.update').on("click",function(update){
+  swal({
+  title: "Success",
+  text: "You Update the Package",
+  icon: "success",
+  buttons: false,
+  dangerMode: false,
+})
+  });
 </script>
 @endsection

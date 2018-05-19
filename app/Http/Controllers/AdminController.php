@@ -38,7 +38,9 @@ class AdminController extends Controller
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
-        return view('admin_profil',compact('admin'));
+       $orders=Order::with('package','user')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
+       // return date_using('Y-m-d');
+       return view('admin_profil',compact('admin','orders'));
     }
 
     /**
@@ -117,7 +119,6 @@ class AdminController extends Controller
     // }
     public function status(Request $request,$id)
     {
-
         $status=Order::find($id); 
         $status->order_status = $request->order_status;
         /*dd($status);*/
@@ -166,19 +167,9 @@ class AdminController extends Controller
             if ($request->passBaru == $request->confirmPass){
              $ubahPassAdmin->password = bcrypt($request->confirmPass);
                 $ubahPassAdmin->save();
-                return back()
-                ->with('status','Password Has Change');
+                return back();
             }
-            else
-            {
-                return back()
-                ->with('gagal', 'Password Not Fit');
-            }
-        }
-        else{
-            return back()
-            ->with('gagal', 'Password Not Fit');
-        }
+          }            
     }
   //   public function changePassword()
   // {

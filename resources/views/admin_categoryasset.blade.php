@@ -2,19 +2,37 @@
 @section('header')
 @endsection
 @section('content')
-@if(session()->has('lele'))
-  <<!-- script>
+
+<!-- @if(session()->has('lele'))
+  <script>
     $().ready(function(e){
       swal({
-        title:"Success",
-        text:"Category Asset Success to Add",
-        icon:"success",
-        button:false,
-        timer:2000
+        title: "Success",
+        text: "Category Asset Success to Add",
+        icon: "success",
+        button: false,
+        timer: 2000
       });
-    });
-  @endif
-  </script> -->
+    });  
+  </script>
+  @endif -->
+
+  <!-- @if(session()->has('store'))
+  <script>
+    $().ready(function(e){
+      swal({
+        title: "Success",
+        text: "Category Asset Success to Save",
+        icon: "success",
+        button: false,
+        timer: 2000
+      });
+    });  
+  </script>
+  @endif -->
+
+  <!-- @include('Flash.flash-message') -->
+
   <div class="content-wrapper">  
 <section class="content-header">
 <section class="content">
@@ -79,7 +97,7 @@
                         </div>
                       </div>
                     <div class="modal-footer">
-                      <button type="submit" class="btn btn-success"> Save</button>
+                      <button type="submit" class="btn btn-success update"> Save</button>
                     </div>
                     </form>
                     </div>
@@ -101,8 +119,8 @@
                           <p>Are you sure to delete this data <span class="del-name" style="font-weight: bold;"></span> ?</p>                            
                         </div>
                         <div class="modal-footer">
-                          <button class="btn btn-md btn-success">Yes</button>
-                          <button data-dismiss="modal" class="btn btn-danger">No</button>
+                          <button class="btn btn-md btn-success delete">Yes</button>
+                          <button data-dismiss="modal" class="btn btn-danger ">No</button>
                         </div>
                     </div>
                   </form>
@@ -144,7 +162,7 @@
                         <br>  
             </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-success">Add Category</button>
+            <button type="submit" class="btn btn-success add">Add Category</button>
           </div>
               <!-- /.box-footer -->
             </form>
@@ -153,4 +171,33 @@
       </div> 
 @endsection
 @section('js')
+<script type="text/javascript">
+  $('.delete').on("click",function(destroy){
+    swal({
+  title: "Delete Success",
+  text: "Your Data is success to Delete",
+  icon: "warning",
+  buttons: false,
+  dangerMode: true,
+})
+  });
+$('.add').on("click",function(store){
+    swal({
+  title: "Success !",
+  text: "You Add the Category Asset",
+  icon: "success",
+  buttons: false,
+  dangerMode: true,
+})
+  });
+$('.update').on("click",function(update){
+    swal({
+  title: "Success !",
+  text: "You Update the Category Asset",
+  icon: "success",
+  buttons: false,
+  dangerMode: true,
+})
+  });
+</script>
 @endsection

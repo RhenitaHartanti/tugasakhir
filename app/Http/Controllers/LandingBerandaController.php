@@ -1,11 +1,14 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\CategoryAsset;
-use Illuminate\Support\Facades\DB;
+use App\Order;
+use App\Package;
+use App\User;
+use App\Payment;
+
 use Illuminate\Http\Request;
 
-class CategoryAssetController extends Controller
+class LandingBerandaController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,8 +17,17 @@ class CategoryAssetController extends Controller
      */
     public function index()
     {
-        $categoryAsset=CategoryAsset::all()->where('status',1);
-        return view('admin_categoryasset',compact('categoryAsset'));
+        $booking=Order::with('package','user','payment')->where('order_status', 'accept')->get();
+        $event = $booking->map(function($row){
+            $starttime= \Carbon\Carbon::parse($row->date_using.' '.$row->time_using);
+            $endtime= \Carbon\Carbon::parse($row->date_using.' '.$row->time_finish);
+            return \Calendar::event($row->package->name_package.' '.$row->user->username,false,$starttime,$endtime);
+        });
+        $calendar = \Calendar::addEvents($event) //add an array with addEvents
+            ->setOptions([ //set fullcalendar options
+                'firstDay' => 1
+            ]);
+        return view('landingpage_beranda',compact('bosoking','calendar'));
     }
 
     /**
@@ -25,8 +37,7 @@ class CategoryAssetController extends Controller
      */
     public function create()
     {
-        CategoryAsset::create($request->except(['_token']));
-             return redirect('admin_categoryasset');   
+        //
     }
 
     /**
@@ -37,8 +48,7 @@ class CategoryAssetController extends Controller
      */
     public function store(Request $request)
     {
-        CategoryAsset::create($request->except(['_token']));
-        return redirect('admin_categoryasset');
+        //
     }
 
     /**
@@ -72,11 +82,7 @@ class CategoryAssetController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin_categoryasset=CategoryAsset::find($id);
-        $admin_categoryasset->name_category = $request->name_category;
-        $admin_categoryasset->details = $request->details;
-        $admin_categoryasset->save();
-        return redirect('admin_categoryasset');
+        //
     }
 
     /**
@@ -87,11 +93,7 @@ class CategoryAssetController extends Controller
      */
     public function destroy($id)
     {
-       // $categoryAsset =CategoryAsset::find($id);
-       // $categoryAsset->delete();
-       // return view('admin_categoryasset')->with('success','Procuct has ben delete');
-        $categoryAsset=DB::table('category_assets')->where('id',$id)
-        ->update(['status'=>'0']);
-         return back();
+        //
     }
 }
+

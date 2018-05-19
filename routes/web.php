@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('landingpage_beranda');
+    return redirect('landingpage_beranda');
 });
 
 Auth::routes();
@@ -21,11 +21,16 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::resource('/landingpage_package', 'LandingPackageController');
 Route::get('/landingpage_formpackage/{id}', 'HomeController@landingpage_formpackage');
 Route::get('/landingpage_daftar', 'HomeController@landingpage_daftar');
-Route::get('/landingpage_beranda', 'HomeController@landingpage_beranda');
+Route::resource('/landingpage_beranda', 'LandingBerandaController');
 Route::get('/landingpage_galeri', 'HomeController@landingpage_galeri');
 Route::get('/landingpage_login', 'HomeController@landingpage_login');
 Route::resource('/landingpage_setting', 'OrderCustomerController');
 Route::resource('/landingpage_profil', 'ProfilUserController');
+Route::post('/resetPassword', 'Auth\LoginController@resetPassword'); 
+Route::get('/forgetPassword',function(){
+	return view('forgetPassword');
+});
+// Route::put('/landingpage_profil/','ProfilUserController@changePassword')->name('changePassword');
 Route::get('/landingpage_formbayar/{id}', 'OrderCustomerController@loadFormBayar');
 Route::post('/uploadBukti', 'OrderCustomerController@upload');
 // Route::put('/landingpage_profil2/{id}','Controller@update')->name('customer.update');
@@ -46,13 +51,13 @@ Route::get('/admin_listpackage/delete/{id_package}','PackageController@destroy')
 Route::put('/admin_listpackage/{id_package}','PackageController@update')->name('package.update');
 Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changePassword');
 Route::resource('/admin_categoryasset','CategoryAssetController');
+Route::delete('/{id}/delCategoryAsset','CategoryAssetController@destroy');
 Route::resource('/admin_asset','AssetController');
 Route::resource('orders','OrdersController');
 Route::put('/admin_dashboard/{id}','AdminController@status');
 });
 Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');
 Route::post('/accBookingCode/{id}','AdminController@accBookingCode');
-Route::get('oauth','oauthController@oauth')->name('oauthCallBack');
 // Route::get('landingpage_package',function(){$package = DB::table('packages')->get();
 // 	return view('landingpage_package', ['package' => $package]);
 // });

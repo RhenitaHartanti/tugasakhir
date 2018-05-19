@@ -9,7 +9,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Hover Data Table</h3>
+              <center><h3 class="box-title">List Customer</h3></center>
             </div>
             <br>
             <div class="box-body">

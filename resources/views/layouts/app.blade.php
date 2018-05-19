@@ -56,8 +56,8 @@
                           <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                                                            </a>
+                                        <!-- <a href="">{{Auth::user()->name}}</a> -->{{ __('Logout') }}
+                                                      </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
@@ -78,6 +78,8 @@
        </div>
      </div>
   </footer>
+  @yield('js')
+<script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script>  
 </body>
 </html>
 

@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('header')
-  <link rel="stylesheet" href="{{asset('asset/css/ionicons.min.css')}}">  
-  <link rel="stylesheet" href="{{asset('asset/css/AdminLTE.min.css')}}"> 
-  <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
 @endsection
 @section('content')
 <center>
@@ -36,7 +33,9 @@
         <br>
         <tr>  
         <td>                
-       <center><button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"></span>Edit Data Profil</button></center>
+       <center><button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"></span>Edit Data Profil</button>  
+       <button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubahpass{{$value->id}}"></span>Change Passwod</button>     
+       </center>
        </td>  
        </tr>  
     @endforeach       
@@ -57,7 +56,7 @@
                         <div class="form-group">
                             <label for="name" class="col-lg-12 control-label">Name</label>
                             <div class="col-lg-12">
-                              <input class="form-control" id="name" name="name" value="{{$value->name}}" cl>
+                              <input class="form-control" id="name" name="name" value="{{$value->name}}">
                             </div>
                         </div>
                         </div>
@@ -89,7 +88,48 @@
                         </div>
                       </div>
                    <br>
-                      <center><button type="submit" class="btn btn-success"> Save Change</button></center>
+                      <center><button type="submit" class="btn btn-success update"> Save Change</button></center>
+                    </form>
+                    </div>
+                  </div>
+                </div>
+
+      <div id="modal-ubahpass{{$value->id}}" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-md">
+          <div class="modal-content">
+              <div class="box-body">
+                       <form action="{{route('landingpage_profil.changePassword',[$value->id]) }}" method="POST">
+                        {{csrf_field()}}
+                        {{method_field('PUT')}}
+                      <div class="modal-body">
+                       <div class="row">
+                        <div class="form-group">
+                            <label for="lastpassword" class="col-sm-4 control-label">Last Password</label>
+                            <div class="col-sm-7">
+                              <input type="password" class="form-control" id="lastpassword" name="passLama" required="">
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="form-group">
+                            <label for="newpassword1" class="col-sm-4 control-label">New Password</label>
+                            <div class="col-sm-7">
+                              <input type="password" class="form-control" id="newpassword1" name="passBaru" required="">
+                            </div>
+                        </div>
+                        </div>
+                        <br>
+                        <div class="row">
+                        <div class="form-group">
+                            <label for="newpassword2" class="col-sm-4 control-label">Confirm New Password</label>
+                            <div class="col-sm-7">
+                              <input type="password" class="form-control" id="newpassword2" name="confirmPass" required="">
+                            </div>
+                        </div>
+                        </div>
+                      </div>
+                      <center><button type="submit" class="btn btn-success update"> Save Change</button></center>
                     </form>
                     </div>
                   </div>
@@ -104,6 +144,11 @@
     <script src="js/jqBootstrapValidation.js"></script>
     <script src="js/contact_me.js"></script>
     <script src="js/agency.min.js"></script>
+    <script type="text/javascript">
+$('.update').on("click",function(update){
+  swal("Success!", "Your Order was Sending", "success")
+});
+</script>
   </body>
 
 </html>

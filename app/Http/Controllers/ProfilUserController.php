@@ -15,7 +15,7 @@ class ProfilUserController extends Controller
     public function index()
     {
        $customer=User::all()->where('id',Auth::user()->id)->where('level','customer');
-        return view('landingpage_profil',compact('customer'));
+       return view('landingpage_profil',compact('customer'));
     }
 
     /**
@@ -89,5 +89,31 @@ class ProfilUserController extends Controller
     public function destroy($id)
     {
         //
+    }
+    public function changePassword(Request $request,$id)
+    {
+        $ubahPassCustomer=User::find($id);
+        // return $ubahPassAdmin;
+        if (Hash::check($request->passLama, $ubahPassCustomer->password)){
+            if ($request->passBaru == $request->confirmPass){
+             $ubahPassCustomer->password = bcrypt($request->confirmPass);
+                $ubahPassCustomer->save();
+                return back()
+                ->with('status','Password Has Change');
+            }
+            else
+            {
+                return back()
+                ->with('gagal', 'Password Not Fit');
+            }
+        }
+        else{
+            return back()
+            ->with('gagal', 'Password Not Fit');
+        }
+    }
+    public function forgetPassword()
+    {
+        return view('forgetPassword');
     }
 }

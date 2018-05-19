@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use App\User;
+use Mail;
 
 class LoginController extends Controller
 {
@@ -39,6 +41,31 @@ class LoginController extends Controller
     {
         return 'username';
     }
+    public function resetPassword(Request $request)
+    {
+
+        $reset=User::where('email',$request->email)->first();
+        if($reset)
+        {
+           $random = $this->random_str(10);
+           
+           Mail::to($reset->email)->send(new \App\Mail\ResetPassword($random));
+           
+           $reset->password=bcrypt($random);
+           $reset->save();
+           return redirect('/landingpage_beranda');
+        }
+        return back()->withErrors('email','email not found');
+    }
+    public function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+  {
+    $pieces = [];
+    $max = mb_strlen($keyspace, '8bit') - 1;
+    for ($i = 0; $i < $length; ++$i) {
+        $pieces []= $keyspace[random_int(0, $max)];
+    }
+    return implode('', $pieces);
+  }
 
     /**
      * Create a new controller instance.

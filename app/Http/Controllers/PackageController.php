@@ -18,7 +18,6 @@ class PackageController extends Controller
     {
         $asset=Asset::all();
         $package=Package::with('assets')->get();
-        $total_package = \Package::count();
         return view('admin_listpackage')
         ->with('packages',$package)
         ->with('assets',$asset);
@@ -113,6 +112,6 @@ class PackageController extends Controller
     {
         $package =Package::find($id);
         $package->delete();
-        return redirect('admin_listpackage')->with('success','Procuct has ben delete');
+        return redirect('admin_listpackage');
     }
 }
