@@ -27,20 +27,22 @@
         </div>
       </div>
   </section>
-  <section id="contact">
-    <br> 
+  <section id="contact"> 
     <div class="row">
-      <div class="col-lg-12 text-center">
-        <h2 class="section-heading text-uppercase">List Booking</h2>
-          {!! $calendar->calendar() !!}
+      <center><div class="col-lg-10 text-center">
+        <div class="calender">
+        <h2 class="section-heading text-uppercase">CALENDAR RESERVATION</h2>
+        <br>
+           {!! $calendar->calendar() !!}
       </div>
-    </div> 
+    </div></center>
+  </div> 
   </section>     
   <section id="services">    
     <p>
-    <div class="row">
+    <div class="row"> 
       <div class="col-lg-12 text-center">
-        <h5>Steps for Order</h5>
+        <h3>Steps for Order</h3>
       </div>
     </div>
     <div class="row text-center">

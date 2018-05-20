@@ -59,8 +59,7 @@
               <div class="row">
                 <div class="modal-footer">
                   <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$data->id}}"> <span class="glyphicon glyphicon-pencil"></span> Edit Data</button>
-                  <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-ubahpassword{{$data->id}}"> <span class="glyphicon glyphicon-lock"></span> Change Password</button> 
-                  <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-ubahpassword{{$data->id}}"> <span class="glyphicon glyphicon-lock"></span> Reset Password</button>                   
+                  <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-ubahpassword{{$data->id}}"> <span class="glyphicon glyphicon-lock"></span> Change Password</button>                  
                 </div>
               </div>
             </div>
@@ -191,9 +190,9 @@
                   <th><center>Name Package</center></th>
                   <th><center>Date Using</center></th>
                   <th><center>Time Using</center></th>
-                  <th><center>Detail Order</center></th>
-                  <th><center>Payment Status</center></th>
+                  <th><center>Detail Order</center></th>                  
                   <th><center>Detail Payment</center></th>
+                  <th><center>Payment Status</center></th>
                   </tr>
                 </thead>                
               <tbody>
@@ -215,10 +214,12 @@
                     </a></center></td>
                   <td><center>{{$value->payment_status}}</center></td>
                 </tr>                 
-              @endforeach
               </tbody>
-            </table>
-
+            @endforeach  
+     </table>
+    </div>   
+</section> 
+ 
       <div id="modal-lihatdata" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
@@ -273,13 +274,7 @@
           </div>           
         </div>
       </div>
-   </section>   
-      </div>
 
-    </section>
-
-  </section>
-</div>
 @endsection
 @section('js')
 <script type="text/javascript">

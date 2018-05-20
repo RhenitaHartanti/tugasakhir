@@ -3,12 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Order;
+use App\Package;
 use App\User;
-use Auth;
-use Hash;
-use Alert;
 
-class ProfilUserController extends Controller
+class RejectController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,8 +16,8 @@ class ProfilUserController extends Controller
      */
     public function index()
     {
-       $customer=User::all()->where('id',Auth::user()->id)->where('level','customer');
-       return view('landingpage_profil',compact('customer'));
+        $orders=Order::with('package','user')->where('order_status', 'reject')->get();
+        return view('admin_rejectorder',compact('orders'));
     }
 
     /**
@@ -39,8 +38,7 @@ class ProfilUserController extends Controller
      */
     public function store(Request $request)
     {
-        User::create($request->except(['_token']));
-             return redirect('landingpage_profil');  
+        //
     }
 
     /**
@@ -74,14 +72,7 @@ class ProfilUserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $landingpage_profil = User::find($id);
-        $landingpage_profil->name = $request->name;
-        $landingpage_profil->username = $request->username;
-        $landingpage_profil->email = $request->email;
-        $landingpage_profil->nohp = $request->nohp;
-        $landingpage_profil->save();
-        Alert::success('your profile is success to update', 'Success');
-        return redirect('landingpage_profil');
+        //
     }
 
     /**
@@ -93,20 +84,5 @@ class ProfilUserController extends Controller
     public function destroy($id)
     {
         //
-    }
-    public function changePassword(Request $request,$id)
-    {
-        $ubahPassCustomer=User::find($id);
-        // return $ubahPassCustomer;
-        if (Hash::check($request->passLama, $ubahPassCustomer->password)){
-            if ($request->passBaru == $request->confirmPass){
-             $ubahPassCustomer->password = bcrypt($request->confirmPass);
-                $ubahPassCustomer->save();
-            Alert::success('password has changed','Success');
-            return redirect('landingpage_profil');
-            }
-          }
-        Alert::error('password not changed','Sorry');
-          return back(); 
     }
 }

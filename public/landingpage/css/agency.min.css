@@ -748,7 +748,7 @@ section#form:-ms-input-placeholder {
 /*//batas form*/
 
 footer {
-    padding: 25px 0;
+    padding: 20px 0;
     text-align: center
 }
 
@@ -809,6 +809,17 @@ ul.social-buttons li a:hover {
     margin-top: 20px;
     width: 1110px;
     height:700px;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    padding: 30px;
+}
+.calender {
+    position: relative;
+    background:#000000;
+    /*border-top: 3px solid #ccc;*/
+    margin-bottom: 20px;
+    margin-top: 20px;
+    width: 900px;
+    height:450px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     padding: 30px;
 }

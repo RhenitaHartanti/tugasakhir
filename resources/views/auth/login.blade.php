@@ -39,7 +39,6 @@
                                 @endif
                             </div>
                         </div>
-
                        <!--  <div class="form-group row">
                             <div class="col-md-6 offset-md-4">
                                 <div class="checkbox">
@@ -49,7 +48,8 @@
                                 </div>
                             </div>
                         </div> -->
-                        <p>
+                        <!-- <a><input id="checkbox" type="checkbox" class="form-control" name="checkbox" value="">  </a>
+                        <p> -->
                     <div class="col-md-12">
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
@@ -63,10 +63,8 @@
 
                                 <!-- <a class="btn btn-link" href="{{ route('password.request') }}">
                                     {{ __('Forgot Your Password?') }}
-                                </a> -->
-                                
+                                </a> -->                                
                             </div>
-
                         </div>
                     </div>
                     </form>
@@ -75,4 +73,17 @@
         </div>
     </div>
 </div>
+@endsection
+@section('js')
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#checkbox').click(function(){
+        if($(this).is(';checked')){
+            $(#pasword).attr('type', 'text');
+        }else{
+            $(#pasword).attr('type', 'password');
+        }
+    });
+  });
+</script>
 @endsection

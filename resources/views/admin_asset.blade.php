@@ -2,101 +2,99 @@
 @section('header')
 @endsection
 @section('content')
-<!-- @include('Flash.flash-message') -->
-<div class="content-wrapper">
-<section class="content-header">         
-    <section class="content">
-    	<p>
-       <div class="row">
+<div class="content-wrapper">  
+<section class="content-header">
+<section class="content">
+      <div class="row">
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h4><center>List Assets</center></h4>
-              <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Data Asset</button>
+              <center><h3 class="box-title">List Asset</h3></center>
+              <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Data Asset</button><br>
             </div>
             <div class="box-body">
-              <table id="example2" class="table table-bordered table-hover"> 
-                <thead>              
-                 <tr>                  
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                  <tr>
                   <th><center>Id Asset</center></th>
-                  <th><center>Category</center></th>                  
                   <th><center>Name Asset</center></th>
-                  <th><center>Price</center></th> 
+                  <th><center>Category</center></th> 
+                  <!-- <th><center>Price</center></th>  -->
                   <th><center>Total</center></th>                 
                   <th><center>Details</center></th>
-                  <th><center>Frequency</center></th>
+                  <th><center>Using Frequency</center></th>
                   <th><center>Settings</center></th>
-                 </tr>
+                  </tr>
                 </thead>                
-              <tbody>
+                <tbody>
                 @foreach($assets as $value)
                 <tr>                                
-                  <td><center>{{$value->id}}</center></td>
-                  <td><center>{{$value->category_asset->name_category}}</center></td>          
+                 <td><center>{{$value->id}}</center></td>
                   <td><center>{{$value->name_asset}}</center></td>
-                  <td><center>{{$value->price}}</center></td>
+                  <td><center>{{$value->category_asset->name_category}}</center></td> 
+                  <!-- <td><center>{{$value->price}}</center></td> -->
                   <td><center>{{$value->total}}</center></td>                  
                   <td><center>{{$value->details}}</center></td>                  
-                  <td><center>{{$value->asset_order->count()}}</center></td>                  
+                  <td><center>{{$value->asset_order->count()}}</center></td> 
                   <td><center>
                       <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"> <span class="glyphicon glyphicon-pencil"></span> </i>Edit</button>
                       <button class="btn btn-sm btn-danger" data-toggle="modal" data-target="#modal-hapus{{$value->id}}"> <span class="glyphicon glyphicon-trash"></span> </i>Delete</button> 
                   </center></td>
-                </tr>
+                    </tr>
                     <div id="modal-ubah{{$value->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-md">
                     <div class="modal-content">
                       <div class="modal-header">
                         <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
                         </button>
-                        <center><h4 class="modal-title" id="myModalLabel">Edit Data Asset</h4></center>
+                        <center><h4 class="modal-title" id="myModalLabel">Edit Data Category</h4></center>
                       </div>
                        <form action="{{route('admin_asset.update', [$value->id]) }}" method="POST">
                         {{csrf_field()}}
                         {{method_field('PUT')}}
                       <div class="modal-body">
                         <input type="hidden" name="id" class="ubah-id">
-                        <br>               
+                        <br>
                         <div class="row">
                         <div class="form-group">          
-                            <label for="name_asset" class="col-sm-4 control-label">Name Asset</label>
-                            <div class="col-sm-7">
+                            <label for="name_asset" class="col-sm-3 control-label">Name Asset</label>
+                            <div class="col-sm-8">
                               <input type="text" class="form-control" id="name_asset" name="name_asset" value="{{$value->name_asset}}">
                             </div>
                         </div>
                         </div>
-                        <br>
+                        <!-- <br>
                         <div class="row">
                         <div class="form-group">
-                            <label for="price" class="col-sm-4 control-label">Price</label>
-                            <div class="col-sm-7">
+                            <label for="price" class="col-sm-3 control-label">Price</label>
+                            <div class="col-sm-8">
                               <input type="text" class="form-control" id="price" name="price" value="{{$value->price}}">
                             </div>
                         </div>
-                        </div>
-                        <br>  
+                        </div> -->
+                        <br>
                         <div class="row">
                         <div class="form-group">
-                            <label for="total" class="col-sm-4 control-label">Total</label>
-                            <div class="col-sm-7">
+                            <label for="total" class="col-sm-3 control-label">Total</label>
+                            <div class="col-sm-8">
                               <input type="text" class="form-control" id="total" name="total" value="{{$value->total}}">
                             </div>
                         </div>
                         </div>
-                        <br>                      
+                        <br>
                         <div class="row">
                         <div class="form-group">
-                            <label for="details" class="col-sm-4 control-label">Details</label>
-                            <div class="col-sm-7">
+                            <label for="details" class="col-sm-3 control-label">Details</label>
+                            <div class="col-sm-8">
                               <input type="text" class="form-control" id="details" name="details" value="{{$value->details}}">
                             </div>
                         </div>
                         </div>
-                        <br>
+                        <br>                        
                         <div class="row">
                         <div class="form-group">          
-                            <label for="id_category_asset" class="col-sm-4 control-label">Category Asset</label>
-                            <div class="col-sm-7">
+                            <label for="id_category_asset" class="col-sm-3 control-label">Category Asset</label>
+                            <div class="col-sm-8">
                               <select class="form-control" name="id_category_asset">
                                 <option value="" disabled selected>Select Category Asset</option>
                                   @foreach($category_assets as $value1)
@@ -106,15 +104,14 @@
                             </div>
                         </div>
                         </div> 
-                        <br>
-                        <br>
+                      </div>
                     <div class="modal-footer">
-                      <center><button type="submit" class="btn btn-success update">Save</button></center>
+                      <button type="submit" class="btn btn-success update"> Save</button>
                     </div>
                     </form>
                     </div>
                   </div>
-                </div>                 
+                </div> 
 
                 <div id="modal-hapus{{$value->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                   <div class="modal-dialog modal-sm">
@@ -131,20 +128,18 @@
                           <p>Are you sure to delete this data <span class="del-name" style="font-weight: bold;"></span> ?</p>                            
                         </div>
                         <div class="modal-footer">
-                          <button class="btn btn-md btn-success">Yes</button>
-                          <button data-dismiss="modal" class="btn btn-danger">No</button>
+                          <button class="btn btn-md btn-success delete">Yes</button>
+                          <button data-dismiss="modal" class="btn btn-danger ">No</button>
                         </div>
                     </div>
                   </form>
                 </div>
               </div>
-              
                @endforeach
-               </tbody>               
+               </tbody>
              </table>
           </div>
-          
-          <div id="modal-tambah" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+           <div id="modal-tambah" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
             <div class="modal-header">
@@ -163,14 +158,14 @@
                             </div>
                         </div>
                         </div>
-                        <div class="row">
+                        <!-- <div class="row">
                         <div class="form-group">
                             <label for="price" class="col-sm-4 control-label">Price</label>
                             <div class="col-sm-7">
                               <input type="text" class="form-control" id="price" name="price">
                             </div>
                         </div>
-                        </div>
+                        </div> -->
                          <div class="row">
                         <div class="form-group">
                             <label for="total" class="col-sm-4 control-label">Total</label>
@@ -209,37 +204,33 @@
           </div>
         </div>
       </div>
-          </div>
-</section>
-</div>
-</section>
 @endsection
 @section('js')
 <script type="text/javascript">
   $('.delete').on("click",function(destroy){
     swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
+  title: "Delete Success",
+  text: "Your Data Asset is success to Delete",
   icon: "warning",
-  buttons:false,
+  buttons: false,
   dangerMode: true,
 })
   });
-  $('.add').on("click",function(store){
-  swal({
-  title: "Success",
-  text: "You Add the Data Asset",
+$('.add').on("click",function(store){
+    swal({
+  title: "Success !",
+  text: "You Add the Asset",
   icon: "success",
-  buttons:false,
+  buttons: false,
   dangerMode: true,
 })
   });
 $('.update').on("click",function(update){
-  swal({
-  title: "Success",
-  text: "You Update the Data Asset",
+    swal({
+  title: "Success !",
+  text: "You Update the Asset",
   icon: "success",
-  buttons:false,
+  buttons: false,
   dangerMode: true,
 })
   });

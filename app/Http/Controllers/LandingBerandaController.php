@@ -27,7 +27,7 @@ class LandingBerandaController extends Controller
             ->setOptions([ //set fullcalendar options
                 'firstDay' => 1
             ]);
-        return view('landingpage_beranda',compact('bosoking','calendar'));
+        return view('landingpage_beranda',compact('booking','calendar'));
     }
 
     /**

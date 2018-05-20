@@ -19,8 +19,10 @@ class SendMail extends Mailable
     public $date_order;
     public $date_using;
     public $booking_code;
+    public $status_order;
     public function __construct( $order)
     {
+        $this->status_order = $order->order_status;
        $this->date_order=$order->date_order;
        $this->date_using=$order->date_using;
        $this->booking_code=$order->booking_code;
@@ -33,6 +35,10 @@ class SendMail extends Mailable
      */
     public function build()
     {
+        if($this->status_order=='accept'){   
         return $this->view('Mail.mail')->subject('Reservation Confirm from Precious Party Planner');
+        }else{
+            return $this->view('Mail.mail')->subject('Information Reservation');
+        }
     }
 }

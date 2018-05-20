@@ -10,7 +10,8 @@
           <div class="box">
             <div class="box-header"> 
               <center>
-                <h3 class="box-title">List Reservation</h3>
+                <h3 class="box-title">Reject Order
+                </h3>
               </center>
             </div>
             <div class="box-body">
@@ -23,8 +24,7 @@
                   <th><center>Date Using</center></th>
                   <th><center>Time Using</center></th>
                   <th><center>Detail Order</center></th>                 
-                  <th><center>Detail Payment</center></th>
-                  <th><center>Payment Status</center></th>
+                  <th><center>Status Order</center></th>
                   </tr>
                 </thead>                
               <tbody>
@@ -36,15 +36,7 @@
                   <td><center>{{$value->date_using}}</center></td>
                   <td><center>{{$value->time_using}}</center></td>
                   <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
-                  <td>
-                    <center><a href="{{URL::to('admin_konfirmasipembayaran/'.$value->id)}}">
-                      @if($value->payment == null)
-                      <button disabled="disabled" class="btn btn-sm btn-warning">Detail Payment</button>
-                      @else
-                      <button class="btn btn-sm btn-warning">Detail Payment</button>
-                      @endif
-                    </a></center></td>
-                  <td><center>{{$value->payment_status}}</center></td>
+                  <td><center><div class="label center bg-red" style="font-size:12px">{{$value->order_status}}</div></center></td>
                 </tr>                 
               @endforeach
               </tbody>

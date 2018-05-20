@@ -30,7 +30,7 @@
                   <td><center>{{$value->id}}</center></td>
                   <td><center>{{$value->name_package}}</center></td>
                   <!-- <td><center>{{$value->details}}</center></td>  -->           
-                  <td><center>{{$value->price}}</center></td>
+                  <td><center>Rp. {{$value->price}}</center></td>
                   <td><center>{{$value->kuota}}</center></td>
                   <td><center>
                     @foreach($value->assets as $val)

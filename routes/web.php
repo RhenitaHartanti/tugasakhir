@@ -30,9 +30,10 @@ Route::post('/resetPassword', 'Auth\LoginController@resetPassword');
 Route::get('/forgetPassword',function(){
 	return view('forgetPassword');
 });
-// Route::put('/landingpage_profil/','ProfilUserController@changePassword')->name('changePassword');
 Route::get('/landingpage_formbayar/{id}', 'OrderCustomerController@loadFormBayar');
 Route::post('/uploadBukti', 'OrderCustomerController@upload');
+Route::post('/changePassword/{id}','ProfilUserController@changePassword');
+
 // Route::put('/landingpage_profil2/{id}','Controller@update')->name('customer.update');
 
 
@@ -51,6 +52,8 @@ Route::get('/admin_listpackage/delete/{id_package}','PackageController@destroy')
 Route::put('/admin_listpackage/{id_package}','PackageController@update')->name('package.update');
 Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changePassword');
 Route::resource('/admin_categoryasset','CategoryAssetController');
+Route::resource('/admin_rejectorder','RejectController');
+
 Route::delete('/{id}/delCategoryAsset','CategoryAssetController@destroy');
 Route::resource('/admin_asset','AssetController');
 Route::resource('orders','OrdersController');

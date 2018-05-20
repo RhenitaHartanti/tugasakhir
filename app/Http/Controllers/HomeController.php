@@ -29,12 +29,6 @@ class HomeController extends Controller
     {
         return view('home');
     }
-    public function landingpage_beranda()
-    {
-        $orders=Order::with('package','user','payment')->where('order_status', 'accept')->get();
-        // dd($orders[2]->payment);
-        return view('landingpage_beranda',compact('orders'));
-    }
      public function landingpage_package()
     {
         return view('landingpage_package');

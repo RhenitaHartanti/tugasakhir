@@ -13,14 +13,10 @@ class OrderCustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function tampil()
-    {
-       $customer=User::all()->where('id',Auth::user()->id)->where('level','customer');
-        return view('landingpage_profil',compact('customer'));
-    }
     public function index()
     {
-        $order=Order::where('id_user',Auth::user()->id)->get();
+        $order=Order::where('id_user',Auth::user()->id)->orderBy('updated_at','desc')->get();
+
         return view('landingpage_setting',compact('order'));
     }
     public function upload(Request $request){
@@ -28,13 +24,23 @@ class OrderCustomerController extends Controller
         $gambar = $request->file('gambar');
         $namaFile = $gambar->getClientOriginalName();
         $request->file('gambar')->move('img/buktitransfer', $namaFile);  
-        
-      $simpan= new Payment ($request->all());
-        $simpan->booking_code = $request->booking_code;
-        $simpan->attachment = $namaFile;
-        $simpan->id_order = $request->id_order;
+       
+        $simpan = Payment::updateOrCreate(['id_order'=>$request->id_order],['booking_code'=>$request->booking_code,'attachment'=>$namaFile]);
+        // jd yg ini itu buat update data klo udah ada, klo blm ada langsung create baru
+        // trus yg ini..parameter buat nyari berdasarkan apaan.. klo case nya sekarang itu kan berdasarkan id ordernya, jd di cari dlu id ordernya ada enggak di tabel payment.. klo ada ya cm update yg di array ke 2 itu, klo ga ada ya langsung create dgn parameter di array ke 2 itu
+        // paham ga? wkwkw
+        // sek, yang aku blok ga paham nih ya...ya
+        // jd itu sama aja kmu kayak yg bawah ini, misal nih td kan nyari berdasarkan id order
+        // nah di tabel payment id order nya blm ada, ya dia create data baru dgn id order yg dr request(ini id order yang ada di tabel orders kan brati ?iya shappp paham paham ojo di hapus iki mas wkwkwkwkwkkw) berserta parameter lainnya
+        // langusng di coba ae wkwk, drp bingung
 
-      $simpan->save();
+      // $simpan= new Payment ($request->all());
+      //   $simpan->booking_code = $request->booking_code;
+      //   $simpan->attachment = $namaFile;
+      //   $simpan->id_order = $request->id_order;
+
+      // $simpan->save();
+
       return redirect ('landingpage_setting');
    }
    public function loadFormBayar($id)

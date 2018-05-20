@@ -11,7 +11,7 @@ class Asset extends Model
     		'id_category_asset',
     	    'name_category',
     		'name_asset',
-    		'price', 
+    		// 'price', 
             'total',
     		'details',
     ];

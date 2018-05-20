@@ -38,7 +38,7 @@ class AdminController extends Controller
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
-       $orders=Order::with('package','user')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
+       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
        // return date_using('Y-m-d');
        return view('admin_profil',compact('admin','orders'));
     }
@@ -123,19 +123,19 @@ class AdminController extends Controller
         $status->order_status = $request->order_status;
         /*dd($status);*/
         if($request->order_status=='accept'){
-         do{ $random_str=$this->random_str(6);
-            $booking_code=Order::where('booking_code',$random_str)->count();
-         }
+           do{ $random_str=$this->random_str(6);
+              $booking_code=Order::where('booking_code',$random_str)->count();
+           }
             while($booking_code!=0);
             $status->booking_code=$random_str;
         }
-
         $status->save();
-    if($request->order_status=='accept'){
         $user=User::find($status->id_user);
         Mail::to($user->email)->send(new \App\Mail\SendMail($status));
-    }
-        return redirect('admin_listreservation');
+        if($status->order_status=='accept'){          
+          return redirect('admin_listreservation');
+        }
+          return redirect('admin_rejectorder');
     }
 
     public function statusbayar(Request $request,$id)
@@ -197,13 +197,13 @@ class AdminController extends Controller
    public function accBookingCode(Request $request,$id)
     {
         $payment=Payment::find($id);
-        if($payment->booking_code!=$request->booking_code)
+        $statusPayment = Order::find($payment->id_order);
+        if($statusPayment->booking_code!=$request->booking_code)
             {
                 return redirect('admin_listreservation')->withErrors(['Booking code tidak cocok']);
             }
         $payment->update(['payment_status'=>'paid off']);
-        Order::find($payment->id_order)->update(['payment_status'=>'paid off']);
-        $statusPayment = Order::query()->find($id);
+        $statusPayment->update(['payment_status'=>'paid off']);
         $package = \App\Package::find($statusPayment->id_package);
         if($package->assets->count()>0){
              $statusPayment->assets()->sync($package->assets);

@@ -1,5 +1,6 @@
 @extends('layouts.layoutadmin')
 @section('header')
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.css"/>
 @endsection
 @section('content')
 <div class="content-wrapper">
@@ -90,14 +91,16 @@
                   <td><center>{{$data->package->name_package}}</center></td>
                   <td><center>{{$data->date_using}}</center></td>
                   <td><center>{{$data->time_using}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$data->date_using}}" data-time_using="{{$data->time_using}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$data->date_using}}" data-time_using="{{$data->time_using}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" class="btn btn-sm btn-primary">See Detail Order</button></center></td>
                   <td>
                   <form method="POST" action="admin_dashboard/{{$data->id}}">
                     {{csrf_field()}}
-                      <input type="hidden" name="order_status" value="accept">
-                      <center><button type="submit" class="btn btn-sm btn-success confirm">Accept Order</button></center>
+                      <center><button type="submit" class="btn btn-sm btn-success confirm" name="order_status" value="accept">Accept Order</button></center>
+                      <br>
                       <input type="hidden" name="_method" value="PUT">
-                    </form><p>                    
+                      <center><button type="submit" class="btn btn-sm btn-danger reject" name="order_status" value="reject">Reject Order</button></center>
+                      <input type="hidden" name="_method" value="PUT">
+                  </form><p>                    
                  </td>                  
                 </tr>
                 @endforeach
@@ -108,20 +111,24 @@
         </div>
       </div>
     </section>
-    <section class="content">
-      <div class="row">
-        <div class="col-md-12"><br>
-          <div class="box box-solid"><br>
-             <h4 class="box-title"><br><center>Calender Events</center></h4>
-              <div class="box-body"> <center>
-               <iframe src="https://calendar.google.com/calendar/embed?src=rereradinka%40gmail.com&ctz=Asia%2FJakarta" style="border: 0" width="1050" height="600" frameborder="0" scrolling="no"></iframe> </center>        
-           </div> 
-            <div class="box-header with-border">        
-           </div>
-         </div>
-       </div>
-     </div>
-   </section>     
+    <section class="content">              
+       <div class="row">
+        <div class="col-xs-12">
+          <div class="box">           
+            <br>
+              <div class="row">
+      <center><div class="col-lg-12 text-center">
+        <div class="calender">
+        <h3 class="section-heading text-uppercase">CALENDAR RESERVATION</h3>
+        <br>
+           {!! $calendar->calendar() !!}
+      </div>
+    </div></center>
+  </div>
+          </div>
+        </div>
+      </div>
+    </section>    
  <div id="modal-lihat" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
@@ -192,7 +199,10 @@
     $('.detail-total').html(guest)
     $('.detail-greet').html(greeting)
     $('.detail-note').html(note)
+    $('#modal-lihat').modal('show')
   }
-
-</script>
+  </script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
+    {!! $calendar->script() !!}
 @endsection

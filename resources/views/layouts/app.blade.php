@@ -16,6 +16,7 @@
     <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
     <!-- Custom styles for this template -->
     <link href="{{asset('css/agency.min.css')}}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="{{asset('vendor/sweetalert/sweetalert.css')}}">
     @yield('header')
   </head>
   <body id="page-top">
@@ -79,7 +80,8 @@
      </div>
   </footer>
   @yield('js')
-<script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script>  
+<script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script>
+ @include('sweet::alert')
 </body>
 </html>
 

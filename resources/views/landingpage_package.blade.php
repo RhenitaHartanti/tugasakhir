@@ -5,14 +5,7 @@
   <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
 @endsection
     @section('content')
-     <section id="service">
-      <div class="container">
-        <p>
-        <div class="row">          
-          <div class="col-md-4 col-sm-6 portfolio-item">                     
-          </div>
-        </div>      
-      </section>
+    <br>
     <section id="service">
       <div class="container">
         <div class="row">
@@ -21,7 +14,6 @@
             <h3 class="section-subheading text-muted">This Package Include the Documentation (Photo and Video) </h3>
           </div>
         </div>
-        <p>
         <div class="row">
           @foreach($listpackage as $data)
           <div class="col-md-4">          
@@ -30,8 +22,8 @@
               <table class="table table-striped text-center">
                 <tr><img class="img-fluid" src="img/logo8.jpg" alt=""></tr>              
                 <tr><td><h5>{{$data->name_package}}</h5></td></tr>
-                <tr><td>{{$data->price}}</td></tr>           
-                <tr><td>{{$data->kuota}} orang</td></tr> 
+                <tr><td><h6>Rp. {{$data->price}}</h6></td></tr>           
+                <tr><td>for {{$data->kuota}} people</td></tr> 
                 <tr><td><b>Details Items : </b></td></tr>
                 <center>                
                   @foreach($data->assets as $val)

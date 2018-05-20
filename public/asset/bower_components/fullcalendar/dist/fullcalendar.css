@@ -7,15 +7,15 @@
 
 .fc {
 	direction: ltr;
-	text-align: left;
+	text-align: center;
 }
 
 .fc-rtl {
-	text-align: right;
+	text-align: center;
 }
 
 body .fc { /* extra precedence to overcome jqui */
-	font-size: 1em;
+	font-size: 2em;
 }
 
 
@@ -36,7 +36,7 @@ body .fc { /* extra precedence to overcome jqui */
 }
 
 .fc-unthemed .fc-popover {
-	background-color: #fff;
+	background-color: #000;
 }
 
 .fc-unthemed .fc-divider,

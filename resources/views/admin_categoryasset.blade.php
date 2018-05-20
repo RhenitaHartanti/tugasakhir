@@ -2,38 +2,7 @@
 @section('header')
 @endsection
 @section('content')
-
-<!-- @if(session()->has('lele'))
-  <script>
-    $().ready(function(e){
-      swal({
-        title: "Success",
-        text: "Category Asset Success to Add",
-        icon: "success",
-        button: false,
-        timer: 2000
-      });
-    });  
-  </script>
-  @endif -->
-
-  <!-- @if(session()->has('store'))
-  <script>
-    $().ready(function(e){
-      swal({
-        title: "Success",
-        text: "Category Asset Success to Save",
-        icon: "success",
-        button: false,
-        timer: 2000
-      });
-    });  
-  </script>
-  @endif -->
-
-  <!-- @include('Flash.flash-message') -->
-
-  <div class="content-wrapper">  
+<div class="content-wrapper">  
 <section class="content-header">
 <section class="content">
       <div class="row">
@@ -126,7 +95,6 @@
                   </form>
                 </div>
               </div>
-
                @endforeach
                </tbody>
              </table>
