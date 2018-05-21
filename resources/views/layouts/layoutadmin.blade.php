@@ -83,12 +83,10 @@
               <!-- Menu Footer-->
               <li class="user-footer" style="background:#2e343a ">
                 <div class="pull-left">
-                   <a href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Profile</a>
+                  <a href="{{url('/admin_profiladmin')}}" class="btn btn-default btn-flat">Profile</a>
                 </div>
                 <div class="pull-right">
-                  <a href="{{ route('logout') }}"
+                  <a href="{{route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();" class="btn btn-default btn-flat">Log out</a>
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
@@ -131,7 +129,7 @@
         </li>
         <li class="">
           <a href="{{url('/admin_rejectorder')}}">
-            <i class="fa fa-files-o"></i>
+            <i class="fa fa-refresh"></i>
             <span>Reject Order</span>
          </a>
         </li>
@@ -163,9 +161,15 @@
         <li class="">
           <a href="{{url('/admin_profil')}}">
             <i class="fa fa-navicon"></i>
-            <span>Setting & History</span>
+            <span>History Reservation</span>
           </a>
         </li>
+        <!-- <li class="">
+          <a href="{{url('/admin_profil')}}">
+            <i class="fa fa-navicon"></i>
+            <span></span>
+          </a>
+        </li> -->
        <!--  <li class="">
           <a href="{{url('/admin_profil')}}">
             <i class="fa fa-user"></i>

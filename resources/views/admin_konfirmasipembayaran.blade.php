@@ -42,7 +42,7 @@
                           <center>
                             <!-- <button href="{{URL::to('admin_listreservation')}}" class="btn-sm btn-success">Reject Payment</button></td>
                             <td> -->
-                            <button class="btn-sm btn-success">Confirm Payment</button>
+                            <button class="btn btn-sm btn-danger success">Confirm Payment</button>
                           </center>
                        </center>
                     </div>

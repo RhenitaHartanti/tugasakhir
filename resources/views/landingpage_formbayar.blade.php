@@ -9,6 +9,7 @@
 		    <form enctype="multipart/form-data" method="POST" action="/uploadBukti" role="form">
                 {{ csrf_field() }}
               <div class="box-body">
+                <br>
                 <center><h4><b>Upload your Payment Invoice</b></h4></center>
                 <div class="form-group">
                   <br>

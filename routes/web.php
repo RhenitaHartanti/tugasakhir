@@ -53,10 +53,10 @@ Route::put('/admin_listpackage/{id_package}','PackageController@update')->name('
 Route::put('/admin_profil/{id}','AdminController@changePassword')->name('changePassword');
 Route::resource('/admin_categoryasset','CategoryAssetController');
 Route::resource('/admin_rejectorder','RejectController');
-
 Route::delete('/{id}/delCategoryAsset','CategoryAssetController@destroy');
 Route::resource('/admin_asset','AssetController');
 Route::resource('orders','OrdersController');
+Route::resource('/admin_profiladmin','ProfilAdminController');
 Route::put('/admin_dashboard/{id}','AdminController@status');
 });
 Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');

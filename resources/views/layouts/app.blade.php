@@ -51,7 +51,7 @@
                   <a class="nav-link js-scroll-trigger" href="{{url('/landingpage_setting')}}">{{ __('List Order') }}</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link js-scroll-trigger" href="{{url('/landingpage_profil')}}">{{ __('Profil') }}</a>
+                  <a class="nav-link js-scroll-trigger" href="{{url('/landingpage_profil')}}">{{ __('Setting') }}</a>
               </li>
              <li class="nav-item">
                           <a class="nav-link js-scroll-trigger" href="{{ route('logout') }}"

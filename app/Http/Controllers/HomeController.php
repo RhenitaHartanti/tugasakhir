@@ -119,8 +119,4 @@ class HomeController extends Controller
     {
         return view('admin_profil');
     }
-    public function admin_history()
-    {
-        return view('admin_history');
-    }
 }

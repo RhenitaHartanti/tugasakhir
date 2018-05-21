@@ -45,7 +45,7 @@
           </div>
            <label>Note (You can input your request)</label>
           <div class="form-group">
-            <textarea class="form-control" rows="4" name="note" required=""></textarea>
+            <textarea class="form-control" rows="5" name="note" required=""></textarea>
           </div>
              <input type="hidden" value="-" name="booking_code">           
              <input type="hidden" value="waiting" name="order_status">

@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Order;
+use App\Payment;
 use Auth;
 use Hash;
 use Alert;
@@ -18,7 +20,8 @@ class ProfilUserController extends Controller
     public function index()
     {
        $customer=User::all()->where('id',Auth::user()->id)->where('level','customer');
-       return view('landingpage_profil',compact('customer'));
+       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
+       return view('landingpage_profil',compact('customer','orders'));
     }
 
     /**

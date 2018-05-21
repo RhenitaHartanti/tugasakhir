@@ -3,175 +3,7 @@
 @endsection
 @section('content')
 <div class="content-wrapper">
-  <section class="content-header">
-    <section class="content">    
-      <div class="row">
-        @foreach($admin as $key=>$data)  
-        <div class="col-xs-10">
-          <div class="box">
-            <div class="box-header">
-              <h4><center>Data Profil</center></h4> 
-              <div class="row">                 
-                <div class="form-group">
-                    <label for="name" class="col-sm-3 control-label">ID Admin</label>
-                      <div class="col-sm-8">
-                          {{$data->id}}
-                       </div>
-                </div>
-              </div>
-                <p>
-              <div class="row">                 
-                <div class="form-group">
-                    <label for="name" class="col-sm-3 control-label">Name</label>
-                      <div class="col-sm-8">
-                          {{$data->name}}
-                       </div>
-                </div>
-              </div>
-                <p>
-              <div class="row">
-                <div class="form-group">
-                    <label for="username" class="col-sm-3 control-label">Username</label>
-                      <div class="col-sm-8">
-                           {{$data->username}}
-                      </div>
-                </div>
-              </div>
-              <p>
-              <div class="row">
-                <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">Email</label>
-                      <div class="col-sm-8">
-                          {{$data->email}}
-                      </div>
-                </div>
-              </div>
-              <p>
-                <div class="row">
-                <div class="form-group">
-                    <label for="email" class="col-sm-3 control-label">No Hp</label>
-                      <div class="col-sm-8">
-                           {{$data->nohp}}
-                      </div>
-                </div>
-              </div>
-              <p>
-              <div class="row">
-                <div class="modal-footer">
-                  <button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$data->id}}"> <span class="glyphicon glyphicon-pencil"></span> Edit Data</button>
-                  <button class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-ubahpassword{{$data->id}}"> <span class="glyphicon glyphicon-lock"></span> Change Password</button>                  
-                </div>
-              </div>
-            </div>
-          @endforeach
-    </section>
-
- <div id="modal-ubah{{$data->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                        </button>
-                        <center><h4 class="modal-title" id="myModalLabel">Edit Data Admin</h4></center>
-                      </div>
-                       <form action="{{route('admin.update', [$data->id]) }}" method="POST">
-                        {{csrf_field()}}
-                        {{method_field('PUT')}}
-                      <div class="modal-body">
-                        <input type="hidden" name="id" class="ubah-id">
-                         <br>
-                        <div class="row">
-                        <div class="form-group">
-                            <label for="name" class="col-sm-3 control-label">Name</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="name" name="name" value="{{$data->name}}">
-                            </div>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="form-group">
-                            <label for="username" class="col-sm-3 control-label">Username</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="username" name="username" value="{{$data->username}}">
-                            </div>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="form-group">
-                            <label for="email" class="col-sm-3 control-label">Email</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="email" name="email" value="{{$data->email}}">
-                            </div>
-                        </div>
-                        </div>
-                        <br>
-                         <div class="row">
-                        <div class="form-group">
-                            <label for="nohp" class="col-sm-3 control-label">No Hp</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="nohp" name="nohp" value="{{$data->nohp}}">
-                            </div>
-                        </div>
-                        </div>
-                      </div>
-                    <div class="modal-footer">
-                      <button type="submit" class="btn btn-success update"> Save</button>
-                    </div>
-                    </form>
-                    </div>
-                  </div>
-                </div>
-
-        <div id="modal-ubahpassword{{$data->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-                  <div class="modal-dialog modal-md">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">×</span>
-                        </button>
-                        <center><h4 class="modal-title" id="myModalLabel">Change Password</h4></center>
-                      </div>
-                       <form action="{{route('changePassword',$data->id) }}" method="POST">
-                        {{csrf_field()}}
-                        {{method_field('PUT')}}
-                      <div class="modal-body">
-                       <div class="row">
-                        <div class="form-group">
-                            <label for="lastpassword" class="col-sm-4 control-label">Last Password</label>
-                            <div class="col-sm-7">
-                              <input type="password" class="form-control" id="lastpassword" name="passLama" required="">
-                            </div>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="form-group">
-                            <label for="newpassword1" class="col-sm-4 control-label">New Password</label>
-                            <div class="col-sm-7">
-                              <input type="password" class="form-control" id="newpassword1" name="passBaru" required="">
-                            </div>
-                        </div>
-                        </div>
-                        <br>
-                        <div class="row">
-                        <div class="form-group">
-                            <label for="newpassword2" class="col-sm-4 control-label">Confirm New Password</label>
-                            <div class="col-sm-7">
-                              <input type="password" class="form-control" id="newpassword2" name="confirmPass" required="">
-                            </div>
-                        </div>
-                        </div>
-                      </div>
-                    <div class="modal-footer">
-                     
-                      <button type="submit" class="btn btn-success ubahPass"> Save Password</button>
-                    </div>
-                    </form>
-                    </div>
-                  </div>
-                </div>
-    </section>
+  <section class="content-header"
      <section class="content">
       <div class="row">
         <div class="col-sm-12">
@@ -213,12 +45,11 @@
                       @endif
                     </a></center></td>
                   <td><center>{{$value->payment_status}}</center></td>
-                </tr>                 
+                </tr>  
+                 @endforeach                 
               </tbody>
-            @endforeach  
-     </table>
-    </div>   
-</section> 
+          </table>
+    
  
       <div id="modal-lihatdata" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
@@ -274,10 +105,29 @@
           </div>           
         </div>
       </div>
+      </div>   
+</section> 
 
 @endsection
 @section('js')
 <script type="text/javascript">
+  function detailOrder(dom) {
+    var date_using = $(dom).attr('data-date_using');
+    var time_using = $(dom).attr('data-time_using');
+    var theme = $(dom).attr('data-theme');
+    var place = $(dom).attr('data-place');
+    var guest = $(dom).attr('data-guest');
+    var greeting = $(dom).attr('data-greeting');
+    var note = $(dom).attr('data-note');
+    $('.detail-date_using').html(date_using)
+    $('.detail-time_using').html(time_using)
+    $('.detail-theme').html(theme)
+    $('.detail-place').html(place)
+    $('.detail-total').html(guest)
+    $('.detail-greet').html(greeting)
+    $('.detail-note').html(note)
+  }
+  
 $('.update').on("click",function(update){
     swal({
   title: "Success !",

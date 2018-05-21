@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\DB;
 use Hash;
 use Mail;
 use App\User; 
+use Alert;
 // use Carbon\Carbon; 
 // use Google_Client;
 // use Google_Service_Calendar;
@@ -102,7 +103,7 @@ class AdminController extends Controller
         $admin_profil->email = $request->email;
         $admin_profil->nohp = $request->nohp;
         $admin_profil->save();
-        return redirect('admin_profil');
+        return redirect('admin_profiladmin');
     }
 
     /**
@@ -200,7 +201,8 @@ class AdminController extends Controller
         $statusPayment = Order::find($payment->id_order);
         if($statusPayment->booking_code!=$request->booking_code)
             {
-                return redirect('admin_listreservation')->withErrors(['Booking code tidak cocok']);
+                return redirect('admin_listreservation');
+                // ->withErrors(['Booking code is not suitable']);
             }
         $payment->update(['payment_status'=>'paid off']);
         $statusPayment->update(['payment_status'=>'paid off']);
