@@ -28,7 +28,7 @@
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" style="background:#2e343a">
+    <nav class="navbar navbar-static-top" style="background:#B5A96D">
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
@@ -129,8 +129,8 @@
         </li>
         <li class="">
           <a href="{{url('/admin_rejectorder')}}">
-            <i class="fa fa-refresh"></i>
-            <span>Reject Order</span>
+            <i class="fa fa-undo"></i>
+            <span>Unprocess Order</span>
          </a>
         </li>
         <li class="">
@@ -192,16 +192,16 @@
     reserved.</center>
     <div class="control-sidebar-bg"></div>
     </footer>
-<script src="{{('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
-<script src="{{('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
-<script src="{{('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
-<script src="{{('asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
-<script src="{{('asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
-<script src="{{('asset/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
-<script src="{{('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
-<script src="{{('asset/dist/js/adminlte.min.js')}}"></script>
-<script src="{{('asset/dist/js/demo.js')}}"></script>
-<script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/bootstrap/dist/js/bootstrap.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
+<script src="{{asset('asset/dist/js/adminlte.min.js')}}"></script>
+<script src="{{asset('asset/dist/js/demo.js')}}"></script>
+<script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
 @yield('js')
 <script type="text/javascript">
     $('.js-aset').select2();
@@ -212,7 +212,7 @@
       'paging'      : true,
       'lengthChange': false,
       'searching'   : true,
-      'ordering'    : true,
+      'ordering'    : false,
       'info'        : true,
       'autoWidth'   : true  
     })

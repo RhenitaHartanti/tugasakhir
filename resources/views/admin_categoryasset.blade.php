@@ -9,7 +9,8 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <center><h3 class="box-title">List Categories</h3></center>
+              <center><h3>LIST CATEGORY ASSETS</h3></center>
+              <br>
               <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Data Category</button><br>
             </div>
             <div class="box-body">
@@ -24,8 +25,18 @@
                 </thead>                
                 <tbody>
                   @foreach($categoryAsset as $value)
+                  @php
+                $pnjg = strlen($value->id);
+                if($pnjg==1){
+                  $id = 'CTR00'.$value->id;
+                }elseif($pnjg==2){
+                  $id = 'CTR0'.$value->id;
+                }else{
+                  $id = 'CTR'.$value->id;
+                }
+                @endphp
                 <tr>                                
-                  <td><center>{{$value->id}}</center></td>
+                  <td><center>{{$id}}</center></td>
                   <td><center>{{$value->name_category}}</center></td>
                   <td><center>{{$value->details}}</center></td>
                   <td><center>

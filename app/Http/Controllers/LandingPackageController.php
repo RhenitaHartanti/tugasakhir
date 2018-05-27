@@ -19,7 +19,8 @@ class LandingPackageController extends Controller
      */
     public function index()
     {
-        $listpackage=Package::with('assets')->get();
+        $listpackage=Package::with('assets')        
+        ->where('type','default')->get();
         return view('landingpage_package',compact('listpackage'));
     }
 

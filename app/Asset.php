@@ -8,6 +8,7 @@ class Asset extends Model
 {
     protected $table='assets';
     protected $fillable=[
+            // 'formatted_id',
     		'id_category_asset',
     	    'name_category',
     		'name_asset',

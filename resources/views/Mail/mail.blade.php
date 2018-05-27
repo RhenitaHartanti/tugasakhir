@@ -1,18 +1,34 @@
 @if($status_order=='accept')
-<div>
-<b>Your order has been confirmed</b><p>
-<b>For date: {{ $date_using }}</b><p>
-With booking code: <b>{{ $booking_code }}</b> <p>
-Please doing the payment process immediately <p>
-Thankyou,<p>
-Precious Party Planner
-</div>;
+<center>
+<br>
+<table>
+	<tr>
+		<td><h4><b>Your order has been confirmed</b></h4></td>
+	</tr>
+	<tr>
+		<td><b>For date: {{ $date_using }}</b></td>
+	</tr>
+	<tr>
+		<td>With booking code: <b>{{ $booking_code }}</b></td>
+	</tr>
+	<tr>
+		<td>Please doing the payment process immediately , Thankyou	
+		</td>
+	</tr>
+	<tr>
+		<td>Precious Party Planner</td>
+	</tr>
+</table>
+<br>
 @else
-<div>
-<b>Your order has been rejected</b><p>
-<b>For date: {{ $date_using }}</b><p>
-Please contact admin in 0857652432537 for more information <p>
-Thankyou,<p>
-Precious Party Planner
-</div>;
+<table>
+	<tr><td><h4><b>Your order has been rejected</b></h4><br></td></tr>
+	<tr><td><b>For date: {{ $date_using }}</b></td></tr>
+	<tr><td>Please contact admin in 085 743 680 646 (sms/whatsapp) for more information. Thank you</td></tr>
+	<tr>
+	<td>Precious Party Planner
+	</td>
+	</tr>
+</table>
+</center></div><br>
 @endif

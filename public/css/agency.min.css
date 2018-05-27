@@ -90,7 +90,7 @@ div {
 }
 
 .btn-primary {
-    background-color: #D5BA0B;
+    background-color:#CDB02E;
    
 }
 
@@ -901,7 +901,7 @@ ul.social-buttons li a:hover {
     margin-bottom: 20px;
     margin-top: 70px;
     width: 500px;
-    height:700px;
+    height:570px;
     box-shadow: 0 1px 1px rgba(0,0,0,0.1);
     padding:20px;
     position:relative;
@@ -963,14 +963,27 @@ section#about {
     margin-top:0px;
     padding:10px;
 }
-.syarat2 {
-    background-color: #ffffff;
+.package {
+    background-color:#EEEAD5;
     background-repeat: no-repeat;
     background-position: center;
-    color:#DAA520;
-    width: 40%;
+    color:#000000;
+    width: 100%;
     margin-top:0px;
-    padding:10px;
+    margin-bottom:20px;
+    padding-top:10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 10px;
+}
+.rowpackage {
+    background-color:#6E3030;
+    background-position: center;
+    color:#000000;
+    width: 100%;
+    height: 20%;
+    margin-top:0px;
+    padding-top:10px;
 }
 .notif{
     background-color:#FBD43A;

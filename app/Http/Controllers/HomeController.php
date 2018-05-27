@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Post;
 use App\Package;
 use App\Order;
+use App\Asset;
 
 
 class HomeController extends Controller
@@ -50,6 +51,12 @@ class HomeController extends Controller
         $package = Package::find($id);
         // if !auth::check
         return view('landingpage_formpackage',compact('package','id'));
+    }
+    public function landingpage_formpackagecustom()
+    { 
+        $assets = Asset::all();
+        // if !auth::check
+        return view('landingpage_formpackagecustom',compact('assets'));
     }
      public function landingpage_profil()
     {

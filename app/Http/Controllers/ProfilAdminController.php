@@ -14,8 +14,10 @@ class ProfilAdminController extends Controller
      */
     public function index()
     {
-       $admin=Admin::all()->where('id',Auth::user()->id)->where('level','admin');
-       return view('admin_profiladmin',compact('admin'));
+       // $admin=Admin::where('id',Auth::user()->id)->where('level','admin');
+        $data = Admin::find(auth()->user()->id);
+       return view('admin_profiladmin',compact('data'));
+       
     }
 
     /**

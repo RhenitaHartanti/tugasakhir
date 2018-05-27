@@ -76,14 +76,6 @@
 @endsection
 @section('js')
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#checkbox').click(function(){
-        if($(this).is(';checked')){
-            $(#pasword).attr('type', 'text');
-        }else{
-            $(#pasword).attr('type', 'password');
-        }
-    });
-  });
+  
 </script>
 @endsection

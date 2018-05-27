@@ -22,21 +22,37 @@
                   <th><center>Username</center></th>
                   <th><center>Name Package</center></th>
                   <th><center>Date Using</center></th>
-                  <th><center>Time Using</center></th>
+                  <th><center>Date Finish</center></th>
                   <th><center>Detail Order</center></th>                 
                   <th><center>Status Order</center></th>
                   </tr>
                 </thead>                
               <tbody>
               @foreach($orders as $value)
+              @php
+                $pnjg = strlen($value->id);
+                if($pnjg==1){
+                  $id = 'ORD00'.$value->id;
+                }elseif($pnjg==2){
+                  $id = 'ORD0'.$value->id;
+                }else{
+                  $id = 'ORD'.$value->id;
+                }
+                @endphp
                 <tr>                                
-                  <td><center>{{$value->id}}</center></td>
+                  <td><center>{{$id}}</center></td>
                   <td><center>{{$value->user->username}}</center></td>
                   <td><center>{{$value->package->name_package}}</center></td>
                   <td><center>{{$value->date_using}}</center></td>
-                  <td><center>{{$value->time_using}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat">See Detail Order</button></center></td>
-                  <td><center><div class="label center bg-red" style="font-size:12px">{{$value->order_status}}</div></center></td>
+                  <td><center>{{$value->date_finish}}</center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihat" style="background:#A79A67">See Detail Order</button></center></td>
+                  <td><center>
+                    @if($value->order_status == "reject") 
+                    <div class="label center bg-red" style="font-size:12px">{{$value->order_status}}</div>
+                    @else
+                    <div class="label center bg-yellow" style="font-size:12px">{{$value->order_status}}</div>
+                    @endif
+                  </center></td>
                 </tr>                 
               @endforeach
               </tbody>

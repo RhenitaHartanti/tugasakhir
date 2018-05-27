@@ -15,6 +15,7 @@ class CreateCategoryAssetsTable extends Migration
     {
         Schema::create('category_assets', function (Blueprint $table) {
             $table->increments('id');
+             $table->string('formatted_id');
             $table->string('name_category');
             $table->string('details');
             $table->enum('status',[1,0])->default(1);

@@ -40,7 +40,7 @@ class CustomerController extends Controller
      */
     public function store(Request $request, $id)
     {
-        // $value = $request->session()->get('key');
+        
     }
 
     /**

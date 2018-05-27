@@ -6,7 +6,7 @@
   <section class="content-header">
     <section class="content">    
       <div class="row">
-        @foreach($admin as $key=>$data)  
+       
         <div class="col-md-5">
         	<div class="box box-primary">
         		<h4><center>DATA PROFIL</center></h4> 
@@ -130,7 +130,6 @@
               </div>
              </div>
    		 </div>
-       @endforeach
       </div>
     </section>
    </section>

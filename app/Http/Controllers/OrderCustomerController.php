@@ -15,8 +15,7 @@ class OrderCustomerController extends Controller
      */
     public function index()
     {
-        $order=Order::where('id_user',Auth::user()->id)->orderBy('updated_at','desc')->get();
-
+        $order=Order::where('id_user',Auth::user()->id)->where('date_using','>=', date('Y-m-d'))->orderBy('updated_at','desc')->get();
         return view('landingpage_setting',compact('order'));
     }
     public function upload(Request $request){

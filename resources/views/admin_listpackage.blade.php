@@ -26,8 +26,18 @@
                   </tr>
                 </thead>                           
                 	@foreach($packages as $value)
+                  @php
+                $pnjg = strlen($value->id);
+                if($pnjg==1){
+                  $id = 'PKT00'.$value->id;
+                }elseif($pnjg==2){
+                  $id = 'PKT0'.$value->id;
+                }else{
+                  $id = 'PKT'.$value->id;
+                }
+                @endphp
                 <tr>                                  
-                  <td><center>{{$value->id}}</center></td>
+                  <td><center>{{$id}}</center></td>
                   <td><center>{{$value->name_package}}</center></td>
                   <!-- <td><center>{{$value->details}}</center></td>  -->           
                   <td><center>Rp. {{$value->price}}</center></td>
@@ -141,7 +151,6 @@
                  @endforeach
                 </tbody>                
               </table>
-
               <div id="modal-tambah" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
                 <div class="modal-dialog modal-md">
                   <div class="modal-content">
@@ -219,9 +228,9 @@
 
   $('.delete').on("click",function(destroy){
     swal({
-  title: "Are you sure?",
-  text: "Once deleted, you will not be able to recover this imaginary file!",
-  icon: "warning",
+  title: "Deleted",
+  text: "Your data had been delete",
+  icon: "success",
   buttons: false,
   dangerMode: false,
 })

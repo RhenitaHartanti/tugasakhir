@@ -33,7 +33,7 @@ class LoginController extends Controller
      protected function authenticated(Request $request, $user)
     {
         if($user->level=='admin'){
-            return redirect('oauth');
+            return redirect('/admin_dashboard');
         }
         return redirect('/landingpage_beranda');
     }
@@ -47,13 +47,13 @@ class LoginController extends Controller
         $reset=User::where('email',$request->email)->first();
         if($reset)
         {
-           $random = $this->random_str(10);
+           $random = $this->random_str(16);
            
            Mail::to($reset->email)->send(new \App\Mail\ResetPassword($random));
            
            $reset->password=bcrypt($random);
            $reset->save();
-           return redirect('/landingpage_beranda');
+           return redirect('/login');
         }
         return back()->withErrors('email','email not found');
     }

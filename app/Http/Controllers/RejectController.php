@@ -16,7 +16,7 @@ class RejectController extends Controller
      */
     public function index()
     {
-        $orders=Order::with('package','user')->where('order_status', 'reject')->get();
+        $orders=Order::with('package','user')->where('order_status', 'reject')->orWhere('order_status','expired')->get();
         return view('admin_rejectorder',compact('orders'));
     }
 

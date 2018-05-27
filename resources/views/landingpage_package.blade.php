@@ -1,8 +1,5 @@
 @extends('layouts.app')
 @section('header')
-  <link rel="stylesheet" href="{{asset('asset/css/ionicons.min.css')}}">  
-  <link rel="stylesheet" href="{{asset('asset/css/AdminLTE.min.css')}}"> 
-  <link rel="stylesheet" href="{{asset('asset/css/skins/_all-skins.min.css')}}">
 @endsection
     @section('content')
     <br>
@@ -10,38 +7,66 @@
       <div class="container">
         <div class="row">
           <div class="col-md-12 text-center">
-            <h2 class="section-heading text-uppercase">Package</h2>
+            <h2 class="section-heading text-uppercase">Package Event</h2>
             <h3 class="section-subheading text-muted">This Package Include the Documentation (Photo and Video) </h3>
           </div>
         </div>
         <div class="row">
           @foreach($listpackage as $data)
-          <div class="col-md-4">          
-           <div class="box">
-            <div class="box-body no-padding">
-              <table class="table table-striped text-center">
-                <tr><img class="img-fluid" src="img/logo8.jpg" alt=""></tr>              
-                <tr><td><h5>{{$data->name_package}}</h5></td></tr>
-                <tr><td><h6>Rp. {{$data->price}}</h6></td></tr>           
-                <tr><td>for {{$data->kuota}} people</td></tr> 
-                <tr><td><b>Details Items : </b></td></tr>
-                <center>                
+          <div class="col-md-4">
+          <img class="img-fluid" src="img/logo8.jpg" alt="">           
+            <div class="package">
+                <center>
+                <h3 class="section-subheading text-muted" style="font-size: 20px">             
+                  {{$data->name_package}}<br><br>
+                  Rp. {{$data->price}}<br>  
+                </h3>
+                <h3 class="section-subheading text-muted" style="font-size: 15px">    
+                  <b>for {{$data->kuota}} people</b><br>                   
+                </h3><hr>
+                <h3 class="section-subheading text-muted" style="font-size: 15px">
+                  Details Items :<br><br>
                   @foreach($data->assets as $val)
-                  <tr><td>{{$val->name_asset}}</td></tr>
-                  @endforeach                                           
-                <tr><td>
+                  {{$val->name_asset}}<br><br>
+                  @endforeach
+                </h3>               
                   @if(!\Auth::check())
-                       <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/login')}}">Order Package</a>
+                    <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/login')}}">Order Package</a>
                   @else
-                     <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/landingpage_formpackage',$data->id)}}">Order Package</a>
-                @endif
-                </td></tr>
-              </table>
-            </div>
-          </div>           
+                    <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/landingpage_formpackage',$data->id)}}">Order Package</a>
+                  @endif                  
+                </center>
+                <br>
+            </div> 
+
         </div>
         @endforeach
-      </div>   
+        <div class="col-md-4">
+          <img class="img-fluid" src="img/logo8.jpg" alt="">           
+            <div class="package">
+                <center><br>
+                <h3 class="section-subheading text-muted" style="font-size: 20px">             
+                  Custom Package<br><br>
+                </h3>
+               <h3 class="section-subheading text-muted" style="font-size: 20px">             
+                  Start from 1.000.000<br><br>
+                </h3>
+                <h3 class="section-subheading text-muted" style="font-size: 15px">    
+                  <b>custom your package order based on your need</b><br>                   
+                </h3>               
+                  @if(!\Auth::check())
+                    <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/login')}}">Order Package</a>
+                  @else
+                    <a class="btn btn-primary btn-md text-uppercase js-scroll-trigger" href="{{url('/landingpage_formpackagecustom')}}">Order Package</a>
+                  @endif                  
+                </center>
+                <br>
+            </div> 
+                      
+        </div>
+
+      </div>
+              <br>   
     </section>
 @endsection
   </body>

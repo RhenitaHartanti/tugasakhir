@@ -52,7 +52,7 @@
                             <label for="nohp" class="col-md-4 col-form-label text-md-right">{{ __('No Handphone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="nohp" type="number" class="form-control{{ $errors->has('nohp') ? ' is-invalid' : '' }}" name="nohp" value="{{ old('nohp') }}" autofocus>
+                                <input id="nohp" type="number" class="form-control{{ $errors->has('nohp') ? ' is-invalid' : '' }}" name="nohp" value="{{ old('nohp') }}" autofocus required="">
 
                                 @if ($errors->has('nohp'))
                                     <span class="invalid-feedback">

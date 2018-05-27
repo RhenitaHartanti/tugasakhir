@@ -15,7 +15,7 @@ class ListReservationController extends Controller
     {        
         // $orders=Order::join('packages','packages.id','=','orders.id_package')
         // ->where('order_status', 'accept')->get();
-        $orders=Order::with('package','user','payment')->where('order_status', 'accept')->orWhere('order_status','reject')->orderBy('updated_at','desc')->get();
+        $orders=Order::with('package','user','payment')->where('order_status', 'accept')->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->orderBy('updated_at','desc')->get();
         // bisa pake or where gt atau pake where in bedanya ?
         // klo pake or where gitu ya artinya dimana order statusnya di acc atau order statusnya di reject
         // klo pake where in itu dimana yg order statusnya ada di dalam sebuah list

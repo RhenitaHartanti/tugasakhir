@@ -7,63 +7,62 @@
       <div class="row">        
         <div class="formorder"> 
         <h5 class="section-subheading text-muted">Your Data Profile</h5>          
-         @foreach($customer as $value)
           <label>Name</label>
             <div class="form-group has-feedback">
-               <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$value->name}}">
+               <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$data->name}}">
             </div>
               <label>Username</label>
             <div class="form-group has-feedback">
-              <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$value->username}}">
+              <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$data->username}}">
             </div>
              <label>Email</label>
             <div class="form-group has-feedback">
-              <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$value->email}}">
+              <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$data->email}}">
             </div>
               <label>No Handphone</label>
             <div class="form-group has-feedback">
-             <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$value->nohp}}">
+             <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$data->nohp}}">
             </div>
             <div class="form-group">
             <br>            
-             <center><button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubah{{$value->id}}"></span>Edit Data Profil</button>  
-             <button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubahpass{{$value->id}}"></span>Change Passwod</button>     
+             <center><button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubah{{$data->id}}"></span>Edit Data Profil</button>  
+             <button class="btn btn-md" style="background:#CCB20A" data-toggle="modal" data-target="#modal-ubahpass{{$data->id}}"></span>Change Passwod</button>     
              </center>
           </div>
       </div>
-      @endforeach
-      @foreach($customer as $value)
-      <div id="modal-ubah{{$value->id}}" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
+      
+     
+      <div id="modal-ubah{{$data->id}}" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
             <img src="img/logo9.jpg" alt="">
              <br>
-                <form action="{{route('landingpage_profil.update',[$value->id]) }}" method="POST">
+                <form action="{{route('landingpage_profil.update',[$data->id]) }}" method="POST">
                   {{csrf_field()}}
                   {{method_field('PUT')}}
                     <div class="modal-body">
                       <input type="hidden" name="id" class="ubah-id">
                         <div class="row">                       
                           <div class="col-md-12">
-                            <input class="form-control" id="name" name="name" value="{{$value->name}}">
+                            <input class="form-control" id="name" name="name" value="{{$data->name}}">
                            </div>                   
                         </div>
                         <br>
                         <div class="row">  
                           <div class="col-md-12">
-                            <input type="text" class="form-control" id="username" name="username" value="{{$value->username}}">
+                            <input type="text" class="form-control" id="username" name="username" value="{{$data->username}}">
                           </div>                    
                         </div>
                         <br>
                         <div class="row">
                           <div class="col-md-12">
-                            <input type="text" class="form-control" id="email" name="email" value="{{$value->email}}">
+                            <input type="text" class="form-control" id="email" name="email" value="{{$data->email}}">
                           </div>
                         </div>
                         <br>
                         <div class="row">
                           <div class="col-md-12">
-                            <input type="text" class="form-control" id="nohp" name="nohp" value="{{$value->nohp}}">
+                            <input type="text" class="form-control" id="nohp" name="nohp" value="{{$data->nohp}}">
                           </div>                       
                         </div>
                     </div>
@@ -77,13 +76,13 @@
                 </div>
               </div>
             
-      <div id="modal-ubahpass{{$value->id}}" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
+      <div id="modal-ubahpass{{$data->id}}" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="box-body">
           <div class="modal-dialog modal-md">
             <div class="modal-content">
              <img src="img/logo9.jpg" alt="">
              <br>
-                <form action="{{url('changePassword',$value->id) }}" method="POST" >
+                <form action="{{url('changePassword',$data->id) }}" method="POST" >
                   {{csrf_field()}}
                     <div class="modal-body">
                       <div class="row">
@@ -113,30 +112,39 @@
               </div>
             </div>
           </div>
-          @endforeach 
+
 
       <div class="col-lg-6"> 
         <div class="formorder">    
-           <h5 class="section-subheading text-muted">History of Reservation</h5>  
+           <h5 class="section-subheading text-muted"><center>History of Reservation</center></h5>  
            <br>  
               <table class="table table-striped text-center"> 
                 <tr>
                   <th>ID Order</th>
                   <th>Date Using</th>          
                   <th>Detail Order</th>   
-                  <th>Pay Status</th>
                 </tr>
-                 @foreach($orders as $value)     
+                 @foreach($orders as $value)   
+                 @php
+                $pnjg = strlen($value->id);
+                if($pnjg==1){
+                  $id = 'ORD00'.$value->id;
+                }elseif($pnjg==2){
+                  $id = 'ORD0'.$value->id;
+                }else{
+                  $id = 'ORD'.$value->id;
+                }
+                @endphp    
                 <tr>
-                  <td>{{$value->id}}</td>  
+                  <td>{{$id}}</td>  
                   <td>{{$value->date_using}}</td>        
-                  <td><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-time_finish="{{$value->time_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary">See Detail Order</button></td>
-                  <td><b>{{$value->payment_status}}</b></td>     
+                  <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-payment_status="{{$value->payment_status}}" class="btn btn-sm btn-primary">See Detail Order</button></td>    
                 </tr>   
                 @endforeach  
              </table>  
         </div>
       </div>
+      @foreach($orders as $value)
       <div id="modal-lihat" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
@@ -144,6 +152,12 @@
              <br>
              <form class="form-horizontal" method="POST" action="">
               <div class="box-body">
+                 <div class="form-group">
+                  <label for="date_using" class="col-md-12 control-label">Name Package : </label>
+                  <div class="col-sm-12 detail-name_package">            
+                    <input type="text" readonly disabled class="form-control" id="name_package" name="name_package" value="{{$value->name_package}}">                  
+                  </div>
+                </div>
                 <div class="form-group">
                   <label for="date_using" class="col-md-12 control-label">Date Using : </label>
                   <div class="col-sm-12 detail-theme">            
@@ -151,15 +165,9 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="time_using" class="col-md-12 control-label">Time Using : </label>
-                  <div class="col-sm-12 detail-theme">            
-                    <input type="text" readonly disabled class="form-control" id="time_using" name="time_using" value="{{$value->time_using}}">                  
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="time_fiish" class="col-md-12 control-label">Time Finish : </label>
-                  <div class="col-sm-12 detail-theme">            
-                    <input type="text" readonly disabled class="form-control" id="time_finish" name="time_finish" value="{{$value->time_finish}}">                  
+                  <label for="time_using" class="col-md-12 control-label">Date Finish : </label>
+                  <div class="col-sm-12 date_finish">            
+                    <input type="text" readonly disabled class="form-control" id="date_finish" name="date_finish" value="{{$value->date_finish}}">                  
                   </div>
                 </div>
                 <div class="form-group">
@@ -193,19 +201,13 @@
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="note" class="col-md-12 control-label">Order Status</label>
-                  <div class="col-sm-12 detail-note">                  
-                  <input type="text" readonly disabled class="form-control" id="note" name="note" value="{{$value->order_status}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="note" class="col-md-12 control-label">Total Payment</label>
+                  <label for="note" class="col-md-12 control-label">Total Payment : </label>
                   <div class="col-sm-12 detail-note">                  
                   <input type="text" readonly disabled class="form-control" id="note" name="note" value="{{$value->total_payment}}">
                   </div>
                 </div>
                 <div class="form-group">
-                  <label for="note" class="col-md-12 control-label">Payment Status </label>
+                  <label for="note" class="col-md-12 control-label">Payment Status : </label>
                   <div class="col-sm-12 detail-note">                  
                   <input type="text" readonly disabled class="form-control" id="note" name="note" value="{{$value->payment_status}}">
                   </div>
@@ -220,6 +222,8 @@
           </div>
         </div>
     </div>
+    @endforeach  
+
 @endsection 
 @section('js')
     <script src="vendor/jquery/jquery.min.js"></script>
@@ -244,22 +248,26 @@
   </script>
   <script type="text/javascript">
   function detailOrder(dom) {
+    var name_package = $(dom).data('name_package');
     var date_using = $(dom).data('date_using');
-    var time_using = $(dom).data('time_using'); 
-    var time_finish = $(dom).data('time_finish');  
+    var date_finish = $(dom).data('date_finish'); 
     var theme = $(dom).data('theme');
     var place = $(dom).data('place');
     var guest = $(dom).data('guest');
     var greeting = $(dom).data('greeting');
     var note = $(dom).data('note');
+    var total_payment = $(dom).data('total_payment');
+    var payment_status = $(dom).data('payment_status');
+    $('#name_package').val(name_package)
     $('#date_using').val(date_using)
-    $('#time_using').val(time_using) 
-    $('#time_finish').val(time_finish)
+    $('#date_finish').val(date_finish) 
     $('#theme').val(theme)
     $('#place').val(place)
     $('#guest').val(guest)
     $('#greet').val(greeting)
     $('#note').val(note)
+    $('#total_payment').val(total_payment)
+    $('#payment_status').val(payment_status)
     $('#modal-lihat').modal('show')
   }
   </script>

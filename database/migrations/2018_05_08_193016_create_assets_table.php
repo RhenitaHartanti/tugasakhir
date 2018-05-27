@@ -15,10 +15,11 @@ class CreateAssetsTable extends Migration
     {
         Schema::create('assets', function (Blueprint $table) {
             $table->increments('id');
+            // $table->string('formatted_id');
             $table->integer('id_category_asset')->unsigned();
             $table->foreign('id_category_asset')->references('id')->on('category_assets')->onDelete('cascade');       
             $table->string('name_asset');
-            $table->bigInteger('price');
+            // $table->bigInteger('price');
             $table->integer('total');            
             $table->string('details');
             $table->enum('status',[1,0])->default(1);            

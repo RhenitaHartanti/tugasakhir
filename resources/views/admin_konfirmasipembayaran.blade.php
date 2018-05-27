@@ -40,8 +40,8 @@
                       <input type="hidden" value="{{$payments->booking_code}}" name="booking_code"> 
                         <center>
                           <center>
-                            <!-- <button href="{{URL::to('admin_listreservation')}}" class="btn-sm btn-success">Reject Payment</button></td>
-                            <td> -->
+                            <button href="{{URL::to('admin_listreservation')}}" class="btn-sm btn-danger">Cancel</button></td>
+                            <td>
                             <button class="btn btn-sm btn-danger success">Confirm Payment</button>
                           </center>
                        </center>

@@ -17,6 +17,11 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('css/agency.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/sweetalert/sweetalert.css')}}">
+    <link rel="stylesheet" href="{{asset('css/bootstrapValidator.min.css')}}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css" />
+  <link rel="stylesheet" href="{{asset('asset/bower_components/select2/dist/css/select2.min.css')}}">
+
+
     @yield('header')
   </head>
   <body id="page-top">
@@ -79,9 +84,22 @@
        </div>
      </div>
   </footer>
-  @yield('js')
-<script src="{{('vendor/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
+
+<script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
+<script src="{{asset('js/bootstrapvalidator.min.js')}}"></script>
+<script src="{{asset('js/moment.js')}}"></script>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{asset('js/transition.min.js')}}"></script>
+
+
+  @yield('js')<!--  sek di import seko view ki kudu nang ngisor dewe,wedine nek file js e nang ngisor e
+  kan di complie berdasarkan urutan e
+  kadang" sok raiso nek libraryne nang ngisor e 
+  dadi misal aku ndeklarasike bootstrapvalidator e nang nduwur e library ne , kadang iso ae eror bottstarapvalidator is not function ngono..karang libraryne rung ke impor soal e urutan e nang ngisor e -->
+
+
  @include('sweet::alert')
 </body>
 </html>
-

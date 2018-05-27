@@ -17,7 +17,7 @@ class PackageController extends Controller
     public function index()
     {
         $asset=Asset::all();
-        $package=Package::with('assets')->get();
+        $package=Package::with('assets')->where('type','default')->get();
         return view('admin_listpackage')
         ->with('packages',$package)
         ->with('assets',$asset);
@@ -30,7 +30,12 @@ class PackageController extends Controller
      */
     public function create()
    {
-         Package::create($request->except(['_token']));
+    /*yoie mas eror lho kodingnya ini kok gitu ?
+    dpt dr mana variabel $request? kan ga ada yg ndeklarasiin $request laah kmarn aku coba bisaa btw fungsi ini tuh aslinya buat nampilin form tambah klo nyimpennya di function store
+    gapaham aku mas, btw aku mau ke kamar mandi sek mas wkwkkwk mau mandi  engga bentar doang kok
+    tp mbales terus wkwkkwk*/
+        $paket = Package::create($request->except(['_token']));
+        $paket->assets()->sync($request->id_asset);
         return redirect('admin_listpackage');
     }
     /**
@@ -47,14 +52,10 @@ class PackageController extends Controller
         //     'details' => 'required|max:50',
         //     'price' => 'required|numeric|max:5',
         // ]);
-
-        $assets = $request->input('id_asset');
-        // dd($assets);
-        $package = Package::create($request->except(['_token','id_asset']));
-        $package->assets()->attach($assets);
-
-             return redirect('admin_listpackage');    
-
+        $package = Package::create($request->except(['_token']));     
+        $package->assets()->sync($request->id_asset);
+        return redirect('admin_listpackage'); 
+        
         // Package::create($package);
         // return back()->with('success', 'Data paket berhasil didimpan');
     }

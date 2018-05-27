@@ -44,6 +44,17 @@ class AssetController extends Controller
     public function store(Request $request)
     {
          Asset::create($request->except(['_token']));
+             
+        // $categoryAsset = $request->input('id_category_asset');
+        // $id = Asset::orderBy('id','desc')->first();
+        // if($id->count()==0){
+        //     $request['formatted_id']='AST001';
+        // }else{
+        //     $id = (strlen($id->id)>3)?$id->id+1:(strlen($id->id)==2)?'0'.($id->id+1):'00'.($id->id+1);
+        //     $request['formatted_id']='AST'.$id;
+        // }
+        // $categoryAsset->category_asset()->attach($category_asset);
+
              return redirect('admin_asset');  
     }
 

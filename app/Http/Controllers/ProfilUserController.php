@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Order;
 use App\Payment;
+use App\Package;
 use Auth;
 use Hash;
 use Alert;
@@ -19,10 +20,14 @@ class ProfilUserController extends Controller
      */
     public function index()
     {
-       $customer=User::all()->where('id',Auth::user()->id)->where('level','customer');
-       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
-       return view('landingpage_profil',compact('customer','orders'));
+       $data =User::find(auth()->user()->id);
+       $orders=Order::with('package','user')
+       ->where('id_user',auth()->user()->id)
+       ->where('payment_status', '=','paid off')
+       ->where('date_using','<', date('Y-m-d'))->get();
+       return view('landingpage_profil',compact('data','orders'));
     }
+    //wes dijajal
 
     /**
      * Show the form for creating a new resource.

@@ -10,7 +10,8 @@
           <div class="box">
             <div class="box-header"> 
               <center>
-                <h3 class="box-title">History Reservation</h3>
+                <center><h3>HISTORY RESERVATIONS</h3></center>
+              <br>
               </center>
             </div>
             <div class="box-body">
@@ -20,8 +21,8 @@
                   <th><center>Id Order</center></th>
                   <th><center>Username</center></th>
                   <th><center>Name Package</center></th>
-                  <th><center>Date Using</center></th>
-                  <th><center>Time Using</center></th>
+                  <th><center>Start Date</center></th>
+                  <th><center>Date Finish</center></th>
                   <th><center>Detail Order</center></th>                  
                   <th><center>Detail Payment</center></th>
                   <th><center>Payment Status</center></th>
@@ -29,13 +30,23 @@
                 </thead>                
               <tbody>
               @foreach($orders as $value)
+              @php
+                $pnjg = strlen($value->id);
+                if($pnjg==1){
+                  $id = 'ORD00'.$value->id;
+                }elseif($pnjg==2){
+                  $id = 'ORD0'.$value->id;
+                }else{
+                  $id = 'ORD'.$value->id;
+                }
+                @endphp
                 <tr>                                
-                  <td><center>{{$value->id}}</center></td>
+                  <td><center>{{$id}}</center></td>
                   <td><center>{{$value->user->username}}</center></td>
                   <td><center>{{$value->package->name_package}}</center></td>
                   <td><center>{{$value->date_using}}</center></td>
-                  <td><center>{{$value->time_using}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihatdata">See Detail Order</button></center></td>
+                  <td><center>{{$value->date_finish}}</center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-date_using="{{$value->date_using}}" data-time_using="{{$value->time_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-lihatdata" style="background:#A79A67">See Detail Order</button></center></td>
                   <td>
                     <center><a href="{{URL::to('admin_konfirmasipembayaran/'.$value->id)}}">
                       @if($value->payment == null)

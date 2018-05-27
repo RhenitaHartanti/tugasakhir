@@ -9,7 +9,8 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <center><h3 class="box-title">List Asset</h3></center>
+               <center><h3>LIST ASSETS</h3></center>
+              <br>
               <button class="btn btn-md btn-primary" data-toggle="modal" data-target="#modal-tambah"><i class="fa fa-plus"></i> Add Data Asset</button><br>
             </div>
             <div class="box-body">
@@ -28,8 +29,18 @@
                 </thead>                
                 <tbody>
                 @foreach($assets as $value)
+                @php
+                $pnjg = strlen($value->id);
+                if($pnjg==1){
+                  $id = 'AST00'.$value->id;
+                }elseif($pnjg==2){
+                  $id = 'AST0'.$value->id;
+                }else{
+                  $id = 'AST'.$value->id;
+                }
+                @endphp
                 <tr>                                
-                 <td><center>{{$value->id}}</center></td>
+                 <td><center>{{$id}}</center></td>
                   <td><center>{{$value->name_asset}}</center></td>
                   <td><center>{{$value->category_asset->name_category}}</center></td> 
                   <!-- <td><center>{{$value->price}}</center></td> -->

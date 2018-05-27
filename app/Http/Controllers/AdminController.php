@@ -39,7 +39,7 @@ class AdminController extends Controller
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
-       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_using','<',\Carbon\Carbon::now()->toDateString())->get();
+       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->get();
        // return date_using('Y-m-d');
        return view('admin_profil',compact('admin','orders'));
     }
@@ -206,6 +206,8 @@ class AdminController extends Controller
             }
         $payment->update(['payment_status'=>'paid off']);
         $statusPayment->update(['payment_status'=>'paid off']);
+        $user=User::find($statusPayment->id_user);
+        Mail::to($user->email)->send(new \App\Mail\PaymentMail($statusPayment));
         $package = \App\Package::find($statusPayment->id_package);
         if($package->assets->count()>0){
              $statusPayment->assets()->sync($package->assets);
@@ -253,8 +255,7 @@ class AdminController extends Controller
         $statusPayment->payment_status = $request->payment_status;
         $statusPayment->save();
         if ($statusPayment->payment_status == 'paid off'){
-                  }
-
+        }
         return redirect('admin_listreservation');
     }
 }

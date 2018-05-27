@@ -10,6 +10,7 @@ class Package extends Model
     protected $fillable=[
         'id_asset',
     		'name_package',
+        'type',
     		// 'details',
     		'price',
         'kuota',        

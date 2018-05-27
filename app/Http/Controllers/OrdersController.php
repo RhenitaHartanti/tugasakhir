@@ -6,6 +6,7 @@ use App\Package;
 use App\Asset;
 // use App\Admin;
 // use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class OrdersController extends Controller
@@ -17,12 +18,16 @@ class OrdersController extends Controller
      */
     public function index()
     {
+        // Order::where('order_status','accept')->where('payment_status','none')
+        // ->whereRaw('? > DATE_FORMAT(date_add(created_at,interval 2 day), "%Y-%m-%d ")',[date("Y-m-d")])->doesntHave('payment')->update(['order_status'=>'reject']);
+        Order::whereDate('date_using','<',date('Y-m-d'))
+        ->doesntHave('payment')->update(['order_status'=>'expired']);
         // $admin=Admin::where('level','!=' , 'customer')->get();
-        $orders=Order::with('package','user')->where('order_status', 'waiting')->orderBy('updated_at','desc')->get();
+        $orders=Order::with('package','user')->where('order_status', 'waiting')->orderBy('created_at','desc')->get();
         
         $total_user = \App\User::count();
         $total_asset = \App\Asset::count();
-        $total_package =\App\Package::count();
+        $total_package = \App\Package::count();
 
          $booking=Order::with('package','user','payment')->where('order_status', 'accept')->get();
         $event = $booking->map(function($row){
@@ -34,6 +39,7 @@ class OrdersController extends Controller
             ->setOptions([ //set fullcalendar options
                 'firstDay' => 1
             ]);
+            
         return view('admin_dashboard',compact('orders','total_user','total_asset','total_package','booking','calendar'));
     }
     /**
@@ -54,8 +60,16 @@ class OrdersController extends Controller
      */
     public function store(Request $request)
     {
+        if($request->type){
+            $paket=Package::create(['type'=>'custom','name_package'=>$request->name_package,'price'=>0,'kuota'=>0]);
+            $paket->assets()->sync($request->id_asset);
+            $request['id_package']=$paket->id;
+            $request['price']=0;
+        }
+
         $request['id_user']=auth()->user()->id;
-        
+            $request['total_payment']=0;
+        if(!$request->type){   
         $package=Package::find($request->id_package);
             if($request->total_guests>0)
             {
@@ -64,8 +78,15 @@ class OrdersController extends Controller
             else{
                 $request['total_payment']=$package->price;
             }
-            //return $request->all();
-         Order::create($request->except(['_token']));
+        }
+
+            $request['date_using'] = Carbon::parse($request->date_using)->format('Y-m-d H:i:s');
+            $request['date_finish'] = Carbon::parse($request->date_finish)->format('Y-m-d H:i:s');
+
+            // $request->merge(['date_using' => $tanggal]);
+
+            // dd($request->date_using);
+         Order::create($request->except(['_token','type','id_asset']));
          
              return redirect('landingpage_setting');    
             }
