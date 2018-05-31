@@ -8,6 +8,14 @@
       <div class="row">
         <div class="col-xs-12">
           <div class="box">
+           <!--  @if ($errors->any())
+  @foreach ($errors->all() as $message)
+  <div class= "alert alert-danger alert styled-left alert-arrow-left alert-bordered">
+    <button type="button" class="close" data-dismiss="alert"><span>x</span></button>
+    <span class="text-bold">Error</span>:{{$message}}
+  </div>
+  @endforeach
+  @endif -->
             <div class="box-header">
               <center><h3>LIST CATEGORY ASSETS</h3></center>
               <br>

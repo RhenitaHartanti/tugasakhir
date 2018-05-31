@@ -86,7 +86,7 @@ class OrdersController extends Controller
             // $request->merge(['date_using' => $tanggal]);
 
             // dd($request->date_using);
-         Order::create($request->except(['_token','type','id_asset']));
+         Order::create($request->except(['_token','type','id_asset','order_status']));
          
              return redirect('landingpage_setting');    
             }
@@ -120,9 +120,15 @@ class OrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    // khusus untuk update harga paket custom saja
+    public function update(Request $request)
     {
-        //
+        // return $request->all();
+        $order=Order::find($request->id_order);
+        $order->total_payment = $request->price;
+        $order->price = $request->price;
+        $order->save();
+        return redirect('admin_dashboard');
     }
 
     /**

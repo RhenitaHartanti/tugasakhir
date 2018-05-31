@@ -79,7 +79,20 @@ class ListReservationController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $admin_listreservation=Order::find($id);
+        $admin_listreservation->user->name = $request->name;
+        $admin_listreservation->package->name_package = $request->name_package;
+        $admin_listreservation->date_using = $request->date_using;        
+        $admin_listreservation->date_finish = $request->date_finish;
+        $admin_listreservation->theme = $request->theme;
+        $admin_listreservation->place = $request->place;
+        $admin_listreservation->total_guests = $request->total_guests;
+        $admin_listreservation->greeting = $request->greeting;
+        $admin_listreservation->note = $request->note;
+        $admin_listreservation->price = $request->price;
+        $admin_listreservation->total_payment = $request->total_payment;
+        $admin_listreservation->save();
+        return redirect('admin_listreservation');
     }
 
     /**

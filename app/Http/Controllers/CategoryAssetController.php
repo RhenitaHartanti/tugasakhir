@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\CategoryAsset;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
+use Validator;
 
 class CategoryAssetController extends Controller
 {
@@ -44,7 +45,7 @@ class CategoryAssetController extends Controller
         // }else{
         //     $id = (strlen($id->id)>3)?$id->id+1:(strlen($id->id)==2)?'0'.($id->id+1):'00'.($id->id+1);
         //     $request['formatted_id']='CT'.$id;
-        // }
+        // })
         $categoryAsset = CategoryAsset::create($request->except(['_token']));
         return redirect('admin_categoryasset');    
 

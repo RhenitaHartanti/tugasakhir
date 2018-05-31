@@ -7,6 +7,7 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Payment;
+use App\Order;
 use App\User;
 
 
@@ -19,11 +20,13 @@ class PaymentMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public $id;
+    public $payment_status;
+    public function __construct( $order)
     {
-        // $this->payment_status=$payment_status;
+       $this->id = $order->id;
+       $this->payment_status = $order->payment_status;
     }
-
     /**
      * Build the message.
      *
@@ -31,6 +34,11 @@ class PaymentMail extends Mailable
      */
     public function build()
     {
-        return $this->view('Mail.payment');
+        if($this->payment_status=='paid off'){   
+        return $this->view('Mail.payment')->subject('Payment Confirmation');
+        }else{
+            return $this->view('Mail.ppayment')->subject('Payment Failed');
+        }
     }
 }
+

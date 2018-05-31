@@ -30,10 +30,7 @@ class PackageController extends Controller
      */
     public function create()
    {
-    /*yoie mas eror lho kodingnya ini kok gitu ?
-    dpt dr mana variabel $request? kan ga ada yg ndeklarasiin $request laah kmarn aku coba bisaa btw fungsi ini tuh aslinya buat nampilin form tambah klo nyimpennya di function store
-    gapaham aku mas, btw aku mau ke kamar mandi sek mas wkwkkwk mau mandi  engga bentar doang kok
-    tp mbales terus wkwkkwk*/
+    
         $paket = Package::create($request->except(['_token']));
         $paket->assets()->sync($request->id_asset);
         return redirect('admin_listpackage');

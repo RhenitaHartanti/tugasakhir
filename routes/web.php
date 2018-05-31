@@ -57,7 +57,6 @@ Route::middleware('admin')->group(function(){
 	Route::resource('/admin_profil','AdminController')->except(['update']);
 	Route::resource('/admin_listreservation','ListReservationController');
 	Route::put('/admin_setting/{id}','AdminController@update')->name('admin.update');
-	Route::get('/admin_dashboard','OrdersController@index');
 	Route::resource('admin_listpackage','PackageController');
 	Route::get('admin_history','HomeController@admin_history');
 	Route::get('/admin_listpackage/delete/{id_package}','PackageController@destroy')->name('package.delete');
@@ -71,6 +70,8 @@ Route::middleware('admin')->group(function(){
 	Route::put('/admin_dashboard/{id}','AdminController@status');
 	Route::get('/admin_konfirmasipembayaran/{id}', 'AdminController@loadFormBayar');
 	Route::post('/accBookingCode/{id}','AdminController@accBookingCode');
+	Route::put('/admin_updateorder','OrdersController@update')->name('orders.update');
+	Route::resource('/admin_dashboard','OrdersController');
 
 });
 	

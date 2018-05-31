@@ -37,7 +37,7 @@
           <td>{{$value->package->name_package}}</td>
           <!-- <td>{{$value->date_using}}</td>
           <td>{{$value->date_finish}}</td>  -->       
-          <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" class="btn btn-sm btn-primary">See Detail Order</button></td>
+          <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}"class="btn btn-sm btn-primary">See Detail Order</button></td>
           <td><b>{{$value->order_status}}</b></td>
           <td>Rp . {{$value->total_payment}}</td>
           <td>
@@ -108,6 +108,18 @@
                   <input type="text" readonly disabled class="form-control" id="note" name="note" value="{{$value->note}}">
                   </div>
                 </div>
+                <div class="form-group">
+                  <label for="note" class="col-md-12 control-label">Total Payment </label>
+                  <div class="col-sm-12 detail-total_payment">                  
+                  <input type="text" readonly disabled class="form-control" id="total_payment" name="total_payment" value="{{$value->total_payment}}">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="note" class="col-md-12 control-label">List Asset : </label>
+                  <div class="col-sm-12 detail-list">                  
+                  <input type="text" readonly disabled class="form-control" id="list" name="list" value="{{$value->package->assets->implode('name_asset',', ')}}">
+                  </div>
+                </div>
               <div class="box-footer">
                 <center>
                   <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">Back</span></button></center>
@@ -150,6 +162,8 @@
     var guest = $(dom).data('guest');
     var greeting = $(dom).data('greeting');
     var note = $(dom).data('note');
+    var total_payment = $(dom).data('total_payment');
+    var list = $(dom).data('list');
     $('#name_package').val(name_package)
     $('#date_using').val(date_using)
     $('#date_finish').val(date_finish) 
@@ -158,6 +172,8 @@
     $('#guest').val(guest)
     $('#greet').val(greeting)
     $('#note').val(note)
+    $('#total_payment').val(total_payment)
+    $('#list').val(list)
     $('#modal-lihat').modal('show')
   }
   </script>

@@ -27,5 +27,4 @@ class Asset extends Model
     public function asset_order(){
         return $this->hasMany('App\AssetOrder','id_asset');
       }
-
 }

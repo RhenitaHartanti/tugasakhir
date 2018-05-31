@@ -7,7 +7,7 @@
 <section class="content-header">
      <div class="row">
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box" style="background:#E1D69C">
+          <div class="small-box" style="background:#CCB20A">
             <div class="inner">
               <h3>{{count($orders)}}</h3>
               <p>Request Order</p>
@@ -21,7 +21,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box" style="background:#E1D69C">
+          <div class="small-box" style="background:#CCB20A">
             <div class="inner">
               <h3>{{$total_asset}}<sup style="font-size: 20px"></sup></h3>
               <p>Total Asset</p>
@@ -35,7 +35,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box" style="background:#E1D69C">
+          <div class="small-box" style="background:#CCB20A">
             <div class="inner">
               <h3>{{$total_user}}</h3>
               <p>Total User</p>
@@ -49,7 +49,7 @@
           </div>
         </div>
         <div class="col-lg-3 col-xs-6">
-          <div class="small-box" style="background:#E1D69C">
+          <div class="small-box" style="background:#CCB20A">
             <div class="inner">
               <h3>{{$total_package}}</h3>
               <p>Total Package</p>
@@ -100,25 +100,24 @@
                   <td><center>{{$data->package->name_package}}</center></td>
                   <td><center>{{$data->date_using}}</center></td>
                   <td><center>{{$data->date_finish}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" class="btn btn-sm btn-primary" style="background:#A79A67">Detail Order</button></center></td>
+                  <td><center>
+                    @if($data->package->type == "default")       
+                    <button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary"  style="background:#A79A67">Detail Order</button>
+                    @else
+                    <button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary" style="background:#A79A67">Detail Order</button>
+                    <br><br>
+                    <button onclick="set(this)" data-id="{{$data->id}}" data-price="{{$data->total_payment}}" class="btn btn-sm btn-warning">Set Price</button>
+                    @endif
+                  </center></td>
                   <td>
                   <form method="POST" action="admin_dashboard/{{$data->id}}">
                     {{csrf_field()}}
-                      @if($data->package->type == "default")                    
                       <button type="submit" class="btn btn-sm btn-success confirm" name="order_status" value="accept">Accept</button>
-                      <br>
                       <input type="hidden" name="_method" value="PUT">
+                      <br><br>
                       <button type="submit" class="btn btn-sm btn-danger reject" name="order_status" value="reject">Reject</button>
                       <input type="hidden" name="_method" value="PUT">
-                      @else
-                      <button type="submit" class="btn btn-sm btn-success confirm" name="order_status" value="accept">Accept</button>
-                      <br>
-                      <input type="hidden" name="_method" value="PUT">
-                      <button type="submit" class="btn btn-sm btn-danger reject" name="order_status" value="reject">Reject</button>
-                      <input type="hidden" name="_method" value="PUT">
-                      <button onclick="set(this)" data-price="{{$data->package->price}}" class="btn btn-sm btn-warning">Set</button>
-                      @endif
-                  </form><p>                    
+                  </form>                   
                  </td>                  
                 </tr>
                 @endforeach
@@ -147,31 +146,33 @@
         </div>
       </div>
     </section>    
- <div id="modal-set" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-             <img src="img/logo12.jpg" alt="">
-            <div class="modal-header">                      
-              <center><h4 class="modal-title" id="myModalLabel">Set Price for Custom Package</h4></center>
-            </div>                        
-             <form class="form-horizontal">               
-               <div class="box-body">
-             <input type="hidden" value="waiting" name="order_status">
-               <div class="form-group">
-                  <label for="name_package" class="col-sm-5 control-label">Total Price</label>
-                  <div class="col-sm-6 detail-price">
-                  </div>
-                </div>              
-              </div>
-              <div class="box-footer">
-                <center>
-                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">OK</span></button></center>
-              </center>              
-              </div>   
-            </form>
-          </div>           
+    <div id="modal-set" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+      <div class="modal-dialog modal-md">
+       <form action="{{route('orders.update') }}" method="post">    
+        {{csrf_field()}}
+        {{method_field('PUT')}}           
+        <div class="modal-content">
+         <img src="img/logo12.jpg" alt="">
+         <div class="modal-header">                      
+          <center><h4 class="modal-title" id="myModalLabel">Set Price for Custom Package</h4></center>
+        </div>                        
+        <div class="box-body">
+         <input type="hidden" name="id_order" class="detail-id">
+         <input type="hidden" value="waiting" name="order_status">
+         <div class="form-group">
+          <label for="price" class="col-sm-4 control-label">Total Price</label>
+          <input type="text" class="col-sm-6 detail-price" name="price" value="">
         </div>
-      </div>
+      </div>              
+    </div>
+    <div class="box-footer">
+      <center>
+        <button type="submit" class="btn btn-sm btn-success">OK</button>
+      </center>              
+    </div>   
+  </form>          
+</div>
+</div>
       <div id="modal-lihat" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
@@ -225,6 +226,11 @@
                   <label for="note" class="col-sm-5 control-label">Total Payment</label>
                   <div class="col-sm-6 detail-total_payment">
                   </div>
+                </div> 
+                <div class="form-group">
+                  <label for="note" class="col-sm-5 control-label">Asset</label>
+                  <div class="col-sm-6 detail-assets">
+                  </div>
                 </div>             
               </div>
               <div class="box-footer">
@@ -253,10 +259,13 @@
     var greeting = $(dom).attr('data-greeting');
     var note = $(dom).attr('data-note');
     var total_payment = $(dom).attr('data-total_payment');
+    var assets = $(dom).attr('data-list');
     $('.detail-username').html(username)
     $('.detail-name_package').html(name_package)
     $('.detail-date_using').html(date_using)
     $('.detail-date_finish').html(date_finish)
+    $('.detail-assets').html(assets)
+
     $('.detail-theme').html(theme)
     $('.detail-place').html(place)
     $('.detail-total').html(guest)
@@ -267,8 +276,12 @@
   }
    function set(dom) {
     var price = $(dom).attr('data-price');
-    $('.detail-price').html(price)
+    var id = $(dom).attr('data-id');
+    $('.detail-id').val(id)
+    $('.detail-price').val(price)
+
     $('#modal-set').modal('show')
+  }
   </script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
   <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>

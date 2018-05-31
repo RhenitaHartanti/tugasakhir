@@ -39,7 +39,7 @@ class AdminController extends Controller
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
-       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->get();
+       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_finish','<',\Carbon\Carbon::now()->toDateString())->get();
        // return date_using('Y-m-d');
        return view('admin_profil',compact('admin','orders'));
     }
@@ -97,13 +97,7 @@ class AdminController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $admin_profil = User::find($id);
-        $admin_profil->name = $request->name;
-        $admin_profil->username = $request->username;
-        $admin_profil->email = $request->email;
-        $admin_profil->nohp = $request->nohp;
-        $admin_profil->save();
-        return redirect('admin_profiladmin');
+    //
     }
 
     /**

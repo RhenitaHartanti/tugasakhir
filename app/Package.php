@@ -8,7 +8,6 @@ class Package extends Model
 {
     protected $table='packages';
     protected $fillable=[
-        'id_asset',
     		'name_package',
         'type',
     		// 'details',

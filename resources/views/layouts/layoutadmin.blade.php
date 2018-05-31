@@ -28,7 +28,7 @@
     </a>
 
     <!-- Header Navbar: style can be found in header.less -->
-    <nav class="navbar navbar-static-top" style="background:#B5A96D">
+    <nav class="navbar navbar-static-top" style="background:#CCB20A">
       <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
         <span class="sr-only">Toggle navigation</span>
       </a>
@@ -128,12 +128,6 @@
          </a>
         </li>
         <li class="">
-          <a href="{{url('/admin_rejectorder')}}">
-            <i class="fa fa-undo"></i>
-            <span>Unprocess Order</span>
-         </a>
-        </li>
-        <li class="">
           <a href="{{url('/admin_listpackage')}}">
             <i class="fa fa-cubes"></i>
             <span>Packages Settings</span>
@@ -157,6 +151,12 @@
             <i class="fa fa-users"></i>
             <span>List Customers</span>
           </a>
+        </li>
+        <li class="">
+          <a href="{{url('/admin_rejectorder')}}">
+            <i class="fa fa-undo"></i>
+            <span>Unprocess Order</span>
+         </a>
         </li>
         <li class="">
           <a href="{{url('/admin_profil')}}">
@@ -210,9 +210,9 @@
   $(function () {
     $('#example2').DataTable({
       'paging'      : true,
-      'lengthChange': false,
+      'lengthChange': true,
       'searching'   : true,
-      'ordering'    : false,
+      'ordering'    : true,
       'info'        : true,
       'autoWidth'   : true  
     })

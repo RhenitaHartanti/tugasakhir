@@ -19,6 +19,7 @@ class CreateDetailAsetOrder extends Migration
             $table->foreign('id_order')->references('id')->on('orders')->onDelete('cascade');             
             $table->integer('id_asset')->unsigned();
             $table->foreign('id_asset')->references('id')->on('assets')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

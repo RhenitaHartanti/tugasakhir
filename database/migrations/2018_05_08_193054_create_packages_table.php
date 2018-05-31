@@ -20,6 +20,7 @@ class CreatePackagesTable extends Migration
             // $table->string('details');
             $table->bigInteger('price');
             $table->integer('kuota');
+            $table->enum('status',[1,0])->default(1); 
             $table->timestamps();
         });
     }
