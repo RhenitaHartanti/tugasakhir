@@ -38,19 +38,20 @@ class CategoryAssetController extends Controller
      */
     public function store(Request $request)
     {
+        Validator::make($request->all(), [
+        'name_category' => 'required',
+        'details' => 'required',])->validate();
         
-        // $id = CategoryAsset::orderBy('id','desc')->first();
+        $categoryAsset = CategoryAsset::create($request->except(['_token']));
+        return redirect('admin_categoryasset');
+    }
+    // $id = CategoryAsset::orderBy('id','desc')->first();
         // if($id->count()==0){
         //     $request['formatted_id']='CT001';
         // }else{
         //     $id = (strlen($id->id)>3)?$id->id+1:(strlen($id->id)==2)?'0'.($id->id+1):'00'.($id->id+1);
         //     $request['formatted_id']='CT'.$id;
         // })
-        $categoryAsset = CategoryAsset::create($request->except(['_token']));
-        return redirect('admin_categoryasset');    
-
-    }
-
     /**
      * Display the specified resource.
      *
@@ -97,11 +98,12 @@ class CategoryAssetController extends Controller
      */
     public function destroy($id)
     {
-       // $categoryAsset =CategoryAsset::find($id);
-       // $categoryAsset->delete();
-       // return view('admin_categoryasset')->with('success','Procuct has ben delete');
-        $categoryAsset=DB::table('category_assets')->where('id',$id)
-        ->update(['status'=>'0']);
-         return back();
+    $categoryAsset=DB::table('category_assets')->where('id',$id)
+    ->update(['status'=>'0']);
+     return back();
     }
 }
+
+// $categoryAsset =CategoryAsset::find($id);
+       // $categoryAsset->delete();
+       // return view('admin_categoryasset')->with('success','Procuct has ben delete');

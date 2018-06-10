@@ -19,17 +19,18 @@ class CreateOrdersTable extends Migration
             $table->foreign('id_user')->references('id')->on('users')->onDelete('cascade');
             $table->integer('id_package')->unsigned();
             $table->foreign('id_package')->references('id')->on('packages')->onDelete('cascade');
-            $table->date('date_using');
-            $table->time('date_finish');
+            $table->datetime('date_using');
+            $table->datetime('date_finish');
             $table->string('theme');
             $table->string('place');
             $table->integer('total_guests');
             $table->string('greeting');
             $table->string('note');
-            $table->bigInteger('price')
+            $table->bigInteger('price');
             $table->enum('order_status',['waiting','accept','reject','expired']);
             $table->char('booking_code');            
             $table->enum('payment_status',['none','paid off']);
+            $table->bigInteger('total_payment');
             $table->timestamps();
         });
     }

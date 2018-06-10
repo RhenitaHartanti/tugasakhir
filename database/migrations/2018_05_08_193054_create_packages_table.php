@@ -15,9 +15,8 @@ class CreatePackagesTable extends Migration
     {
         Schema::create('packages', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('formatted_id');
+            $table->enum('type',['default','custom']);
             $table->string('name_package');
-            // $table->string('details');
             $table->bigInteger('price');
             $table->integer('kuota');
             $table->enum('status',[1,0])->default(1); 

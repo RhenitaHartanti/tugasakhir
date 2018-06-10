@@ -1,13 +1,11 @@
 <?php
 
 namespace App\Mail;
-
 use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\User;
-
 class SendMail extends Mailable
 {
     use Queueable, SerializesModels;
@@ -29,7 +27,6 @@ class SendMail extends Mailable
        $this->date_using=$order->date_using;
        $this->booking_code=$order->booking_code;
     }
-
     /**
      * Build the message.
      *

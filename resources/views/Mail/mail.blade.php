@@ -24,7 +24,8 @@
 <table>
 	<tr><td><h4><b>Your order has been rejected</b></h4><br></td></tr>
 	<tr><td><b>For date: {{ $date_using }}</b></td></tr>
-	<tr><td>Please contact admin in 085 743 680 646 (sms/whatsapp) for more information. Thank you</td></tr>
+	<tr><td>Please contact admin in 085 743 680 646 (sms/whatsapp) for
+	more information. Thank you</td></tr>
 	<tr>
 	<td>Precious Party Planner
 	</td>

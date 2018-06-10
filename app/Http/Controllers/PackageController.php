@@ -43,18 +43,9 @@ class PackageController extends Controller
      */
     public function store(Request $request)
     {
-        // $package = $this->validate(request(), [
-        //     'name_package' => 'required|max:50',
-        //     'quota' => 'required|numeric|max:5',
-        //     'details' => 'required|max:50',
-        //     'price' => 'required|numeric|max:5',
-        // ]);
         $package = Package::create($request->except(['_token']));     
         $package->assets()->sync($request->id_asset);
         return redirect('admin_listpackage'); 
-        
-        // Package::create($package);
-        // return back()->with('success', 'Data paket berhasil didimpan');
     }
 
     /**
@@ -87,17 +78,12 @@ class PackageController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
-    {
-        // return $request->all();
-        $admin_listpackage = Package::find($id);
-        // $admin_listpackage->name_package = $request->name_package;
-        // $admin_listpackage->details = $request->details;
-        // $admin_listpackage->price = $request->price;
-        // $admin_listpackage->kuota = $request->kuota;       
-        // $admin_listpackage->save();
-        $admin_listpackage->update($request->except(['_token','_method','id','id_asset']));
-        $admin_listpackage->assets()->sync($request->id_asset);
-        return redirect('admin_listpackage');
+    {     
+      $admin_listpackage = Package::find($id);
+      $admin_listpackage->update($request->
+        except(['_token','_method','id','id_asset']));
+      $admin_listpackage->assets()->sync($request->id_asset);
+      return redirect('admin_listpackage');
     }
 
     /**

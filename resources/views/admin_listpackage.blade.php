@@ -159,7 +159,7 @@
                     </button>
                       <h4 class="modal-title" id="myModalLabel"><center>Add Data Package</center></h4>
                   </div>
-                     <form class="form-horizontal" action="{{url('admin_listpackage')}}" method="post">
+                     <form class="form-horizontal" action="{{url('admin_listpackage')}}" method="post" data-toggle="validator" role="form">
                       {{csrf_field()}}
                       <div class="modal-body">
                         <br>
@@ -167,41 +167,29 @@
                             <div class="form-group">
                               <label for="name_package" class="col-sm-3 control-label">Package Name</label>
                               <div class="col-sm-8">
-                              <input type="text" class="form-control" id="name_package" name="name_package">
+                              <input type="text" class="form-control" id="name_package" name="name_package" data-error="name package column is required" required><div class="help-block with-errors"></div>
                             </div>
                             </div>
                            </div>
-                        <br>
-                        <!-- <div class="row">
-                          <div class="form-group">
-                            <label for="details" class="col-sm-3 control-label">Details</label>
-                            <div class="col-sm-8">
-                              <input type="text" class="form-control" id="details" name="details">
-                            </div>
-                         </div>
-                        </div>
-                        <br> -->
                         <div class="row">
                           <div class="form-group">
                             <label for="price" class="col-sm-3 control-label">Price</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="price" name="price">
+                             <input type="text" class="form-control" id="price" name="price" data-error="price column is required" required><div class="help-block with-errors"></div>
                             </div>
                          </div>
                         </div>
-                        <br>
                         <div class="row">
                           <div class="form-group">
                             <label for="kuota" class="col-sm-3 control-label">Kuota</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="kuota" name="kuota">
+                              <input type="text" class="form-control" id="kuota" name="kuota" data-error="kuota column is required" required><div class="help-block with-errors"></div>
                             </div>
                           </div>
                         </div>
-                        <br>
                         <div class="row">
                           <div class="form-group">
-                            <label for="id_asset" class="col-sm-3 control-label">Asset</label>
+                            <label for="id_asset" class="col-sm-3 control-label">Detail Items :</label>
                             <div class="col-sm-9">
                               <select class="form-control js-aset" name="id_asset[]" multiple="multiple" style="width:88%">
                                   @foreach($assets as $value)

@@ -102,9 +102,9 @@
                   <td><center>{{$data->date_finish}}</center></td>
                   <td><center>
                     @if($data->package->type == "default")       
-                    <button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary"  style="background:#A79A67">Detail Order</button>
+                    <button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary">Detail Order</button>
                     @else
-                    <button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary" style="background:#A79A67">Detail Order</button>
+                    <button onclick="detailOrder(this)" data-username="{{$data->user->name}}" data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary">Detail Order</button>
                     <br><br>
                     <button onclick="set(this)" data-id="{{$data->id}}" data-price="{{$data->total_payment}}" class="btn btn-sm btn-warning">Set Price</button>
                     @endif
@@ -148,7 +148,7 @@
     </section>    
     <div id="modal-set" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
       <div class="modal-dialog modal-md">
-       <form action="{{route('orders.update') }}" method="post">    
+       <form action="{{route('orders.update') }}" method="post" data-toggle="validator" role="form">    
         {{csrf_field()}}
         {{method_field('PUT')}}           
         <div class="modal-content">
@@ -161,7 +161,8 @@
          <input type="hidden" value="waiting" name="order_status">
          <div class="form-group">
           <label for="price" class="col-sm-4 control-label">Total Price</label>
-          <input type="text" class="col-sm-6 detail-price" name="price" value="">
+          <!-- <input type="text" class="col-sm-6 detail-price" name="price" value=""> -->
+          <input type="text" class="col-sm-6 detail-price" name="price" value="" data-error="price column is required" required><br><div class="help-block with-errors"></div>
         </div>
       </div>              
     </div>

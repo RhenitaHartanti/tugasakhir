@@ -7,6 +7,7 @@ use App\Post;
 use App\Package;
 use App\Order;
 use App\Asset;
+use Carbon\Carbon;
 
 
 class HomeController extends Controller
@@ -52,6 +53,16 @@ class HomeController extends Controller
         // if !auth::check
         return view('landingpage_formpackage',compact('package','id'));
     }
+    public function cek_tanggal($tanggal){
+        $tanggal = date('Y-m-d H:i:s', strtotime(($tanggal)));
+        $cek=Order::where('date_using',$tanggal)->first();
+        if ($cek==null){
+            return 'true';
+        }
+        else{
+            return 'false';
+        }
+    }
     public function landingpage_formpackagecustom()
     { 
         $assets = Asset::all();
@@ -61,6 +72,10 @@ class HomeController extends Controller
      public function landingpage_profil()
     {
         return view('landingpage_profil');
+    }
+    public function landingpage_tagihan()
+    {
+        return view('landingpage_tagihan');
     }
     // public function getContact(){
     //     return view('');

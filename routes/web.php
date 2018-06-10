@@ -25,6 +25,7 @@ Route::middleware('customer')->group(function(){
 	Route::get('/landingpage_formbayar/{id}', 'OrderCustomerController@loadFormBayar');
 	Route::post('/uploadBukti', 'OrderCustomerController@upload');
 	Route::post('/changePassword/{id}','ProfilUserController@changePassword');
+	Route::get('/cektanggal/{tanggal}','HomeController@cek_tanggal');
 });
 
 Route::get('/', function () {

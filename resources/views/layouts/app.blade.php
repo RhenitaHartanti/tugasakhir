@@ -17,9 +17,9 @@
     <!-- Custom styles for this template -->
     <link href="{{asset('css/agency.min.css')}}" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="{{asset('vendor/sweetalert/sweetalert.css')}}">
-    <link rel="stylesheet" href="{{asset('css/bootstrapValidator.min.css')}}">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css" />
+<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css" /> -->
   <link rel="stylesheet" href="{{asset('asset/bower_components/select2/dist/css/select2.min.css')}}">
+  <link rel="stylesheet" href="{{asset('vendor/datetimepicker/bootstrap-datetimepicker.min.css')}}">
 
 
     @yield('header')
@@ -29,7 +29,7 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg navbar-dark fixed-top" id="navbar">
       <div class="container">
-        <a class="navbar-brand js-scroll-trigger" href="#page-top">Precious Party Planner</a>
+        <a class="navbar-brand js-scroll-trigger" href="#page-top"><img src="{{asset('landingpage/img/g.png')}}" height="80px;" width="105px;"> Precious Party Planner</a>
         <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
           Menu
           <i class="fa fa-bars"></i>
@@ -86,12 +86,13 @@
   </footer>
 <script src="{{asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
 <script src="{{asset('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
+<script src="{{asset('js/validator.js')}}"></script>
 
 <script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
-<script src="{{asset('js/bootstrapvalidator.min.js')}}"></script>
 <script src="{{asset('js/moment.js')}}"></script>
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js"></script>
+<!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js"></script> -->
 <script src="{{asset('js/transition.min.js')}}"></script>
+<script src="{{asset('vendor/datetimepicker/bootstrap-datetimepicker.min.js')}}"></script>
 
 
   @yield('js')<!--  sek di import seko view ki kudu nang ngisor dewe,wedine nek file js e nang ngisor e

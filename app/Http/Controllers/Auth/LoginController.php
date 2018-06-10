@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-
+use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
@@ -32,6 +32,7 @@ class LoginController extends Controller
     // protected $redirectTo = '/home';
      protected function authenticated(Request $request, $user)
     {
+               
         if($user->level=='admin'){
             return redirect('/admin_dashboard');
         }

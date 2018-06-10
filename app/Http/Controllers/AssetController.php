@@ -15,13 +15,10 @@ class AssetController extends Controller
      */
     public function index()
     {
-        $categoryAsset=CategoryAsset::all();
-        //$asset=Asset::select(['assets.*','category_assets.name_category'])->join('category_assets','category_assets.id','=','assets.id_category_asset')->get()->where('status',1);
+        $categoryAsset=CategoryAsset::all();       
         $asset = Asset::where('status',1)->get();
-        // dd($asset->asset_order);
         return view('admin_asset')        
-        ->with('assets',$asset)
-        ->with('category_assets',$categoryAsset);
+        ->with('assets',$asset)->with('category_assets',$categoryAsset);
     }
 
     /**
@@ -31,8 +28,8 @@ class AssetController extends Controller
      */
     public function create()
     {
-         Asset::create($request->except(['_token']));
-             return redirect('admin_asset');   
+      Asset::create($request->except(['_token']));
+       return redirect('admin_asset');   
     }
 
     /**
@@ -43,19 +40,8 @@ class AssetController extends Controller
      */
     public function store(Request $request)
     {
-         Asset::create($request->except(['_token']));
-             
-        // $categoryAsset = $request->input('id_category_asset');
-        // $id = Asset::orderBy('id','desc')->first();
-        // if($id->count()==0){
-        //     $request['formatted_id']='AST001';
-        // }else{
-        //     $id = (strlen($id->id)>3)?$id->id+1:(strlen($id->id)==2)?'0'.($id->id+1):'00'.($id->id+1);
-        //     $request['formatted_id']='AST'.$id;
-        // }
-        // $categoryAsset->category_asset()->attach($category_asset);
-
-             return redirect('admin_asset');  
+      Asset::create($request->except(['_token']));
+       return redirect('admin_asset');  
     }
 
     /**
@@ -92,7 +78,6 @@ class AssetController extends Controller
         $admin_asset=Asset::find($id);
         $admin_asset->id_category_asset = $request->id_category_asset;
         $admin_asset->name_asset = $request->name_asset;
-        // $admin_asset->price = $request->price;
         $admin_asset->total = $request->total;        
         $admin_asset->details = $request->details;
         $admin_asset->save();
@@ -107,11 +92,12 @@ class AssetController extends Controller
      */
     public function destroy($id)
     {
-        // $asset =Asset::find($id);
-        // $asset->delete();
-        // return redirect('admin_asset')->with('success','Procuct has ben delete');
-        $asset=DB::table('assets')->where('id',$id)
-        ->update(['status'=>'0']);
-         return back();
+    $asset=DB::table('assets')->where('id',$id)->update(['status'=>'0']);
+     return back();
     }
 }
+
+
+// $asset =Asset::find($id);
+        // $asset->delete();
+        // return redirect('admin_asset')->with('success','Procuct has ben delete');

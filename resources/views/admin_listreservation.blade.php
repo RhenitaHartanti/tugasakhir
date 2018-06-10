@@ -23,7 +23,7 @@
                   <th><center>Start Date</center></th>
                   <th><center>Finish Date</center></th>
                   <th><center>Detail Order</center></th>  
-                  <th><center>Update Order</center></th>                 
+                  <!-- <th><center>Update Order</center></th>  -->                
                   <th><center>Detail Payment</center></th>
                   <th><center>Payment Status</center></th>
                   </tr>
@@ -46,8 +46,8 @@
                   <td><center>{{$data->package->name_package}}</center></td>
                   <td><center>{{$data->date_using}}</center></td>
                   <td><center>{{$data->date_finish}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$data->user->name}}"  data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',' , ')}}" class="btn btn-sm btn-primary" style="background:#A79A67">Detail Order</button></center></td>
-                  <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$data->id}}">Update Order</button></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$data->user->name}}"  data-name_package="{{$data->package->name_package}}" data-date_using="{{$data->date_using}}" data-date_finish="{{$data->date_finish}}" data-theme="{{$data->theme}}" data-place="{{$data->place}}" data-guest="{{$data->total_guests}}" data-greeting="{{$data->greeting}}" data-note="{{$data->note}}" data-total_payment="{{$data->total_payment}}" data-list="{{$data->package->assets->implode('name_asset',' , ')}}" class="btn btn-sm btn-primary">Detail Order</button></center></td>
+                  <!-- <td><button class="btn btn-sm btn-primary" data-toggle="modal" data-target="#modal-ubah{{$data->id}}">Update Order</button></td> -->
                   <td>
                     <center><a href="{{URL::to('admin_konfirmasipembayaran/'.$data->id)}}">
                       @if($data->payment == null)
@@ -137,7 +137,7 @@
         </div>
       </div>
 
-      <div id="modal-ubah{{$data->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
+      <!-- <div id="modal-ubah{{$data->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
             <div class="modal-header">
@@ -186,7 +186,7 @@
                     </form>
                     </div>
                   </div>
-                </div>
+                </div> -->
 </section>
 </section>
 </div>

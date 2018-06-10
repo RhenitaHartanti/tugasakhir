@@ -44,7 +44,7 @@
             @if($value->order_status!='accept')
             -
             @else
-            <button class="btn btn-sm btn-primary"><a href="{{URL::to('landingpage_formbayar/'.$value->id)}}">payment proces</a></button></td>
+            <button class="btn btn-sm btn-primary"><a href="{{URL::to('landingpage_formbayar/'.$value->id)}}" style="color:#ffffff;">confirm</a></button></td>
             @endif
           <td><b>{{$value->payment_status}}</b></td>     
         </tr>   
@@ -54,77 +54,78 @@
 </section>   
       @foreach($order as $value) 
       <div id="modal-lihat" class="modal fade bs-example-modal-md" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-dialog modal-md">
-          <div class="modal-content">
-             <img src="img/logo6.jpg" alt="">
+       <div class="modal-dialog modal-md">
+        <div class="modal-content">
+         <img src="img/logo6.jpg" alt="">
+          <br>
+           <form class="form-horizontal" method="POST" action="">
+            <div class="box-body">
+             <div class="form-group">
+              <label for="date_using" class="col-md-12 control-label">Name Package : </label>
+               <div class="col-sm-12 detail-name_package">            
+                <input type="text" readonly disabled class="form-control" id="name_package" name="name_package" value="{{$value->name_package}}">                  
+                </div>
+                </div>
+              <div class="form-group">
+                label for="date_using" class="col-md-12 control-label">Date Using : </label>
+                <div class="col-sm-12 detail-theme">            
+                <input type="text" readonly disabled class="form-control" id="date_using" name="date_using" value="{{$value->date_using}}">                  
+                </div>
+              </div>
+              <div class="form-group">
+               <label for="time_using" class="col-md-12 control-label">Date Finish : </label>
+                <div class="col-sm-12 date_finish">            
+                  <input type="text" readonly disabled class="form-control" id="date_finish" name="date_finish" value="{{$value->date_finish}}">                  
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="theme" class="col-md-12 control-label">Theme (Custom theme or character) : </label>
+                <div class="col-sm-12 detail-theme">            
+                 <input type="text" readonly disabled class="form-control" id="theme" name="theme" value="{{$value->theme}}">
+                </div>
+              </div>
+              <div class="form-group">
+               <label for="place" class="col-md-12 control-label">Place (include the complete address) : </label>
+                <div class="col-sm-12 detail-place">                  
+                 <input type="text" readonly disabled class="form-control" id="place" name="place" value="{{$value->place}}">
+                </div>
+              </div>
+              <div class="form-group">
+               <label for="guest" class="col-md-12 control-label">Total Guests : </label>
+                <div class="col-sm-12 detail-total">                  
+                 <input type="text" readonly disabled class="form-control" id="guest" name="total_guests">
+                </div>
+              </div>
+              <div class="form-group">
+               <label for="greeting" class="col-md-12 control-label">Greeting : </label>
+                <div class="col-sm-12 detail-greet">                  
+                 <input type="text" readonly disabled class="form-control" id="greeting" name="greeting"
+                   value="{{$value->greeting}}">
+                </div>
+              </div>
+              <div class="form-group">
+               <label for="note" class="col-md-12 control-label">Note : </label>
+                <div class="col-sm-12 detail-note">                  
+                 <input type="text" readonly disabled class="form-control" id="note" name="note" value="{{$value->note}}">
+                </div>
+              </div>
+             <div class="form-group">
+              <label for="note" class="col-md-12 control-label">Total Payment </label>
+               <div class="col-sm-12 detail-total_payment">                  
+                <input type="text" readonly disabled class="form-control" id="total_payment" name="total_payment" value="{{$value->total_payment}}">
+               </div>
+             </div>
+             <div class="form-group">
+              <label for="note" class="col-md-12 control-label">List Asset : </label>
+               <div class="col-sm-12 detail-list">                  
+                <input type="text" readonly disabled class="form-control" id="list" name="list" value="{{$value->package->assets->implode('name_asset',', ')}}">
+                </div>
+            </div>
+            <div class="box-footer">
+            <center>
+             <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">Back</span></button></center>
+            </center>
              <br>
-             <form class="form-horizontal" method="POST" action="">
-              <div class="box-body">
-                 <div class="form-group">
-                  <label for="date_using" class="col-md-12 control-label">Name Package : </label>
-                  <div class="col-sm-12 detail-name_package">            
-                    <input type="text" readonly disabled class="form-control" id="name_package" name="name_package" value="{{$value->name_package}}">                  
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="date_using" class="col-md-12 control-label">Date Using : </label>
-                  <div class="col-sm-12 detail-theme">            
-                    <input type="text" readonly disabled class="form-control" id="date_using" name="date_using" value="{{$value->date_using}}">                  
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="time_using" class="col-md-12 control-label">Date Finish : </label>
-                  <div class="col-sm-12 date_finish">            
-                    <input type="text" readonly disabled class="form-control" id="date_finish" name="date_finish" value="{{$value->date_finish}}">                  
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="theme" class="col-md-12 control-label">Theme (Custom theme or character) : </label>
-                  <div class="col-sm-12 detail-theme">            
-                    <input type="text" readonly disabled class="form-control" id="theme" name="theme" value="{{$value->theme}}">                  
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="place" class="col-md-12 control-label">Place (include the complete address) : </label>
-                  <div class="col-sm-12 detail-place">                  
-                  <input type="text" readonly disabled class="form-control" id="place" name="place" value="{{$value->place}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="guest" class="col-md-12 control-label">Total Guests : </label>
-                  <div class="col-sm-12 detail-total">                  
-                  <input type="text" readonly disabled class="form-control" id="guest" name="total_guests">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="greeting" class="col-md-12 control-label">Greeting : </label>
-                  <div class="col-sm-12 detail-greet">                  
-                  <input type="text" readonly disabled class="form-control" id="greeting" name="greeting" value="{{$value->greeting}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="note" class="col-md-12 control-label">Note : </label>
-                  <div class="col-sm-12 detail-note">                  
-                  <input type="text" readonly disabled class="form-control" id="note" name="note" value="{{$value->note}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="note" class="col-md-12 control-label">Total Payment </label>
-                  <div class="col-sm-12 detail-total_payment">                  
-                  <input type="text" readonly disabled class="form-control" id="total_payment" name="total_payment" value="{{$value->total_payment}}">
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="note" class="col-md-12 control-label">List Asset : </label>
-                  <div class="col-sm-12 detail-list">                  
-                  <input type="text" readonly disabled class="form-control" id="list" name="list" value="{{$value->package->assets->implode('name_asset',', ')}}">
-                  </div>
-                </div>
-              <div class="box-footer">
-                <center>
-                  <center><button class="btn btn-sm btn-success" class="close" data-dismiss="modal"><span aria-hidden="true">Back</span></button></center>
-              </center>
-              <br>
               </div>
             </form>
           </div>

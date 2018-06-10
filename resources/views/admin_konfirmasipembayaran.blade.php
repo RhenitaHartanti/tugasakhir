@@ -28,7 +28,7 @@
                     <label for="attach" class="col-sm-4 control-label">File Attachment :</label><br>
                       <div class="col-sm-6 detail-attachment">
                         <div class="col-sm-8"><br>
-                          <img src="{{url('/img/buktitransfer/'.$payments->attachment)}}" style="width: 350px; height:350px;">
+                          <img src="{{url('/img/buktitransfer/'.$payments->attachment)}}" style="width: 450px; height:450px;">
                           </div>
                       </div>
                   </div>

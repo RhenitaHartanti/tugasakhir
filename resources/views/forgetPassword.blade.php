@@ -7,7 +7,7 @@
             <div class="login">
                 <img class="img-fluid" src="img/logo17.jpg" alt="">
                   <div class="card-body">
-                    <form method="POST" action="/resetPassword">
+                    <form method="POST" action="/resetPassword" data-toggle="validator" role="form">
                         @csrf
                         <p>
                          <center> Enter your email here . . .</center></u></a>
@@ -16,7 +16,7 @@
                             <label for="username" class="col-sm-2 col-form-label text-md-right">{{ __('Email') }}</label>
 
                             <div class="col-md-9">
-                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                                <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" @if ($errors->has('email')) style="border-color:#DF0101" @endif>
 
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback">
@@ -42,10 +42,10 @@
                                <center> <button type="submit" class="btn btn-primary">
                                     {{ __('Send') }}
                                 </button></center>
-                                <p>
+                                <br>
                                 
                             </div>
-
+                            <div class="form-group" style="font-size:12px"> * After you send your email, please check you email inbox. You will get a code for login, and then you can change it with your new password.
                         </div>
                     </div>
                     </form>

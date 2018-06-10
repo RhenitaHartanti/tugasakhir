@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="{{('asset/bower_components/font-awesome/css/font-awesome.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{('asset/bower_components/Ionicons/css/ionicons.min.css')}}">
+
+
   <link rel="stylesheet" href="{{('asset/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css')}}">  
   
   <link rel="stylesheet" href="{{('asset/dist/css/AdminLTE.min.css')}}">
@@ -181,7 +183,7 @@
   </aside>
 <body>
     <div id="app">   
-    @include('Flash.flash-message')   
+    
         <main class="py-4">
             <?php echo $__env->yieldContent('content'); ?>
         </main>
@@ -197,6 +199,8 @@
 <script src="{{asset('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
 <script src="{{asset('asset/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
 <script src="{{asset('asset/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js')}}"></script>
+<script src="{{asset('js/validator.js')}}"></script>
+
 <script src="{{asset('asset/bower_components/jquery-slimscroll/jquery.slimscroll.min.js')}}"></script>
 <script src="{{asset('asset/bower_components/fastclick/lib/fastclick.js')}}"></script>
 <script src="{{asset('asset/dist/js/adminlte.min.js')}}"></script>

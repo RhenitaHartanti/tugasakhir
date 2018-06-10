@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
+use Carbon\Carbon;
+
 
 class ListReservationController extends Controller
 {
@@ -12,10 +14,10 @@ class ListReservationController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {        
-        // $orders=Order::join('packages','packages.id','=','orders.id_package')
-        // ->where('order_status', 'accept')->get();
-        $orders=Order::with('package','user','payment')->where('order_status', 'accept')->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->orderBy('updated_at','desc')->get();
+    {   
+     $orders=Order::with('package','user','payment')->where('order_status', 'accept')->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->orderBy('updated_at','desc')->get();      
+      return view('admin_listreservation',compact('orders'));
+    }
         // bisa pake or where gt atau pake where in bedanya ?
         // klo pake or where gitu ya artinya dimana order statusnya di acc atau order statusnya di reject
         // klo pake where in itu dimana yg order statusnya ada di dalam sebuah list
@@ -24,9 +26,8 @@ class ListReservationController extends Controller
         // sama aja sih kaya or where
         // wwkwkwkwk okke okke shapp
         // dd($orders[2]->payment);
-        return view('admin_listreservation',compact('orders'));
-    }
-
+    // $orders=Order::join('packages','packages.id','=','orders.id_package')
+        // ->where('order_status', 'accept')->get();
     /**
      * Show the form for creating a new resource.
      *

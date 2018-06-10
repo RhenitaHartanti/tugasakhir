@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use App\User;
 use Auth;
 class ProfilAdminController extends Controller
 {
@@ -14,10 +15,8 @@ class ProfilAdminController extends Controller
      */
     public function index()
     {
-       // $admin=Admin::where('id',Auth::user()->id)->where('level','admin');
         $data = Admin::find(auth()->user()->id);
-       return view('admin_profiladmin',compact('data'));
-       
+       return view('admin_profiladmin',compact('data'));       
     }
 
     /**

@@ -126,23 +126,22 @@
               </button>
               <h4 class="modal-title" id="myModalLabel"><center>Add Data Category</center></h4>
             </div>
-              <form action="{{url('admin_categoryasset')}}"  method="post" class="form-horizontal">
+              <form action="{{url('admin_categoryasset')}}"  method="post" class="form-horizontal" data-toggle="validator" role="form">
               {{csrf_field()}}
               <div class="modal-body">                
                         <div class="row">
                         <div class="form-group">          
                             <label for="name_category" class="col-sm-3 control-label">Name Category</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="name_category" name="name_category">
+                              <input type="text" class="form-control" id="name_category" name="name_category" data-error="name category is required" required><div class="help-block with-errors"></div>
                             </div>
                         </div>
                         </div>
-                        <br>
                         <div class="row">
                         <div class="form-group">
                             <label for="details" class="col-sm-3 control-label">Details</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="details" name="details">
+                              <input type="text" class="form-control" id="details" name="details" >
                             </div>
                         </div>
                         </div>
@@ -158,12 +157,13 @@
       </div> 
 @endsection
 @section('js')
+
 <script type="text/javascript">
   $('.delete').on("click",function(destroy){
     swal({
   title: "Delete Success",
   text: "Your Data is success to Delete",
-  icon: "warning",
+  icon: "success",
   buttons: false,
   dangerMode: true,
 })

@@ -9,12 +9,9 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use App\Payment;
 use App\Order;
 use App\User;
-
-
 class PaymentMail extends Mailable
 {
     use Queueable, SerializesModels;
-
     /**
      * Create a new message instance.
      *

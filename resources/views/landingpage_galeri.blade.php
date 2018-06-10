@@ -8,6 +8,7 @@
         <div class="row">
           <div class="col-lg-12 text-center">
             <br>
+            <br>
             <h2 class="section-heading text-uppercase">Gallery</h2>
             <h3 class="section-subheading text-muted">You can  see our documentation event and package in this gallery</h3>
           </div>

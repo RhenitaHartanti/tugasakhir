@@ -8,7 +8,7 @@ class Order extends Model
 {
     protected $table='orders';
     protected $fillable=[
-    	'id','id_user','id_package','date_using','date_finish','theme','place','total_guests','greeting','note','price','order_status','total_payment','booking_code','payment_status',
+    	'id','id_user','id_package','date_using','theme','place','total_guests','greeting','note','price','order_status','total_payment','booking_code','payment_status',
     ];
     protected $guarded=[];
     // public $timestamps=false;

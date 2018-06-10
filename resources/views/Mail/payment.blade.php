@@ -11,7 +11,7 @@ Precious Party Planner
 @else
 <center><div>
 <h4><b>Payment Confirmation</b></h4><br>
-Sorry your payment process is <b>fail</b>.Please check your booking code or the total payment that you send<br>
+Sorry your payment process is <b>fail</b>.Please check your booking code or the totalpayment that you send<br>
 And you can contact the admin for more information <br>
 Thankyou,<br>
 Precious Party Planner

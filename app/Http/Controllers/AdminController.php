@@ -1,3 +1,4 @@
+
 <?php
 
 namespace App\Http\Controllers;
@@ -39,8 +40,9 @@ class AdminController extends Controller
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
-       $orders=Order::with('package','user')->where('payment_status', 'paid off')->whereDate('date_finish','<',\Carbon\Carbon::now()->toDateString())->get();
-       // return date_using('Y-m-d');
+       $orders=Order::with('package','user')
+       ->where('payment_status', 'paid off')
+       ->whereDate('date_finish','<',\Carbon\Carbon::now()->toDateString())->get();
        return view('admin_profil',compact('admin','orders'));
     }
 
@@ -112,24 +114,25 @@ class AdminController extends Controller
     //     $admin->delete();
     //     return redirect('admin_setting')->with('success','Procuct has ben delete');
     // }
+    //fungsi yang digunakan untuk mengubah status dan mengirimkan konfirmasi penerimaan
+    // pemesanan serta pengiriman kode booking.
     public function status(Request $request,$id)
     {
         $status=Order::find($id); 
         $status->order_status = $request->order_status;
-        /*dd($status);*/
-        if($request->order_status=='accept'){
-           do{ $random_str=$this->random_str(6);
+          if($request->order_status=='accept'){
+            do{ $random_str=$this->random_str(6);
               $booking_code=Order::where('booking_code',$random_str)->count();
-           }
+            }
             while($booking_code!=0);
             $status->booking_code=$random_str;
-        }
+          }
         $status->save();
         $user=User::find($status->id_user);
         Mail::to($user->email)->send(new \App\Mail\SendMail($status));
-        if($status->order_status=='accept'){          
-          return redirect('admin_listreservation');
-        }
+          if($status->order_status=='accept'){          
+            return redirect('admin_listreservation');
+          }
           return redirect('admin_rejectorder');
     }
 
@@ -138,14 +141,14 @@ class AdminController extends Controller
 
         $statusbayar=Order::find($id); 
         $statusbayar->payment_status = $request->payment_status;
-        /*dd($status);*/
         if($request->payment_status=='paid off'){
         $statusbayar->save();
     }
         return redirect('admin_listreservation');
     }
-
-    public function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+  //
+    public function random_str($length,
+        $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
   {
     $pieces = [];
     $max = mb_strlen($keyspace, '8bit') - 1;
@@ -156,15 +159,14 @@ class AdminController extends Controller
   }
     public function changePassword(Request $request,$id)
     {
-        $ubahPassAdmin=User::find($id);
-        // return $ubahPassAdmin;
-        if (Hash::check($request->passLama, $ubahPassAdmin->password)){
-            if ($request->passBaru == $request->confirmPass){
-             $ubahPassAdmin->password = bcrypt($request->confirmPass);
-                $ubahPassAdmin->save();
-                return back();
+      $ubahPassAdmin=User::find($id);
+       if (Hash::check($request->passLama, $ubahPassAdmin->password)){
+         if ($request->passBaru == $request->confirmPass){
+           $ubahPassAdmin->password = bcrypt($request->confirmPass);
+             $ubahPassAdmin->save();
+              return back();
             }
-          }            
+        }            
     }
   //   public function changePassword()
   // {
@@ -189,6 +191,7 @@ class AdminController extends Controller
         ->with('payments',$payments)
         ->with('id',$id);  
    }
+   //fungsi yang digunakan untuk melakukan pengecekan 
    public function accBookingCode(Request $request,$id)
     {
         $payment=Payment::find($id);
@@ -206,40 +209,7 @@ class AdminController extends Controller
         if($package->assets->count()>0){
              $statusPayment->assets()->sync($package->assets);
          }
-          // session_start();
-          //   if (isset($_SESSION['access_token']) && $_SESSION['access_token'] && $_SESSION['access_token']['created'] + $_SESSION['access_token']['expires_in'] > Carbon::now()->timestamp) {
-          //       $this->client->setAccessToken($_SESSION['access_token']);
-          //       $service = new Google_Service_Calendar($this->client);
-          //       $calendarId = 'primary';
-          //       $event = new Google_Service_Calendar_Event([
-          //           'summary' => $statusPayment->id_package,
-          //           'location' => $statusPayment->place,
-          //           /*'start' => ['dateTime' => Carbon::parse(($request->start_date), 'Asia/Jakarta')->toRfc3339String()],
-          //           'end' => ['dateTime' => Carbon::parse(($request->end_date), 'Asia/Jakarta')->toRfc3339String()],*/
-          //           'start' => array(
-          //               'date' => $statusPayment->date_using,
-          //               'dateTime' => Carbon::parse($statusPayment->time_using)->toRfc3339String(),
-          //               'timeZone' => 'Asia/Jakarta',
-          //           ),
-          //           'reminders' => array(
-          //               'useDefault' => FALSE,
-          //               'overrides' => array(
-          //                   array('method' => 'email', 'minutes' => 60),
-          //                   array('method' => 'popup', 'minutes' => 60),
-          //                   array('method' => 'email', 'minutes' => 24 * 60),
-          //                   array('method' => 'popup', 'minutes' => 24 * 60),
-          //               ),
-          //           ),
-          //       ]);
-
-          //       $optParams = Array(
-          //           'sendNotifications' => true,
-          //       );
-
-          //       $results = $service->events->insert($calendarId, $event, $optParams);
-          //   } else {
-          //       return redirect()->route('oauthCallback');
-          //   }
+        
         return redirect('admin_listreservation')->with('Booking Code cocok');
     }
 

@@ -45,7 +45,7 @@
                   <td><center>{{$value->package->name_package}}</center></td>
                   <td><center>{{$value->date_using}}</center></td>
                   <td><center>{{$value->date_finish}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$value->user->name}}" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary"  style="background:#A79A67">Detail Order</button></center></td>
+                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$value->user->name}}" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary">Detail Order</button></center></td>
                   <td><center>{{$value->payment_status}}</center></td>
                 </tr>  
                  @endforeach                 

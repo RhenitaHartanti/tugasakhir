@@ -2,49 +2,53 @@
 @section('header')
 @endsection
 @section('content')
+<br>
+<br>
  <div class="container">
     <div class="col-lg-12"> 
       <div class="row">        
-        <div class="formorder">    
-         <label><h5><b>You Order the Custom Package </label></b></h5><p>
-          <form action="{{route('orders.store')}}" method="post">     
+       <div class="login4">
+        <div class="row">
+         <img src="img/logo9.jpg" alt="">
+        </div>     
+        <br>
+         <label><h6><b>You Order the Custom Package </label></b></h6><p>
+          <form action="{{route('orders.store')}}" method="post" data-toggle="validator" role="form">     
             @csrf
               <input type="hidden" value="custom" name="type">
               <label>Your Name Package</label>
             <div class="form-group has-feedback">              
-               <input type="text" class="form-control" name="name_package" required="">
+              <input type="text" class="form-control" id="name_package" name="name_package" data-error="name package  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
             </div>
-              <label>Start Time</label>
+              <label>Date & Time</label>
             <div class="form-group has-feedback">              
-               <input type="text" class="datetimepicker-input" id="datetimepicker" data-toggle="datetimepicker" data-target="#datetimepicker" name="date_using" required=""> 
+               <input type="text" class="form-control datetimepicker start-time" name="date_using" required=""> 
             </div>
-              <label>End Time</label>
+              <!-- <label>End Time</label>
             <div class="form-group has-feedback">
               <input type="text" class="datetimepicker-input" id="datetimepicker1" data-toggle="datetimepicker" data-target="#datetimepicker1" name="date_finish" required=""> 
-            </div>
+            </div> -->
               <label>Theme (Color and Custom Caracter)</label>
             <div class="form-group has-feedback">
-             <input type="text" class="form-control" name="theme" required="">
+             <input type="text" class="form-control" id="theme" name="theme" data-error="theme  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
             </div>
            <label>Total Guests</label>
           <div class="form-group has-feedback">
-            <input type="number" class="form-control" name="total_guests" value="0" min="0" required="">
+            <input type="number" class="form-control" id="total_guests" name="total_guests" value="0" min="0" data-error="total guests is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;">
           </div>
+        </div>
           <label>Place (Input the name and address properly)</label>
           <div class="form-group">
-            <textarea class="form-control" rows="2" name="place" required=""></textarea>
+            <input type="text" class="form-control" rows="5" name="place" required="" id="place" data-error="place  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
            </div>
-      </div>
-      <div class="col-lg-6"> 
-       <div class="formorder">      
-            
-            <label>Greeting</label>
+      
+       <label>Greeting</label>
           <div class="form-group">
-            <textarea class="form-control" rows="3" name="greeting" required=""></textarea>
+            <textarea class="form-control" rows="2" name="greeting" required=""></textarea>
           </div>
            <label>Note (You can input your request dan note)</label>
           <div class="form-group">
-            <textarea class="form-control" rows="5" name="note" required=""></textarea>
+            <textarea class="form-control" rows="2" name="note" required=""></textarea>
           </div>
           <label>List Asset</label>
             <div class="form-group">
@@ -53,13 +57,12 @@
                   <option value="{{$value->id}}">{{$value->name_asset}}</option>
                     @endforeach
                 </select>
-              </div>
-            
+              </div>            
              <input type="hidden" value="-" name="booking_code">           
              <input type="hidden" value="waiting" name="order_status">
              <input type="hidden" value="none" name="payment_status">
          <div class="row">
-          <center><button type="submit" style="background:#CCB20A">Send Order</button></center>
+          <center><button type="submit" style="background:#CCB20A; margin-left: 150px;">Send Order</button></center>
           </div>   
       </form>
     </div>
@@ -68,13 +71,33 @@
 @endsection 
 @section('js')
 <script type="text/javascript">
-   $('.js-aset').select2();
-  $('.datetimepicker').datetimepicker({
-    // format: 'Y-m-d','HH-ii',
-    // autoclose: true,
-    startDate: '+3d'
-  });
-  
-  // alert()
+  $('.js-aset').select2();
+  $(function () {
+                $('.datetimepicker').datetimepicker({
+                  format:'YYYY-MM-DD hh:mm A',
+                  minDate:moment().add(7,'d').format('YYYY-MM-DD'),
+                  sideBySide: true
+                });
+                $('.start-time').on('dp.change', function(e){
+                 // $('.end-time').data("DateTimePicker").minDate(moment(e.date).add(3,'h')).maxDate(moment(e.date).add(10,'h'))
+
+                 $("#submit").attr("disabled", true);
+                 $.ajax({url: "/cektanggal/" + $(this).val(), success: function(result){
+                   if(result=='false'){
+                     swal({
+                      title: "Opps Sorry",
+                      text: "The date has been chooseen",
+                      icon: "error",
+                      buttons: false,
+                      dangerMode: true,
+                      })
+                    }
+                    else{
+                       $("#submit").attr("disabled", false);
+                    }
+                  }})
+                });
+            
+          })
 </script>
 @endsection

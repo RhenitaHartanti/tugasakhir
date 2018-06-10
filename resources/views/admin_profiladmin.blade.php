@@ -11,7 +11,7 @@
         	<div class="box box-warning" >
         		<h4><center>DATA PROFIL</center></h4> 
             <div class="box-body box-profile">
-              <center><img class="img-fluid" src="img/team/3.jpg" width="200px" height="200px" alt=""></center><br>            	
+              <!-- <center><img class="img-fluid" src="img/team/3.jpg" width="200px" height="200px" alt=""></center> --><br>            	
              <h3 class="profile-username text-center"> {{$data->name}}</h3>
 
               <p class="text-muted text-center">level as {{$data->level}}</p>
@@ -43,7 +43,7 @@
           </ul>
           <div class="tab-content">
             <div class="active tab-pane" id="ubahData">
-              <form action="{{route('admin.update', [$data->id]) }}" method="POST">
+              <form action="{{route('admin_profiladmin.update', [$data->id]) }}" method="POST">
                         {{csrf_field()}}
                         {{method_field('PUT')}}
                       <div class="modal-body">

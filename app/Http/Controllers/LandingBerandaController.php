@@ -17,18 +17,18 @@ class LandingBerandaController extends Controller
      */
     public function index()
     {
-        $booking=Order::with('package','user','payment')->where('order_status', 'accept')->get();
-        $event = $booking->map(function($row){
-            $starttime= \Carbon\Carbon::parse($row->date_using.' '.$row->time_using);
-            $endtime= \Carbon\Carbon::parse($row->date_using.' '.$row->time_finish);
-            return \Calendar::event($row->package->name_package.' '.$row->user->username,false,$starttime,$endtime);
-        });
-        $calendar = \Calendar::addEvents($event) //add an array with addEvents
-            ->setOptions([ //set fullcalendar options
-                'firstDay' => 1
-            ]);
-        return view('landingpage_beranda',compact('booking','calendar'));
-    }
+$booking=Order::with('package','user','payment')->where('order_status', 'accept')->get();
+$event = $booking->map(function($row){
+$starttime= \Carbon\Carbon::parse($row->date_using.' '.$row->time_using);
+$endtime= \Carbon\Carbon::parse($row->date_using.' '.$row->time_finish);
+return \Calendar::event($row->package->name_package.' '.$row->user->username,false,$starttime,$endtime);
+});
+$calendar = \Calendar::addEvents($event) //add an array with addEvents
+->setOptions([ //set fullcalendar options
+    'firstDay' => 1
+]);
+return view('landingpage_beranda',compact('booking','calendar'));
+}
 
     /**
      * Show the form for creating a new resource.

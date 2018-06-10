@@ -158,30 +158,22 @@
               </button>
               <h4 class="modal-title" id="myModalLabel"><center>Add Data Asset</center></h4>
             </div>
-              <form action="{{url('admin_asset')}}"  method="post" class="form-horizontal">
+              <form action="{{url('admin_asset')}}"  method="post" class="form-horizontal" data-toggle="validator" role="form">
               {{csrf_field()}}
               <div class="modal-body">                                 
                         <div class="row">
                         <div class="form-group">          
                             <label for="name_asset" class="col-sm-4 control-label">Name Asset</label>
                             <div class="col-sm-7">
-                              <input type="text" class="form-control" id="name_asset" name="name_asset">
+                              <input type="text" class="form-control" id="name_asset" name="name_asset" data-error="name asset column is required" required><div class="help-block with-errors"></div>
                             </div>
                         </div>
                         </div>
-                        <!-- <div class="row">
-                        <div class="form-group">
-                            <label for="price" class="col-sm-4 control-label">Price</label>
-                            <div class="col-sm-7">
-                              <input type="text" class="form-control" id="price" name="price">
-                            </div>
-                        </div>
-                        </div> -->
-                         <div class="row">
+                        <div class="row">
                         <div class="form-group">
                             <label for="total" class="col-sm-4 control-label">Total</label>
                             <div class="col-sm-7">
-                              <input type="text" class="form-control" id="total" name="total">
+                              <input type="text" class="form-control" id="total" name="total" data-error="total asset column is required" required><div class="help-block with-errors"></div>
                             </div>
                         </div>
                         </div>
