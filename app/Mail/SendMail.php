@@ -18,6 +18,7 @@ class SendMail extends Mailable
     public $date_order;
     public $date_using;
     public $booking_code;
+    public $total_payment;
     public $status_order;
     public function __construct( $order)
     {
@@ -26,6 +27,8 @@ class SendMail extends Mailable
        $this->date_order=$order->date_order;
        $this->date_using=$order->date_using;
        $this->booking_code=$order->booking_code;
+       $this->total_payment=$order->total_payment;
+
     }
     /**
      * Build the message.

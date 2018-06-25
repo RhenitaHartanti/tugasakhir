@@ -18,7 +18,8 @@ class CustomerController extends Controller
     // {{Auth::users()->name}}
     public function index()
     {
-        $customer=User::where('level','!=' , 'admin')->get();
+        $customer=User::where('level','!=','admin')
+        ->where('status','active')->get();
         return view('admin_listcustomer',compact('customer'));
     }
 

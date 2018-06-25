@@ -23,7 +23,7 @@ class OrdersController extends Controller
     public function index()
     {       
         Order::whereDate('date_using','<',date('Y-m-d'))
-        ->doesntHave('payment')->update(['order_status'=>'expired']);       
+        ->doesntHave('payment')->update(['order_status'=>'expired']); 
             $orders=Order::with('package','user')->where('order_status', 'waiting')
                 ->orderBy('created_at','desc')->get();        
             $total_user = \App\User::count();

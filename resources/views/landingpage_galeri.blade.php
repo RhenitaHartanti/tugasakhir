@@ -1,14 +1,14 @@
 @extends('layouts.app')
+@section('header')
   <link rel="stylesheet" href="{{('dashboard/css/bootstrap.min.css')}}">
-  <link rel="stylesheet" href="{{('/css/magnific.css')}}">
-  <link rel="stylesheet" href="{{('/css/style.css')}}">
-    @section('content')
+  <link rel="stylesheet" href="{{('dashboard/css/magnific.css')}}">
+  <link rel="stylesheet" href="{{('dashboard/css/style.css')}}">
+@endsection
+@section('content')
    <section class="bg-light" id="services">
       <div class="container">
         <div class="row">
           <div class="col-lg-12 text-center">
-            <br>
-            <br>
             <h2 class="section-heading text-uppercase">Gallery</h2>
             <h3 class="section-subheading text-muted">You can  see our documentation event and package in this gallery</h3>
           </div>
@@ -33,11 +33,9 @@
             </a>          
           </div>
           <div class="container">
-
-              <div id="instafeed" class="row gallery"><p></div>
-
+              <div id="instafeed" class="row gallery"></div>
+              <br>
           </div>
-          <br>
        </section>
 
 @endsection

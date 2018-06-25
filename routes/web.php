@@ -38,6 +38,7 @@ Route::get('/forgetPassword',function(){
 		return view('forgetPassword');
 	    });
 Route::post('/resetPassword', 'Auth\LoginController@resetPassword'); 
+Route::get('/confirm_registration/{id}','ConfirmRegisterController@index');
 
 Auth::routes(); 
 //ini mksudnya apa ? kmu kan dulu pake php artisan make auth kan, nah ini tuh list route yg dari situ, oooh, aku masukin ke miidleware ga ? gausah , itu biarin diluar aja okke

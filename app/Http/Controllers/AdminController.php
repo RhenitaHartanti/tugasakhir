@@ -1,13 +1,11 @@
-
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use App\Admin;
 use App\Order;
 use App\Payment;
-use Illuminate\Support\Facades\DB;
 use Hash;
 use Mail;
 use App\User; 
@@ -24,25 +22,12 @@ class AdminController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-
-// protected $client;
-
-//     public function __construct()
-//     {
-//         $client = new Google_Client();
-//         $client->setAuthConfig('client_secret.json');
-//         $client->addScope(Google_Service_Calendar::CALENDAR);
-
-//         $guzzleClient = new \GuzzleHttp\Client(array('curl' => array(CURLOPT_SSL_VERIFYPEER => false)));
-//         $client->setHttpClient($guzzleClient);
-//         $this->client = $client;
-//     }
     public function index()
     {
        $admin=Admin::where('level','!=' , 'customer')->get();
        $orders=Order::with('package','user')
        ->where('payment_status', 'paid off')
-       ->whereDate('date_finish','<',\Carbon\Carbon::now()->toDateString())->get();
+       ->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->get();
        return view('admin_profil',compact('admin','orders'));
     }
 

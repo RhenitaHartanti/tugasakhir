@@ -8,6 +8,8 @@
     <title>Precious Party Planner</title>
     <!-- Bootstrap core CSS -->
     <link href="{{asset('vendor/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{asset('asset/bower_components/bootstrap/dist/css/carousel.css')}}" rel="stylesheet">
+    
     <!-- Custom fonts for this template -->
     <link href="{{asset('vendor/font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
@@ -20,7 +22,6 @@
 <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/css/tempusdominus-bootstrap-4.min.css" /> -->
   <link rel="stylesheet" href="{{asset('asset/bower_components/select2/dist/css/select2.min.css')}}">
   <link rel="stylesheet" href="{{asset('vendor/datetimepicker/bootstrap-datetimepicker.min.css')}}">
-
 
     @yield('header')
   </head>
@@ -85,9 +86,9 @@
      </div>
   </footer>
 <script src="{{asset('asset/bower_components/jquery/dist/jquery.min.js')}}"></script>
+<script src="{{asset('asset/bower_components/bootstrap/dist/js/bootstrap.js')}}"></script>
 <script src="{{asset('asset/bower_components/select2/dist/js/select2.min.js')}}"></script>
 <script src="{{asset('js/validator.js')}}"></script>
-
 <script src="{{asset('vendor/sweetalert/sweetalert.min.js')}}"></script>
 <script src="{{asset('js/moment.js')}}"></script>
 <!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/tempusdominus-bootstrap-4/5.0.0-alpha18/js/tempusdominus-bootstrap-4.min.js"></script> -->

@@ -10,15 +10,16 @@
        <div class="login4">
         <div class="row">
          <img src="img/logo9.jpg" alt="">
-        </div>     
+        </div>  
         <br>
-         <label><h6><b>You Order the Custom Package </label></b></h6><p>
+         <center><label><h6><b>Form Reservation Event Package Custom</b></h6></label></center>
+         <br>   
           <form action="{{route('orders.store')}}" method="post" data-toggle="validator" role="form">     
             @csrf
               <input type="hidden" value="custom" name="type">
               <label>Your Name Package</label>
             <div class="form-group has-feedback">              
-              <input type="text" class="form-control" id="name_package" name="name_package" data-error="name package  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
+              <input type="text" class="form-control" id="name_package" name="name_package" data-error="name package  is required" placeholder="Anna birthday party" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
             </div>
               <label>Date & Time</label>
             <div class="form-group has-feedback">              
@@ -30,7 +31,7 @@
             </div> -->
               <label>Theme (Color and Custom Caracter)</label>
             <div class="form-group has-feedback">
-             <input type="text" class="form-control" id="theme" name="theme" data-error="theme  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
+             <input type="text" class="form-control" id="theme" name="theme" data-error="theme  is required" required placeholder="example : gold or disney"><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
             </div>
            <label>Total Guests</label>
           <div class="form-group has-feedback">
@@ -39,16 +40,16 @@
         </div>
           <label>Place (Input the name and address properly)</label>
           <div class="form-group">
-            <input type="text" class="form-control" rows="5" name="place" required="" id="place" data-error="place  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
-           </div>
-      
+            <textarea class="form-control" rows="3" name="place" required="" id="place" data-error="place  is required" required placeholder="example : Secret Garden, Jl. Amri Yahya No. 2, Pakuncen, Wirobrajan, Pakuncen, Wirobrajan, Kota Yogyakarta "></textarea>
+            <div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
+          </div>      
        <label>Greeting</label>
           <div class="form-group">
             <textarea class="form-control" rows="2" name="greeting" required=""></textarea>
           </div>
            <label>Note (You can input your request dan note)</label>
           <div class="form-group">
-            <textarea class="form-control" rows="2" name="note" required=""></textarea>
+            <textarea class="form-control" rows="3" name="note" required=""></textarea>
           </div>
           <label>List Asset</label>
             <div class="form-group">

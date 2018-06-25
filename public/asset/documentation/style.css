@@ -117,12 +117,16 @@ pre.prettyprint {
   background: white;
   font-family: Menlo, 'Bitstream Vera Sans Mono', 'DejaVu Sans Mono', Monaco, Consolas, monospace;
   font-size: 12px;
-  line-height: 1.5;
+  line-height: 3.5;
   border: 1px solid #dedede!important;
   padding: 10px;
   max-height: 300px;
   width: auto;
   overflow: auto!important;
+  margin-right: 10px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  margin-left: 10px; 
 }
 pre.prettyprint > code {
   width: auto;
@@ -233,8 +237,8 @@ pre.prettyprint > code {
 }
 /* Specify class=linenums on a pre to get line numbering */
 ol.linenums {
-  margin-top: 0;
-  margin-bottom: 0;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 /* IE indents via margin-left */

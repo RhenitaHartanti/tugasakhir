@@ -140,7 +140,7 @@
                 <tr>
                   <td>{{$id}}</td>  
                   <td>{{$value->date_using}}</td>        
-                  <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-payment_status="{{$value->payment_status}}" class="btn btn-sm btn-primary">See Detail Order</button></td>    
+                  <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-payment_status="{{$value->payment_status}}" class="btn btn-sm btn-primary">See Detail Order</button></td>    
                 </tr>   
                 @endforeach  
              </table>  
@@ -155,7 +155,7 @@
              <form class="form-horizontal" method="POST" action="">
               <div class="box-body">
                  <div class="form-group">
-                  <label for="date_using" class="col-md-12 control-label">Name Package : </label>
+                  <label for="name_package" class="col-md-12 control-label">Name Package : </label>
                   <div class="col-sm-12 detail-name_package">            
                     <input type="text" readonly disabled class="form-control" id="name_package" name="name_package" value="{{$value->name_package}}">                  
                   </div>
@@ -164,12 +164,6 @@
                   <label for="date_using" class="col-md-12 control-label">Date Using : </label>
                   <div class="col-sm-12 detail-theme">            
                     <input type="text" readonly disabled class="form-control" id="date_using" name="date_using" value="{{$value->date_using}}">                  
-                  </div>
-                </div>
-                <div class="form-group">
-                  <label for="time_using" class="col-md-12 control-label">Date Finish : </label>
-                  <div class="col-sm-12 date_finish">            
-                    <input type="text" readonly disabled class="form-control" id="date_finish" name="date_finish" value="{{$value->date_finish}}">                  
                   </div>
                 </div>
                 <div class="form-group">
@@ -252,7 +246,6 @@
   function detailOrder(dom) {
     var name_package = $(dom).data('name_package');
     var date_using = $(dom).data('date_using');
-    var date_finish = $(dom).data('date_finish'); 
     var theme = $(dom).data('theme');
     var place = $(dom).data('place');
     var guest = $(dom).data('guest');
@@ -262,7 +255,6 @@
     var payment_status = $(dom).data('payment_status');
     $('#name_package').val(name_package)
     $('#date_using').val(date_using)
-    $('#date_finish').val(date_finish) 
     $('#theme').val(theme)
     $('#place').val(place)
     $('#guest').val(guest)
@@ -272,5 +264,14 @@
     $('#payment_status').val(payment_status)
     $('#modal-lihat').modal('show')
   }
+  $('.update').on("click",function(update){
+  swal({
+  title: "Success",
+  text: "You Update the Package",
+  icon: "success",
+  buttons: false,
+  dangerMode: false,
+})
+  });
   </script>
 @endsection

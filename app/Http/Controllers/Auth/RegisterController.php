@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Mail;
 
 class RegisterController extends Controller
 {
@@ -57,6 +58,7 @@ class RegisterController extends Controller
             'password' => 'required|string|min:6|confirmed',
             'nohp' => 'required|string|max:13',
         ]);
+
     }
 
     /**
@@ -72,9 +74,9 @@ class RegisterController extends Controller
             'username'=> $data['username'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-            'nohp'=> $data['nohp'],
-          
+            'nohp'=> $data['nohp'],          
         ]);
+
     }
 
     public function register(Request $request)
@@ -82,7 +84,8 @@ class RegisterController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all())));
-
+        $register=User::where('email',$request->email)->first();                 
+        Mail::to($register->email)->send(new \App\Mail\Register($register)); 
         return $this->registered($request, $user)
                         ?: redirect($this->redirectPath());
     }

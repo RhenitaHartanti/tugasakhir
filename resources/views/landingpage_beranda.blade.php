@@ -5,7 +5,35 @@
 @section('content')
 <br>
 <br>
-    <header class="masthead" style="background-color:rgba(0,0,0,0);">
+    <header class="" style="background-color:rgba(0,0,0,0);">
+
+<div id="myCarousel" class="carousel slide" data-ride="carousel">
+        <!-- Carousel indicators -->
+        <ol class="carousel-indicators">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+            <li data-target="#myCarousel" data-slide-to="2"></li>
+        </ol>   
+        <!-- Wrapper for carousel items -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="img/b3.jpg" alt="First Slide">
+            </div>
+            <div class="item">
+                <img src="img/b9.jpg" alt="Second Slide">
+            </div>
+            <div class="item">
+                <img src="img/b12.jpg"  alt="Third Slide">                
+            </div>
+        </div>
+        <!-- Carousel controls -->
+        <a class="carousel-control left" href="#myCarousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left" style="color:#ffffff"></span>
+        </a>
+        <a class="carousel-control right" href="#myCarousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right" style="color:#ffffff"></span>
+        </a>
+    </div>
       <div class="container">
         <!-- <div class="col-lg-12" style="background-color:rgba(0,0,0,0.1); height:200px; width:2500px; border-radius: 10px;position: relative;top: 40vh; padding-top:30px; alignment-baseline:left; font-size:30px; color:#fffff; font-family:cursive;">
           We design with heart, we decor with passion, we give you the best<br>We are Precious Party Planner.
@@ -14,7 +42,7 @@
             </div> -->
       </div>
     </header> 
-  <section class="col-lg-12 text-center" id="services" style=" background-color:#000000; font-family:font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style:italic; font-size:20px; color:#B8860B;">We design with heart, we decor with passion, we give you the best. We are Precious Party Planner<br>
+  <section class="col-lg-12 text-center" id="services" style=" background-color:#000000; font-family:font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style:italic; font-size:20px; color:#B8860B;">make your moment be more precious with us<br>
     <div class="col-lg-12 text-center" style="font-family:font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style:bold; font-size:16px; color:#B8860B;">
     Event Planner Reservation Website
     </div>
@@ -87,7 +115,7 @@
                   <img class="img-fluid" src="img/ig.png" alt=""><span> @mglpartyplanner</span>
                 </div>
                 <div class="form-group">
-                  <img class="img-fluid" src="img/fb.png" alt=""><span> @mglpartyplanner</span>
+                  <img class="img-fluid" src="img/fb.png" alt=""><span> Precious Party Planner</span>
                 </div>
                  <div class="form-group">
                   <img class="img-fluid" src="img/li.png" alt=""><span> @mglpartyplanner</span>
@@ -113,8 +141,15 @@
 
 @endsection
 @section('js')
-<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.9.0/moment.min.js"></script>
     <script src="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.2.7/fullcalendar.min.js"></script>
     {!! $calendar->script() !!}
+    <script type="text/javascript">
+    $(document).ready(function(){
+     $("#myCarousel").carousel({
+         interval : 1500;
+     });
+});
+    </script>
+
 @endsection

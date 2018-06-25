@@ -84,7 +84,6 @@ class ListReservationController extends Controller
         $admin_listreservation->user->name = $request->name;
         $admin_listreservation->package->name_package = $request->name_package;
         $admin_listreservation->date_using = $request->date_using;        
-        $admin_listreservation->date_finish = $request->date_finish;
         $admin_listreservation->theme = $request->theme;
         $admin_listreservation->place = $request->place;
         $admin_listreservation->total_guests = $request->total_guests;

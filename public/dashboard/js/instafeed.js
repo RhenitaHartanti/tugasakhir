@@ -8,7 +8,7 @@
                     target: "instafeed",
                     get: "popular",
                     resolution: "thumbnail",
-                    sortBy: "none",
+                    sortBy: "date",
                     links: !0,
                     mock: !1,
                     useHttp: !1

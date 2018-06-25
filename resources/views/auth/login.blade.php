@@ -42,7 +42,7 @@
             <div class="col-md-12">
              <div class="form-group row mb-0">
               <div class="col-md-8 offset-md-4">
-               <button type="submit" class="btn btn-primary">{{ __('Login') }}</button><br>
+               <button type="submit" class="btn btn-primary">{{ __('Login') }}</button><br><br>
                  <a href="{{url('/forgetPassword')}}"><u>Forget your password ?</a>                               
               </div>
              </div>
@@ -55,4 +55,19 @@
    </div>
 @endsection
 @section('js')
+<script type="text/javascript">
+ $(document).ready(function(){
+    @if ($errors->has('active'))
+  swal({
+  title: "Oopps Sorry",
+  text: "You haven't done the registration confirmation. Please check your email",
+  icon: "error",
+  buttons: false,
+  dangerMode: false,
+})
+ @endif
+  
+})
+ 
+</script>
 @endsection

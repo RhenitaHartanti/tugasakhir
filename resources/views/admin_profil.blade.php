@@ -21,8 +21,8 @@
                   <th><center>Id Order</center></th>
                   <th><center>Username</center></th>
                   <th><center>Name Package</center></th>
-                  <th><center>Start Date</center></th>
-                  <th><center>Date Finish</center></th>
+                  <th><center>Date Using</center></th>
+                  <th><center>Time Using</center></th>
                   <th><center>Detail Order</center></th>                  
                   <th><center>Payment Status</center></th>
                   </tr>
@@ -43,9 +43,9 @@
                   <td><center>{{$id}}</center></td>
                   <td><center>{{$value->user->username}}</center></td>
                   <td><center>{{$value->package->name_package}}</center></td>
-                  <td><center>{{$value->date_using}}</center></td>
-                  <td><center>{{$value->date_finish}}</center></td>
-                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$value->user->name}}" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary">Detail Order</button></center></td>
+                  <td><center>{{date('d-F-Y', strtotime ($value->date_using))}}</center></td> 
+                  <td><center>{{date('H:i', strtotime ($value->date_using))}}</center></td> 
+                  <td><center> <center><button onclick="detailOrder(this)" data-username="{{$value->user->name}}" data-name_package="{{$value->package->name_package}}" data-price="Rp. {{number_format($value->price,2,',','.')}}" data-kuota="{{$value->package->kuota}}" data-date_using="{{$value->date_using}}"  data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="Rp. {{number_format($value->total_payment,2,',','.')}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}" class="btn btn-sm btn-primary">Detail Order</button></center></td>
                   <td><center>{{$value->payment_status}}</center></td>
                 </tr>  
                  @endforeach                 
@@ -71,17 +71,22 @@
                   <label for="name_package" class="col-sm-5 control-label">Name Package</label>
                   <div class="col-sm-6 detail-name_package">
                   </div>
-                </div>      
+                </div>
+                <div class="form-group">
+                  <label for="price" class="col-sm-5 control-label">Price</label>
+                  <div class="col-sm-6 detail-price">
+                  </div>
+                </div>
+                <div class="form-group">
+                  <label for="kuota" class="col-sm-5 control-label">Kuota</label>
+                  <div class="col-sm-6 detail-kuota">
+                  </div>
+                </div>                           
                <div class="form-group">
                   <label for="date_using" class="col-sm-5 control-label">Start Date</label>
                   <div class="col-sm-6 detail-date_using">
                   </div>
                 </div>        
-                <div class="form-group">
-                  <label for="time_using" class="col-sm-5 control-label">Finish Date</label>
-                  <div class="col-sm-6 detail-date_finish">
-                  </div>
-                </div>
                 <div class="form-group">
                   <label for="place" class="col-sm-5 control-label">Place (include the address)</label>
                   <div class="col-sm-6 detail-place">
@@ -131,8 +136,9 @@
   function detailOrder(dom) {
     var username = $(dom).attr('data-username');
     var name_package = $(dom).attr('data-name_package');
+    var price = $(dom).attr('data-price');    
+    var kuota = $(dom).attr('data-kuota'); 
     var date_using = $(dom).attr('data-date_using');
-    var date_finish = $(dom).attr('data-date_finish');
     var theme = $(dom).attr('data-theme');
     var place = $(dom).attr('data-place');
     var guest = $(dom).attr('data-guest');
@@ -142,10 +148,10 @@
     var assets = $(dom).attr('data-list');
     $('.detail-username').html(username)
     $('.detail-name_package').html(name_package)
+    $('.detail-price').html(price)    
+    $('.detail-kuota').html(kuota)
     $('.detail-date_using').html(date_using)
-    $('.detail-date_finish').html(date_finish)
     $('.detail-assets').html(assets)
-
     $('.detail-theme').html(theme)
     $('.detail-place').html(place)
     $('.detail-total').html(guest)

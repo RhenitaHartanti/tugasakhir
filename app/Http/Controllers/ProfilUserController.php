@@ -24,7 +24,7 @@ class ProfilUserController extends Controller
        $orders=Order::with('package','user')
        ->where('id_user',auth()->user()->id)
        ->where('payment_status', '=','paid off')
-       ->where('date_finish','<', date('Y-m-d'))->get();
+       ->where('date_using','<', date('Y-m-d'))->get();
        return view('landingpage_profil',compact('data','orders'));
     }
     //wes dijajal

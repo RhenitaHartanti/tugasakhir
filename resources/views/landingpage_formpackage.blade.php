@@ -12,7 +12,7 @@
          <img src="{{asset('landingpage/img/logo9.jpg')}}">
          </div>
          <br>
-         <label><h7><b>You Order : </label>  {{$package->name_package}}</b></h7><p>
+         <center><label><h6><b>Form Reservation {{$package->name_package}}</b></h6></label></center>
           <form action="{{route('orders.store')}}" method="post" name="order" data-toggle="validator" role="form">     
             @csrf
               <input type="hidden" value="{{$id}}" name="id_package">
@@ -26,7 +26,7 @@
             </div> -->
               <label>Theme (Color and Custom Caracter)</label>
             <div class="form-group">
-             <input type="text" class="form-control" id="theme" name="theme" data-error="theme  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
+             <input type="text" class="form-control" id="theme" name="theme" data-error="theme  is required" required placeholder="example : gold or disney"><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
             </div>
               * Quota for this package is <b>{{$package->kuota}} people </b>. If you want to add the guest, you have to add Rp 100.000/person 
             <br>
@@ -37,15 +37,16 @@
           </div>             
             <label>Place (Input the name and address properly)</label>
           <div class="form-group">
-            <input type="text" class="form-control" rows="5" name="place" required="" id="place" data-error="place  is required" required><div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
+            <textarea class="form-control" rows="3" name="place" required="" id="place" data-error="place  is required" required placeholder="example : Secret Garden, Jl. Amri Yahya No. 2, Pakuncen, Wirobrajan, Pakuncen, Wirobrajan, Kota Yogyakarta"></textarea>
+            <div class="help-block with-errors" style="color:#DF0101; font-size:14px;"></div>
           </div>            
             <label>Greeting</label>
           <div class="form-group">
-            <textarea class="form-control" rows="1" name="greeting"></textarea>
+            <textarea class="form-control" rows="2" name="greeting"></textarea>
           </div>
            <label>Note (You can input your request dan note)</label>
           <div class="form-group">
-            <textarea class="form-control" rows="5" name="note" required=""></textarea>
+            <textarea class="form-control" rows="3" name="note" required=""></textarea>
           </div>
              <input type="hidden" value="{{$package->price}}" name="price">
              <input type="hidden" value="-" name="booking_code">           

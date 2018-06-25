@@ -17,11 +17,12 @@
                 <thead>
                   <tr>
                     <th><center>Id Customer</center></th>
-                    <th><center>Level</center></th>
                     <th><center>Name</center></th>
                     <th><center>Username</center></th>
                     <th><center>Email</center></th>
                     <th><center>No HP</center></th>
+                    <th><center>Registered Date</center></th>
+                    <th><center>Status</center></th>
                   </tr>
                   </thead>
                   <tbody>
@@ -37,12 +38,13 @@
                       }
                     @endphp
                     <tr>                                  
-                      <td><center>{{$id}}</center></td>
-                      <td><center>{{$data->level}}</center></td>
+                      <td><center>{{$id}}</center></td>                      
                       <td>{{$data->name}}</td>
                       <td>{{$data->username}}</td>
                       <td>{{$data->email}}</td>
                       <td>{{$data->nohp}}</td>
+                      <td><center>{{date('d-F-Y', strtotime ($data->created_at))}}</center></td>
+                      <td><center><div class="label center bg-green" style="font-size:12px">{{$data->status}}</div></center></td>
                     </tr>   
                     @endforeach
                   </tbody>                           

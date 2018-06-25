@@ -3,17 +3,19 @@
 <br>
 <table>
 	<tr>
-		<td><h4><b>Your order has been confirmed</b></h4></td>
+		<td><h4><b>Your order has been confirmed for</b></h4></td>
 	</tr>
 	<tr>
-		<td><b>For date: {{ $date_using }}</b></td>
+		<td><b>Date and Time: {{ $date_using }}</b></td>
 	</tr>
 	<tr>
-		<td>With booking code: <b>{{ $booking_code }}</b></td>
+		<td><b>Booking code: {{ $booking_code }}</b></td>
 	</tr>
 	<tr>
-		<td>Please doing the payment process immediately , Thankyou	
-		</td>
+		<td><b>Total Payment : Rp. {{number_format($total_payment,2,',','.')}}</b></td>
+	</tr>
+	<tr>
+		<td>To follow up your order, please do the payment by sending the needful expense to : BNI #0296-35-1450 on behalf of Debora</td>
 	</tr>
 	<tr>
 		<td>Precious Party Planner</td>

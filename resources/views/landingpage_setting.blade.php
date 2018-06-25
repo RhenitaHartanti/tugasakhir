@@ -11,9 +11,8 @@
         <tr>
           <th>ID Order</th>
           <th>Date Order</th>
-          <th>Name Package</th>
-         <!--  <th>Start Date</th>
-          <th>Finish Date</th>    -->      
+          <th>Time Order</th>
+          <th>Name Package</th>    
           <th>Detail Order</th>
           <th>Order Status</th>   
           <th>Total Payment</th>    
@@ -33,13 +32,12 @@
                 @endphp    
         <tr>
           <td>{{$id}}</td>
-          <td>{{$value->created_at}}</td>          
-          <td>{{$value->package->name_package}}</td>
-          <!-- <td>{{$value->date_using}}</td>
-          <td>{{$value->date_finish}}</td>  -->       
-          <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-date_finish="{{$value->date_finish}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}"class="btn btn-sm btn-primary">See Detail Order</button></td>
+          <td>{{date('d-F-Y', strtotime ($value->created_at))}}</td> 
+          <td>{{date('H:i', strtotime ($value->created_at))}}</td> 
+          <td>{{$value->package->name_package}}</td>     
+          <td><button onclick="detailOrder(this)" data-name_package="{{$value->package->name_package}}" data-date_using="{{$value->date_using}}" data-theme="{{$value->theme}}" data-place="{{$value->place}}" data-guest="{{$value->package->kuota+$value->total_guests}}" data-greeting="{{$value->greeting}}" data-note="{{$value->note}}" data-total_payment="{{$value->total_payment}}" data-list="{{$value->package->assets->implode('name_asset',', ')}}"class="btn btn-sm btn-primary">See Detail Order</button></td>
           <td><b>{{$value->order_status}}</b></td>
-          <td>Rp . {{$value->total_payment}}</td>
+          <td>Rp. {{number_format($value->total_payment,2,',','.')}}</td>
           <td>
             @if($value->order_status!='accept')
             -
@@ -61,21 +59,15 @@
            <form class="form-horizontal" method="POST" action="">
             <div class="box-body">
              <div class="form-group">
-              <label for="date_using" class="col-md-12 control-label">Name Package : </label>
+              <label for="name_package" class="col-md-12 control-label">Name Package : </label>
                <div class="col-sm-12 detail-name_package">            
                 <input type="text" readonly disabled class="form-control" id="name_package" name="name_package" value="{{$value->name_package}}">                  
                 </div>
                 </div>
               <div class="form-group">
-                label for="date_using" class="col-md-12 control-label">Date Using : </label>
+                <label for="date_using" class="col-md-12 control-label">Date Using : </label>
                 <div class="col-sm-12 detail-theme">            
                 <input type="text" readonly disabled class="form-control" id="date_using" name="date_using" value="{{$value->date_using}}">                  
-                </div>
-              </div>
-              <div class="form-group">
-               <label for="time_using" class="col-md-12 control-label">Date Finish : </label>
-                <div class="col-sm-12 date_finish">            
-                  <input type="text" readonly disabled class="form-control" id="date_finish" name="date_finish" value="{{$value->date_finish}}">                  
                 </div>
               </div>
               <div class="form-group">
@@ -110,7 +102,7 @@
                 </div>
               </div>
              <div class="form-group">
-              <label for="note" class="col-md-12 control-label">Total Payment </label>
+              <label for="total_payment" class="col-md-12 control-label">Total Payment </label>
                <div class="col-sm-12 detail-total_payment">                  
                 <input type="text" readonly disabled class="form-control" id="total_payment" name="total_payment" value="{{$value->total_payment}}">
                </div>
@@ -156,8 +148,7 @@
   <script type="text/javascript">
   function detailOrder(dom) {
     var name_package = $(dom).data('name_package');
-    var date_using = $(dom).data('date_using');
-    var date_finish = $(dom).data('date_finish'); 
+    var date_using = $(dom).data('date_using'); 
     var theme = $(dom).data('theme');
     var place = $(dom).data('place');
     var guest = $(dom).data('guest');
@@ -166,8 +157,7 @@
     var total_payment = $(dom).data('total_payment');
     var list = $(dom).data('list');
     $('#name_package').val(name_package)
-    $('#date_using').val(date_using)
-    $('#date_finish').val(date_finish) 
+    $('#date_using').val(date_using) 
     $('#theme').val(theme)
     $('#place').val(place)
     $('#guest').val(guest)

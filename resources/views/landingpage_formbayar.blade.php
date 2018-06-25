@@ -13,19 +13,18 @@
                 <center><h5><b>Payment Invoice</b></h5></center>
                 <br>
                 <div class="form-group">
-                  
-                  Hallo,<b> {{$order->user->name}}</b><br>
-                  terimakasih sudah melakukan pemesanan paket di Precious Party Planner.
-                  Berikut adalah detail tagihan anda: <br>
+                  Hello,<b> {{$order->user->name}}</b><br>
+                  Thanks for ordering package at Precious Party Planner.
+                  Below is the detail of your bill: <br>
                   ID Order : {{$order->id}} <br>
                   Package : {{$order->package->name_package}} <br>
                   Order Status : {{$order->order_status}} <br>
-                  Total Payment : Rp. {{$order->total_payment}} <br>
-                  Payment Status :{{$order->payment_status}}
+                  Total Payment : Rp. {{number_format($order->total_payment,2,',','.')}} <br>
+                  Payment Status : {{$order->payment_status}}
                   <br>
-                  Untuk menindaklanjuti pesanan anda, silahkan lakukan pembayaran melalui transfer ke rekening berikut :
+                  To follow up your order, please do the payment by sending the needful expense to :
                   <b>BNI #0296-35-1450</b>
-                  Atas nama <b>Debora</b>                  
+                  On behalf of <b>Debora</b>                 
                 </div>
                 <hr>
                 <center><h5><b>Upload Your Payment Invoice Here</b></h5></center>

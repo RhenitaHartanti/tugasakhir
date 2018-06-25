@@ -1,4 +1,6 @@
 @extends('layouts.app')
+<br>
+<br>
 @section('content')
 <div class="container">
  <div class="row justify-content-center">
@@ -6,8 +8,10 @@
    <div class="register">
     <img class="img-fluid" src="img/logo17.jpg" alt="">
      <div class="card-body">
+      <center><b>Please input your data properly</b><br></center>
       <form method="POST" action="{{ route('register') }}">
        @csrf
+       <br>
         <div class="form-group row">
          <label for="name" class="col-md-4 col-form-label text-md-right">
           {{ __('Name') }}</label>
@@ -88,6 +92,7 @@
                         style="border-color:#DF0101" @endif>
                     </div>
                 </div>
+                <center>after register, you must check your email to activated your account</center><br>
                 <div class="form-group row mb-0">
                  <div class="col-md-6 offset-md-4">
                   <button type="submit" class="btn btn-primary save">
