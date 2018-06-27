@@ -1,11 +1,8 @@
 <?php
-
 namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Order;
 use Carbon\Carbon;
-
-
 class ListReservationController extends Controller
 {
     /**
@@ -37,7 +34,6 @@ class ListReservationController extends Controller
     {
         //
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -48,7 +44,6 @@ class ListReservationController extends Controller
     {
         //
     }
-
     /**
      * Display the specified resource.
      *
@@ -59,7 +54,6 @@ class ListReservationController extends Controller
     {
         //
     }
-
     /**
      * Show the form for editing the specified resource.
      *
@@ -70,7 +64,6 @@ class ListReservationController extends Controller
     {
         //
     }
-
     /**
      * Update the specified resource in storage.
      *
@@ -94,7 +87,6 @@ class ListReservationController extends Controller
         $admin_listreservation->save();
         return redirect('admin_listreservation');
     }
-
     /**
      * Remove the specified resource from storage.
      *

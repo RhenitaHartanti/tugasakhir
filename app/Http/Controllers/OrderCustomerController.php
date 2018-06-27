@@ -13,7 +13,7 @@ class OrderCustomerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    // fungsi yang diunakan untuk menampilkan pesanan dari user yang sedang masuk, dimana yanggal pesannya lebih atau sama dengan hari ini
+    // fungsi yang digunakan untuk menampilkan pesanan dari user yang sedang masuk, dimana yanggal pesannya lebih atau sama dengan hari ini
     public function index()
     {
      $order=Order::where('id_user',Auth::user()->id)->
@@ -43,14 +43,18 @@ class OrderCustomerController extends Controller
       // $simpan->save();
       return redirect ('landingpage_setting');
    }
-
    public function loadFormBayar($id)
    {
-
     $order=Order::find($id);
-    return view ('landingpage_formbayar',compact('order'))->with('id',$id);
+    if($order->payment_status == 'paid off'){
+        $payments =Payment::where('id_order',$id)->first();
+        return view('admin_konfirmasipembayaran',compact('payments'));
+    }
+    else{
+        return view ('landingpage_formbayar',compact('order'))->with('id',$id);
+    }
+    
    }
-
 
     /**
      * Show the form for creating a new resource.

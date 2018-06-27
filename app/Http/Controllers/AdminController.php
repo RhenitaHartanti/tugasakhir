@@ -28,7 +28,9 @@ class AdminController extends Controller
        $orders=Order::with('package','user')
        ->where('payment_status', 'paid off')
        ->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->get();
-       return view('admin_profil',compact('admin','orders'));
+       $total=Order::where('payment_status', 'paid off')
+       ->whereDate('date_using','>',\Carbon\Carbon::now()->toDateString())->sum('total_payment');
+       return view('admin_profil',compact('admin','orders','total'));
     }
 
     /**

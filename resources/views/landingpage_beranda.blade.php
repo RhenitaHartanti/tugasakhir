@@ -5,8 +5,7 @@
 @section('content')
 <br>
 <br>
-    <header class="" style="background-color:rgba(0,0,0,0);">
-
+<header class="" style="background-color:rgba(0,0,0,0);">
 <div id="myCarousel" class="carousel slide" data-ride="carousel">
         <!-- Carousel indicators -->
         <ol class="carousel-indicators">
@@ -33,19 +32,16 @@
         <a class="carousel-control right" href="#myCarousel" data-slide="next">
             <span class="glyphicon glyphicon-chevron-right" style="color:#ffffff"></span>
         </a>
-    </div>
-      <div class="container">
-        <!-- <div class="col-lg-12" style="background-color:rgba(0,0,0,0.1); height:200px; width:2500px; border-radius: 10px;position: relative;top: 40vh; padding-top:30px; alignment-baseline:left; font-size:30px; color:#fffff; font-family:cursive;">
-          We design with heart, we decor with passion, we give you the best<br>We are Precious Party Planner.
-          <br>
-          <div class="col-lg-12 text-center" style="font-size:25px; color:#000000; font-family:serif;">Reservation event planner website for your precious moment</div>
-            </div> -->
-      </div>
+    </div>      
     </header> 
-  <section class="col-lg-12 text-center" id="services" style=" background-color:#000000; font-family:font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style:italic; font-size:20px; color:#B8860B;">make your moment be more precious with us<br>
-    <div class="col-lg-12 text-center" style="font-family:font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif; font-style:bold; font-size:16px; color:#B8860B;">
+  <section class="col-lg-12 text-center" id="services" style=" background-color:#000000;
+  font-family:font-family: 'Droid Serif', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-style:italic; font-size:20px; color:#B8860B;">make your moment be more precious with
+  us<br>
+  <div class="col-lg-12 text-center" style="font-family:font-family: 'Droid Serif',
+  'Helvetica Neue', Helvetica, Arial, sans-serif; font-style:bold; font-size:16px; color:#B8860B;">
     Event Planner Reservation Website
-    </div>
+  </div>
   </section>
   <section id="services">    
     <p>
@@ -147,7 +143,7 @@
     <script type="text/javascript">
     $(document).ready(function(){
      $("#myCarousel").carousel({
-         interval : 1500;
+         interval : 500;
      });
 });
     </script>

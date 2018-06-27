@@ -143,6 +143,7 @@
       </div>
 
       <!-- update order -->
+      @foreach($orders as $key=>$data)
       <div id="modal-ubah{{$data->id}}" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-md">
           <div class="modal-content">
@@ -151,7 +152,7 @@
                 </button>
                   <center><h4 class="modal-title" id="myModalLabel">Update Reservation</h4></center>
             </div>
-              <form action="{{route('admin_listreservation.update', [$data->id]) }}" method="POST" id="form">
+              <form action="{{route('admin_listreservation.update', [$data->id]) }}" method="POST" class="form">
                 {{csrf_field()}}
                   {{method_field('PUT')}}
                     <div class="modal-body">
@@ -179,7 +180,7 @@
                           <div class="form-group">
                             <label for="price" class="col-sm-3 control-label">Price</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control price" id="price" name="price" value="{{$data->price}}">
+                              <input type="text" class="form-control price" name="price" value="{{$data->price}}">
                             </div>
                           </div>
                         </div>
@@ -188,7 +189,7 @@
                           <div class="form-group">
                             <label for="kuota" class="col-sm-3 control-label">Kuota</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="kuota" name="kuota" value="{{$data->package->kuota}}">
+                              <input type="text" class="form-control" id="kuota" name="kuota" value="{{$data->package->kuota}}" readonly>
                             </div>
                           </div>
                         </div>
@@ -224,7 +225,7 @@
                           <div class="form-group">
                             <label for="total_guests" class="col-sm-3 control-label">Additional Guest</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control" id="total_guests" name="total_guests" value="{{$data->total_guests}}" onchange="total(this)">
+                              <input type="text" class="form-control" id="total_guests" name="total_guests" value="{{$data->total_guests}}" onchange="total(this,{{$data->id}})">
                             </div>
                           </div>
                         </div>
@@ -251,7 +252,7 @@
                           <div class="form-group">
                             <label for="total_payment" class="col-sm-3 control-label">Total Payment</label>
                             <div class="col-sm-8">
-                              <input type="text" class="form-control price" id="total_payment" name="total_payment" value="{{$data->total_payment}}">
+                              <input type="text" class="form-control price" id="total_payment{{$data->id}}" name="total_payment" value="{{$data->total_payment}}">
                             </div>
                           </div>
                         </div>
@@ -263,6 +264,7 @@
                     </div>
                   </div>
                 </div>
+                @endforeach
 
 </section>
 </section>
@@ -297,18 +299,17 @@
     $('.detail-list').html(list)
     $('#modal-lihat').modal('show')
   }
-  function total(element){
+  function total(element,id){
     var oldValue = element.defaultValue;
     var newValue = element.value;
     var total_payment = (newValue - oldValue) * 100000;
-    var parse = $('#total_payment').val().replace(/[($)\s\._\-]+/g, '');
-    $('#total_payment').val(parseInt(parse) + total_payment)
-    var $this = $('#total_payment');
+    var parse = $('#total_payment' + id).val().replace(/[($)\s\._\-]+/g, '');
+    $('#total_payment' + id).val(parseInt(parse) + total_payment)
+    var $this = $('#total_payment' + id);
     var input = $this.val();
     input = input.replace(/[\D\s\._\-]+/g, "");
     input = input ? parseInt( input, 10 ) : 0;
-
-    $('#total_payment').val( function() {
+    $('#total_payment' + id).val( function() {
         return ( input === 0 ) ? "" : input.toLocaleString( "id" );
     });
    element.defaultValue=newValue;
@@ -317,19 +318,16 @@
     var input = $(this).val();
     var input = input.replace(/[\D\s\._\-]+/g, "");
     input = input ? parseInt( input, 10 ) : 0;
-
     $(this).val( function() {
         return ( input === 0 ) ? "" : input.toLocaleString( "id" );
     });
 });
-
 $( ".price" ).on( "keyup", numberFormat);
 function numberFormat(event){
     var selection = window.getSelection().toString();
     if ( selection !== '' ) {
         return;
     }
-
     if ( $.inArray( event.keyCode, [38,40,37,39] ) !== -1 ) {
         return;
     }
@@ -337,12 +335,10 @@ function numberFormat(event){
     var input = $this.val();
     var input = input.replace(/[\D\s\._\-]+/g, "");
     input = input ? parseInt( input, 10 ) : 0;
-
     $this.val( function() {
         return ( input === 0 ) ? "" : input.toLocaleString( "id" );
     });
 }
-
 $( ".price" ).on( "blur", checkFormat);
 function checkFormat(event){
     var data = $( this ).val().replace(/[($)\s\._\-]+/g, '');
@@ -350,7 +346,7 @@ function checkFormat(event){
         $( this ).val("");
     }
 }
-$('#form').submit(function() {
+$('.form').submit(function() {
     $('.price').each(function() {
         var number = $( this ).val().replace(/[($)\s\._\-]+/g, '');
         $(this).val(number);

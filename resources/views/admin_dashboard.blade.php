@@ -23,20 +23,6 @@
         <div class="col-lg-3 col-xs-6">
           <div class="small-box" style="background:#CCB20A">
             <div class="inner">
-              <h3>{{$total_asset}}<sup style="font-size: 20px"></sup></h3>
-              <p>Total Asset</p>
-            </div>
-            <div class="icon">
-              <i class="ion ion-stats-bars"></i>
-            </div>
-            <a href="#" class="small-box-footer">
-              More info <i class="fa fa-arrow-circle-right"></i>
-            </a>
-          </div>
-        </div>
-        <div class="col-lg-3 col-xs-6">
-          <div class="small-box" style="background:#CCB20A">
-            <div class="inner">
               <h3>{{$total_user}}</h3>
               <p>Total User</p>
             </div>
@@ -56,6 +42,20 @@
             </div>
             <div class="icon">
               <i class="glyphicon glyphicon-gift "></i>
+            </div>
+            <a href="#" class="small-box-footer">
+              More info <i class="fa fa-arrow-circle-right"></i>
+            </a>
+          </div>
+        </div>
+        <div class="col-lg-3 col-xs-6">
+          <div class="small-box" style="background:#CCB20A">
+            <div class="inner">
+              <h3></sup></h3>
+              <p>Income</p>
+            </div>
+            <div class="icon">
+              <i class="glyphicon glyphicon-money "></i>
             </div>
             <a href="#" class="small-box-footer">
               More info <i class="fa fa-arrow-circle-right"></i>

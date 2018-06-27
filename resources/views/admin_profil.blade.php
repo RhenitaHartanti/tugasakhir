@@ -128,6 +128,16 @@
         </div>
       </div>
     </div>   
+     <div class="box">
+            <div class="box-header"> 
+              <center>
+                <center><h3>TOTAL INCOME</h3></center>
+              </center>
+            </div>
+            <div class="box-body">
+              <center><h2>Rp {{number_format($total,2,',','.')}}</2></center>
+    </div><br>
+
 </section> 
 
 @endsection

@@ -27,7 +27,7 @@ class OrdersController extends Controller
             $orders=Order::with('package','user')->where('order_status', 'waiting')
                 ->orderBy('created_at','desc')->get();        
             $total_user = \App\User::count();
-            $total_asset = \App\Asset::count();
+            // $total_asset = \App\Asset::count();
             $total_package = \App\Package::count();
         $booking=Order::with('package','user','payment')->where('order_status', 'accept')->get();
         $event = $booking->map(function($row){
